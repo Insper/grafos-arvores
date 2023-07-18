@@ -1,6 +1,18 @@
 INHERIT: "active-handout.yml"
 
-site_name: "Site name here"
+site_name: "Grafos e Árvores"
 
 nav:
   - index.md
+  - sobre.md
+  - "Módulos":
+    - 0-linguagem-C/index.md
+    - 1-grafos-componentes/index.md
+    - 2-grafos-caminhos/index.md
+    - 3-grafos-esparsos/index.md
+    - 4-arvores-intro/index.md
+    - 5-arvores-balanceadas/index.md
+
+extra_javascript:
+  - js/ah-button.mjs
+  - js/ah-terminal.mjs

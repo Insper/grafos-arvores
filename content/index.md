@@ -2,6 +2,8 @@
 
 Bem vindos à disciplina **Grafos e Árvores** do 4^o^ semestre do BCC - Insper Aqui estão todos os materiais importantes para a disciplina. .
 
+![](arvore.svg){: style="width: 500px;" }
+
 ## Links importantes
 
 * [Blackboard da disciplina](TODO): usado somente para avisos e notas. 
