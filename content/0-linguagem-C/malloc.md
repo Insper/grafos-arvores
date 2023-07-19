@@ -2,6 +2,10 @@
 
 <script src="/js/ah-terminal.mjs" type="module"></script>
 <script src="/js/ah-button.mjs" type="module"></script>
+<script src="/js/ah-external-content.mjs" type="module"></script>
+
+<ah-external-content src="/0-linguagem-C/slides-malloc.html"/>
+
 
 ## Exercícios básicos
 
@@ -12,7 +16,7 @@
 
 Leia com atenção o seguinte programa.
 
-```c
+```c linenums="1"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,7 +28,7 @@ int *aloca_vetor(int n) {
 }
 
 void atribui(int *vetor, int n) {
-    for (int i = 0; i <= n; i++) { // problema!
+    for (int i = 0; i <= n; i++) { 
         vetor[i] = i;
     }
 }
@@ -35,7 +39,7 @@ int main(int argc, char *argv[]) {
 
     atribui(vetor, N);
 
-    for (i = 0; i <= N; i++) { // problema!
+    for (i = 0; i <= N; i++) { 
         printf("Elemento %d: %d\n", i+1, vetor[i]);
     }
 
@@ -140,36 +144,41 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 O primeiro erro encontrado é
 
 ```
-==1899== Invalid write of size 4
-==1899==    at 0x1086C7: main (ex1.c:11)
-==1899==  Address 0x522f078 is 0 bytes after a block of size 56 alloc'd
-==1899==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==1899==    by 0x1086B9: main (ex1.c:7)
+==24804== Invalid write of size 4
+==24804==    at 0x4011A7: atribui (a.c:13)
+==24804==    by 0x4011E6: main (a.c:21)
+==24804==  Address 0x4a65070 is 0 bytes after a block of size 48 alloc'd
+==24804==    at 0x4843794: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-lin
+ux.so)
+==24804==    by 0x401171: aloca_vetor (a.c:7)
+==24804==    by 0x4011D1: main (a.c:18)
 ```
 
 !!! exercise text short
     Em qual linha o erro ocorre? O que a mensagem acima significa?
 
     !!! answer
-        O erro ocorre na linha 11, ao escrever em vetor[i] quando `i == N`
+        O erro ocorre na linha 13, ao escrever em vetor[i] quando `i == N`
 
 ---------
 
-O segundo erro é
+O segundo erro está mostrado abaixo e ocorre logo antes de lermos da linha "Elemento 13" na saída.
 
 ```
-==1899== Invalid read of size 4
-==1899==    at 0x1086DD: main (ex1.c:15)
-==1899==  Address 0x522f078 is 0 bytes after a block of size 56 alloc'd
-==1899==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==1899==    by 0x1086B9: main (ex1.c:7)
+==24804== Invalid read of size 4
+==24804==    at 0x401204: main (a.c:24)
+==24804==  Address 0x4a65070 is 0 bytes after a block of size 48 alloc'd
+==24804==    at 0x4843794: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-lin
+ux.so)
+==24804==    by 0x401171: aloca_vetor (a.c:7)
+==24804==    by 0x4011D1: main (a.c:18)
 ```
 
 !!! exercise text short
     Em qual linha o erro ocorre? O que a mensagem acima significa?
 
     !!! answer
-        O erro ocorre na linha 15, ao ler vetor[i] quando `i == N`.
+        O erro ocorre na linha 24, ao ler vetor[i] quando `i == N`.
 
 ---------
 
