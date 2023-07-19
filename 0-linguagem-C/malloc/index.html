@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      
+        <title>Alocação Dinâmica de Memória - Grafos e Árvores</title>
+      
+    
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <script>
+      // SETUP GLOBAL CONSTANTS
+      var base_url = '../..';
+      
+      var telemetryEnabled = false;
+      var backendUrl = "";
+      var courseSlug = "";
+      
+      
+      var dashboardEnabled = false;
+      var tagTree = {};
+      
+
+      // SETUP PLUGIN
+      window.initialized = false;
+      if (!window.initializers) window.initializers = [];
+      window.registerInitializer = (initialize) => {
+        if (window.initialized) initialize();
+        else window.initializers.push(initialize);
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://unpkg.com/hyperscript.org"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    
+    
+  </head>
+  <body>
+    <div class="ah-main-container">
+      <header class="ah-header">
+        <button class="ah-menu-btn ah-button ah-button--borderless"
+                aria-label="toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+</svg>
+        </button>
+        <a href="../.."
+           title="Grafos e Árvores"
+           class="ah-logo"
+           aria-label="Grafos e Árvores">
+          Grafos e Árvores
+        </a>
+        <div class="ah-header--right">
+          
+          
+          
+          <button id="resetHandoutButton">
+            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg></span>
+          </button>
+          
+
+          
+        </div>
+      </header>
+      <nav class="ah-navigation preload">
+        <div class="ah-nav-container">
+          <button class="ah-menu-btn ah-button ah-button--borderless close-menu"
+                  aria-label="close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+</svg>
+          </button>
+          <ul class="ah-nav-body">
+            
+              
+  
+    <li>
+      <a href="../..">Grafos e Árvores</a>
+    </li>
+  
+
+            
+              
+  
+    <li>
+      <a href="../../sobre/">Sobre a disciplina</a>
+    </li>
+  
+
+            
+              
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">Módulos</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">0 - Introdução a C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/">1 - Introdução a Grafos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/">2 - Caminhos em Grafos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../3-grafos-esparsos/">3 - Problemas em Grafos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../4-arvores-intro/">4 - Árvores</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../5-arvores-balanceadas/">5 - Árvores Balanceadas</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+            
+          </ul>
+        </div>
+      </nav>
+      <main class="ah-content ah-typeset">
+        
+          <div class="ah-title-box">
+            <ul class="ah-breadcrumbs">
+              
+                
+                <li></li>
+            </ul>
+            
+            
+          </div>
+          
+            <section class="progress-section show">
+<h1 id="alocacao-dinamica-de-memoria">Alocação Dinâmica de Memória</h1>
+<script src="/js/ah-terminal.mjs" type="module"></script>
+<script src="/js/ah-button.mjs" type="module"></script>
+<script src="/js/ah-external-content.mjs" type="module"></script>
+
+<p><ah-external-content src="/0-linguagem-C/slides-malloc.html"/></p>
+<h2 id="exercicios-basicos">Exercícios básicos</h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip 1</p>
+<p>Execute os programas dessa atividade no <em>Playground</em> da matéria no PL. </p>
+<p><ah-button href="https://us.prairielearn.com/pl/course_instance/137302/assessment/2352640">Abrir Playground</ah-button></p>
+</div>
+<p>Leia com atenção o seguinte programa.</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="cp">#define N 12</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="nf">aloca_vetor</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">vetor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">vetor</span><span class="p">;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">}</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">atribui</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">vetor</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">        </span><span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="p">}</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">vetor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aloca_vetor</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="n">atribui</span><span class="p">(</span><span class="n">vetor</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Elemento %d: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Vamos começar analisando o código do programa <strong>antes de rodá-lo</strong>. </p>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_1" id="short_1_0">
+<p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Analisando seu código-fonte, o que este programa faz?</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Aloca um vetor, preenche com $0,1,...,n$ e imprime!</p>
+</div>
+</div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_2" id="short_2_0">
+<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Na execução deste programa, o que acontece se <code>malloc</code> falhar? </p>
+<p><strong>Dica</strong>: se não lembra como <code>malloc</code> funciona, volte nos slides.</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>A função de alocação irá retornar <code>NULL</code>, mas nenhuma verificação está sendo feita.</p>
+</div>
+</div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_3" id="short_3_0">
+<p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>O seu programa libera toda memória que aloca? Se não, aponte onde ele deveria fazer isto.</p>
+<p><strong>Dica</strong>: lembre-se que usamos a função <code>free</code> para indicar que não usaremos mais uma área de memória obtida com <code>malloc</code>. Se não lembra de como usar volta para os slides.</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Cada valor retornado por <code>malloc</code> deve ser liberado usando a função <code>free</code>. No caso, vemos que <code>vetor</code> não foi liberado após seu uso.
+Isto deveria ser feito na linha 26.</p>
+</div>
+</div>
+<p>Agora que entendemos um pouco melhor o programa e percebemos que ele tem vários erros, vamos executá-lo para ver o que acontece :) Salve o conteúdo do programa como <code>ex1.c</code> e compile-o com o comando abaixo.</p>
+<p><ah-terminal>
+$ gcc -Wall -std=c99 -Og ex1.c -o ex1
+</ah-terminal></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip 2</p>
+<p>O terminal do VSCode é muito bom e podemos usá-lo para rodar todos os comandos dessa atividade. </p>
+</div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_4" id="short_4_0">
+<p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Execute o programa. Ocorreu algum problema durante a execução?</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>A resposta aqui é provavelmente não. Porém, isso não significa que o programa está correto, apenas que se ocorreu um erro ele não foi suficientemente grave para finalizar o programa.</p>
+</div>
+</div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_5" id="short_5_0">
+<p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>O comportamento de seu programa muda conforme N muda? Começe com <code>N=10</code> e vá incrementando de um em um. Você consegue explicar por que? Discuta com seu grupo e valide sua resposta com o professor.</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Ao chegar em <code>N=14</code> seu programa deverá magicamente dar problemas e deve voltar a funcionar com <code>N=15</code>. Este é um dos grandes problemas de programas com erro de memória: seu comportamento é imprevisível.</p>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Em C é comum programas com problemas funcionarem "por sorte". Essencialmente, coisas erradas acontecem, mas elas podem não ser graves o suficiente para que o programa seja finalizado pelo sistema. Pequenas mudanças no código podem fazer um programa aparentemente OK quebrar. </p>
+</div>
+<div class="admonition exercise text medium tag-medium-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/medium_6" id="medium_6_0">
+<p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Existem três problemas no código. O primeiro (<code>vetor</code> não é desalocado) já identificamos no exercíco anterior. Você consegue identificar os outros dois?</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>O loop de exibição imprime até a posição $N$, porém as $N$ posições do array são $0,1,\dots,N-1$.
+O mesmo erro é realizado na função <code>atribui</code>, que faz um acesso indevido <code>vetor[N]</code>.</p>
+</div>
+</div>
+<div class="admonition exercise self-progress" data-slug="0-linguagem-C/malloc/exercise_1" id="exercise_1_0">
+<p class="admonition-title">Hora de corrigir os erros 7</p>
+<form class="exercise-form">
+<p>Corrija os erros apontados na questão anterior e salve o programa em um arquivo <em>ex1-certo.c</em>.</p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+</div>
+<h2 id="ferramentas-de-verificacao-de-memoria">Ferramentas de verificação de memória</h2>
+<p>Para poder identificar mais facilmente problemas relativos a memória, iremos utilizar uma ferramenta chamada <strong>Valgrind</strong>.</p>
+<p>O Valgrind é um detector de má gestão de memória. Ele roda seu programa em cima de um ambiente modificado e aponta os seguintes erros:</p>
+<ol>
+<li>memória alocada e não liberada</li>
+<li>acessos (leituras e escritas) a posições de memória não alocada ou inválidas</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip 3</p>
+<p>O valgrind já está incluso nos workspaces da disciplina, mas se quiser instalá-lo em também em sua instalação Linux (Debian, Ubuntu ou derivados), basta usar os seguintes comandos.</p>
+<p><ah-terminal>
+$ sudo apt update
+$ sudo apt install valgrind
+</ah-terminal></p>
+</div>
+<p>Para que os problemas encontrados pelo Valgrind sejam mais facilmente identificados, iremos passar a compilar utilizando a flag <code>-g</code>.</p>
+<p><ah-terminal>
+$ gcc -Og -g -Wall -std=c99 ex1.c -o ex1
+$ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
+</ah-terminal></p>
+<div class="admonition exercise text medium tag-medium-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/medium_7" id="medium_7_0">
+<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Rode o Valgrind com <code>valgrind --leak-check=yes ./ex1</code>. Quantos erros foram encontrados? Quais são seus tipos (escrita ou leitura de dados)? O que eles significam?</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Cada erro encontrado será analisado no resto da atividade.</p>
+</div>
+</div>
+<hr />
+<p>O primeiro erro encontrado é</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>==24804== Invalid write of size 4
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>==24804==    at 0x4011A7: atribui (a.c:13)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>==24804==    by 0x4011E6: main (a.c:21)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>==24804==  Address 0x4a65070 is 0 bytes after a block of size 48 alloc&#39;d
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>==24804==    at 0x4843794: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-lin
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>ux.so)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>==24804==    by 0x401171: aloca_vetor (a.c:7)
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>==24804==    by 0x4011D1: main (a.c:18)
+</code></pre></div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_8" id="short_8_0">
+<p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Em qual linha o erro ocorre? O que a mensagem acima significa?</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>O erro ocorre na linha 13, ao escrever em vetor[i] quando <code>i == N</code></p>
+</div>
+</div>
+<hr />
+<p>O segundo erro está mostrado abaixo e ocorre logo antes de lermos da linha "Elemento 13" na saída.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>==24804== Invalid read of size 4
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>==24804==    at 0x401204: main (a.c:24)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>==24804==  Address 0x4a65070 is 0 bytes after a block of size 48 alloc&#39;d
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>==24804==    at 0x4843794: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-lin
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ux.so)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>==24804==    by 0x401171: aloca_vetor (a.c:7)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>==24804==    by 0x4011D1: main (a.c:18)
+</code></pre></div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_9" id="short_9_0">
+<p class="admonition-title">Exercise 10<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Em qual linha o erro ocorre? O que a mensagem acima significa?</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>O erro ocorre na linha 24, ao ler vetor[i] quando <code>i == N</code>.</p>
+</div>
+</div>
+<hr />
+<p>A seção <em>HEAP SUMMARY</em> faz um resumo dos dados alocados/desalocados no seu programa. A saída abaixo foi obtida ao rodar o valgrind para o exercício 1 original:</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>==2179== HEAP SUMMARY:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>==2179==     in use at exit: 56 bytes in 1 blocks
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>==2179==   total heap usage: 2 allocs, 1 frees, 1,080 bytes allocated
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>==2179==
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>==2179== 56 bytes in 1 blocks are definitely lost in loss record 1 of 1
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>==2179==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>==2179==    by 0x1086B9: main (ex1.c:7)
+</code></pre></div>
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_10" id="short_10_0">
+<p class="admonition-title">Exercise 11<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Ela mostra algum problema? Se sim, qual linha de código é apontada? Qual é o problema diagnosticado por este aviso?</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Ela indica que houveram 2 <code>mallocs' e somente 1</code>free<code>. Ou seja, alguma alocação de memória deixou de liberar dados. Abaixo, são indicadas em quais linhas os</code>malloc<code>sem</code>free<code>ocorreram (linha 7 na função</code>main<code>no arquivo</code>ex1.c`)</p>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Verifique que seu programa corrigido <em>ex1-certo.c</em> roda sem erros no valgrind. Se não, corrija os problema e rode novamente até que rode sem erros.</p>
+</div>
+<h2 id="para-entregar">Para entregar</h2>
+<p>A prática mais completa dessa aula está disponível no PrairieLearn e envolverá implementar funções que lidam com strings. Os objetivos são</p>
+<ul>
+<li>revisar uso de strings e sua codificação na memória</li>
+<li>criar funções que aloquem novos objetos na memória e os retorne</li>
+<li>determinar o tamanho correto a ser alocado para cada operação</li>
+<li>usar o valgrind para checar se são feitos acessos indevidos à memória</li>
+<li>usar o valgrind para checar se todo malloc tem um free correspondente</li>
+</ul>
+<p><ah-button href="https://us.prairielearn.com/pl/course_instance/137302/assessment/2352818">Ir para a prática</ah-button></p>
+
+
+</section>
+          
+        
+      </main>
+      <footer class="ah-footer ah-typeset">
+        <div class="ah-footer-nav">
+          
+          
+        </div>
+      </footer>
+    </div>
+    
+      <script src="../../js/ah-button.mjs"></script><script src="../../js/ah-terminal.mjs"></script>
+    
+  </body>
+</html>

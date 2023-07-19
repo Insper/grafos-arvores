@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      
+        <title>Grafos e Árvores - Grafos e Árvores</title>
+      
+    
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <script>
+      // SETUP GLOBAL CONSTANTS
+      var base_url = '../..';
+      
+      var telemetryEnabled = false;
+      var backendUrl = "";
+      var courseSlug = "";
+      
+      
+      var dashboardEnabled = false;
+      var tagTree = {};
+      
+
+      // SETUP PLUGIN
+      window.initialized = false;
+      if (!window.initializers) window.initializers = [];
+      window.registerInitializer = (initialize) => {
+        if (window.initialized) initialize();
+        else window.initializers.push(initialize);
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://unpkg.com/hyperscript.org"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    
+    
+  </head>
+  <body>
+    <div class="ah-main-container">
+      <header class="ah-header">
+        <button class="ah-menu-btn ah-button ah-button--borderless"
+                aria-label="toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+</svg>
+        </button>
+        <a href="../.."
+           title="Grafos e Árvores"
+           class="ah-logo"
+           aria-label="Grafos e Árvores">
+          Grafos e Árvores
+        </a>
+        <div class="ah-header--right">
+          
+          
+          
+          <button id="resetHandoutButton">
+            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg></span>
+          </button>
+          
+
+          
+        </div>
+      </header>
+      <nav class="ah-navigation preload">
+        <div class="ah-nav-container">
+          <button class="ah-menu-btn ah-button ah-button--borderless close-menu"
+                  aria-label="close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+</svg>
+          </button>
+          <ul class="ah-nav-body">
+            
+              
+  
+    <li>
+      <a href="../..">Grafos e Árvores</a>
+    </li>
+  
+
+            
+              
+  
+    <li>
+      <a href="../../sobre/">Sobre a disciplina</a>
+    </li>
+  
+
+            
+              
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">Módulos</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">0 - Introdução a C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/">1 - Introdução a Grafos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/">2 - Caminhos em Grafos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../3-grafos-esparsos/">3 - Problemas em Grafos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../4-arvores-intro/">4 - Árvores</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../5-arvores-balanceadas/">5 - Árvores Balanceadas</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+            
+          </ul>
+        </div>
+      </nav>
+      <main class="ah-content ah-typeset">
+        
+          <div class="ah-title-box">
+            <ul class="ah-breadcrumbs">
+              
+                
+                <li></li>
+            </ul>
+            
+            
+          </div>
+          
+            <section class="progress-section show">
+<h1 id="grafos-e-arvores">Grafos e Árvores</h1>
+<h2 id="alocacao-de-memoria">Alocação de memória</h2>
+<hr />
+<h1 id="alocacao-estatica">Alocação estática</h1>
+<div class="language-c highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">imagem</span><span class="p">[</span><span class="mi">512</span><span class="p">][</span><span class="mi">512</span><span class="p">];</span>
+</code></pre></div>
+<ul>
+<li>tamanho definido em tempo de compilação!</li>
+<li>e se precisar de mais espaço?</li>
+</ul>
+<hr />
+<h1 id="alocacao-dinamica-em-java">Alocação dinâmica (em Java)</h1>
+<div class="language-java highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// lê da entrada ou de algum arquivo</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">int</span><span class="o">[][]</span><span class="w"> </span><span class="n">imagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">][</span><span class="n">N</span><span class="o">]</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>o valor de <code>N</code> muda conforme a entrada do usuário</li>
+<li>o <code>new</code> é responsável por "pedir" mais memória</li>
+</ul>
+<hr />
+<h1 id="malloc">malloc</h1>
+<div class="language-c highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">malloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>se deu certo</strong> devolve um apontador para uma região de memória com ao menos <code>size</code>bytes</li>
+<li><strong>se deu erro</strong> devolve <code>NULL</code></li>
+</ul>
+<hr />
+<h1 id="alocacao-dinamica-em-c">Alocação dinâmica (em C)</h1>
+<div class="language-C highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">imagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">// só usar como um array normal :)</span>
+</code></pre></div>
+<ul>
+<li>queremos <code>N</code> itens</li>
+<li>o tipo de cada item é <code>int</code></li>
+<li>o tamanho de cada item é <code>sizeof(int)</code></li>
+</ul>
+<hr />
+<h1 id="tipos-de-alocacao-dinamica">Tipos de alocação dinâmica</h1>
+<ul>
+<li>
+<p><strong>explícito</strong> (C, C++ e rust)</p>
+<ul>
+<li>gerenciamento é feito no código</li>
+<li>funções para pedir <strong>e liberar</strong> memória</li>
+</ul>
+</li>
+<li>
+<p><strong>implícito</strong> (Java, Python, C#)</p>
+<ul>
+<li>mais alto nível, alocando objetos inteiros</li>
+<li>gerenciamento é feito pela própria linguagem</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1 id="free">free</h1>
+<div class="language-c highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">free</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>Devolve o bloco apontado por <code>p</code> para o sistema</li>
+<li><code>p</code> deve ter sido devolvido por uma chamada a <code>malloc</code></li>
+</ul>
+<hr />
+<h1 id="alocacao-dinamica-em-c_1">Alocação dinâmica (em C)</h1>
+<div class="language-C highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">dados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">// só usar como um array normal :)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">free</span><span class="p">(</span><span class="n">dados</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>acessar os dados do apontador <code>dados</code> resulta em erro após a chamada a <code>free</code></li>
+<li>se não chamar <code>free</code> a memória fica reservada para <code>dados</code> até o programa terminar</li>
+</ul>
+<hr />
+<h1 id="vantagens-desvantagens-alocacao-explicita">Vantagens / Desvantagens (alocação explícita)</h1>
+<ul>
+<li>
+<p><strong>Vantagens</strong></p>
+<ul>
+<li>cresce/diminui consumo de memória conforme necessário</li>
+<li>controle da quantidade é feita em tempo de execução</li>
+<li>útil em sistemas com pouca memória</li>
+</ul>
+</li>
+<li>
+<p><strong>Desvantagens</strong></p>
+<ul>
+<li>gerenciar uso é trabalhoso e sujeito a erros</li>
+<li>não liberar espaços sem uso</li>
+<li>acessar espaços já liberados</li>
+<li>pedir a quantidade exata de memória necessária</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1 id="atividade-pratica">Atividade prática</h1>
+<ol>
+<li><strong>Exercícios básicos</strong> (em aula): usos simples de malloc e free</li>
+<li><strong>APS</strong>: revisão de strings + usos mais realistas de malloc</li>
+</ol>
+
+
+</section>
+          
+        
+      </main>
+      <footer class="ah-footer ah-typeset">
+        <div class="ah-footer-nav">
+          
+          
+        </div>
+      </footer>
+    </div>
+    
+      <script src="../../js/ah-button.mjs"></script><script src="../../js/ah-terminal.mjs"></script>
+    
+  </body>
+</html>
