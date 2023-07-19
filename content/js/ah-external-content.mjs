@@ -9,7 +9,7 @@ export class AhExternalContent extends LitElement {
   static styles = css`
     :host {
       display: block;
-      min-height: 400px;
+      height: 400px;
     }
   `;
 
