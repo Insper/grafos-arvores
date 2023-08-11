@@ -6,13 +6,12 @@ nav:
   - index.md
   - sobre.md
   - "Módulos":
-    - 0-linguagem-C/index.md
-    - 1-grafos-componentes/index.md
-    - 2-grafos-caminhos/index.md
-    - 3-grafos-esparsos/index.md
-    - 4-arvores-intro/index.md
-    - 5-arvores-balanceadas/index.md
+    - "0 - Linguagem C": 0-linguagem-C/index.md
+    - "1 - Grafos e Componentes": 1-grafos-componentes/index.md
+    - "2 - Grafos e Caminhos": 2-grafos-caminhos/index.md
+    - "3 - Grafos esparsos": 3-grafos-esparsos/index.md
+    - "4 - Árvores": 4-arvores-intro/index.md
+    - "5 - Árvores balanceadas": 5-arvores-balanceadas/index.md
 
 extra_javascript:
-  - js/ah-button.mjs
-  - js/ah-terminal.mjs
+  - js/external.js

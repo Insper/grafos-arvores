@@ -10,6 +10,6 @@ Usaremos a linguagem *C* nesta disciplina.
 ## Para entregar
 
 - Na última aula do mutirão será aplicada uma prova de *C*.
-- Façam as atividades do módulo [Linguagem C](....) na área do curso no PrairieLearn
+- Façam as atividades do módulo [Linguagem C](https://us.prairielearn.com/pl/course_instance/137302/assessments) na área do curso no PrairieLearn
 
 

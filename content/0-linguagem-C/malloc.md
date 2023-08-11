@@ -1,8 +1,5 @@
 #  Alocação Dinâmica de Memória
 
-<script src="/js/ah-terminal.mjs" type="module"></script>
-<script src="/js/ah-button.mjs" type="module"></script>
-<script src="/js/ah-external-content.mjs" type="module"></script>
 
 <ah-external-content src="/0-linguagem-C/slides-malloc.html"/>
 

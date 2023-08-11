@@ -10,7 +10,7 @@
 
 --------
 
-TODO: incluir imagem do mapa que recebemos no último semestre
+![](mapa.png)
 
 ---------
 
@@ -115,11 +115,9 @@ $$
 
 
 
-
-
-
-
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({startOnLoad:true});
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.0/dist/mermaid.esm.min.mjs';
+setTimeout(300, function () {
+    mermaid.initialize({ startOnLoad: true })
+});
 </script>
