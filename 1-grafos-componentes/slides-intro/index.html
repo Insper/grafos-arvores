@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>0 - Linguagem C - Grafos e Árvores</title>
+        <title>Slides intro - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
     <script>
       // SETUP GLOBAL CONSTANTS
-      var base_url = '..';
+      var base_url = '../..';
       
       var telemetryEnabled = false;
       var backendUrl = "";
@@ -46,7 +46,7 @@
     <script src="https://unpkg.com/htmx.org@1.8.4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
     
     
   </head>
@@ -60,7 +60,7 @@
   <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
 </svg>
         </button>
-        <a href=".."
+        <a href="../.."
            title="Grafos e Árvores"
            class="ah-logo"
            aria-label="Grafos e Árvores">
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="..">Home</a>
+      <a href="../..">Home</a>
     </li>
   
 
@@ -102,36 +102,20 @@
               
   
     <li>
-      <a href="../sobre/">Sobre</a>
+      <a href="../../sobre/">Sobre</a>
     </li>
   
 
             
               
-  <li class="ah-togglable-item opened">
+  <li class="ah-togglable-item">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
         
   
-
-    <li class="active ah-togglable-item opened">
-      <span class="ah-togglable-handle">0 - Linguagem C</span>
-      <ul>
-        
-          
-            
-            
-              <li class="ah-toc-item">
-                <a href="#atividades">Atividades</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#para-entregar">Para entregar</a>
-              </li>
-            
-        
-      </ul>
+    <li>
+      <a href="../../0-linguagem-C/">0 - Linguagem C</a>
     </li>
   
 
@@ -139,7 +123,7 @@
         
   
     <li>
-      <a href="../1-grafos-componentes/">1 - Grafos e Componentes</a>
+      <a href="../">1 - Grafos e Componentes</a>
     </li>
   
 
@@ -147,7 +131,7 @@
         
   
     <li>
-      <a href="../2-grafos-caminhos/">2 - Grafos e Caminhos</a>
+      <a href="../../2-grafos-caminhos/">2 - Grafos e Caminhos</a>
     </li>
   
 
@@ -155,7 +139,7 @@
         
   
     <li>
-      <a href="../3-grafos-esparsos/">3 - Grafos esparsos</a>
+      <a href="../../3-grafos-esparsos/">3 - Grafos esparsos</a>
     </li>
   
 
@@ -163,7 +147,7 @@
         
   
     <li>
-      <a href="../4-arvores-intro/">4 - Árvores</a>
+      <a href="../../4-arvores-intro/">4 - Árvores</a>
     </li>
   
 
@@ -171,7 +155,7 @@
         
   
     <li>
-      <a href="../5-arvores-balanceadas/">5 - Árvores balanceadas</a>
+      <a href="../../5-arvores-balanceadas/">5 - Árvores balanceadas</a>
     </li>
   
 
@@ -189,10 +173,6 @@
             <ul class="ah-breadcrumbs">
               
                 
-                  
-                    <li>Módulos</li>
-                  
-                
                 <li></li>
             </ul>
             
@@ -200,18 +180,112 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="0-introducao-a-c">0 - Introdução a C</h1>
-<p>Usaremos a linguagem <em>C</em> nesta disciplina.</p>
-<h2 id="atividades">Atividades</h2>
+<style>
+.mermaid {
+    font-size: 10pt;
+}
+</style>
+
+<h1 id="grafos-e-arvores">Grafos e Árvores</h1>
+<h2 id="introducao-a-grafos">Introdução a grafos</h2>
+<hr />
+<p><img alt="" src="../mapa.png" /></p>
+<hr />
+<h1 id="enchentes-em-heliopolis">Enchentes em Heliópolis</h1>
 <ul>
-<li><a href="https://insper.github.io/Labs-de-C-BCC">Mutirão C</a>: atividade integrada com <em>Sistemas Hardware Software</em> para aprendizado da sintaxe e uso básico de C. </li>
-<li><a href="malloc/">Alocação de memória</a>: o equivalente ao <code>new</code> de Java e à criação de listas/dicts/instâncias de Classes em Python</li>
+<li>Alguma área está isolada do resto da comunidade?</li>
+<li>Como sair de sua casa até um destino?</li>
+<li>Qual o mínimo de intervenções necessárias para que todos pontos isolados sejam restaurados?</li>
 </ul>
-<h2 id="para-entregar">Para entregar</h2>
+<hr />
+<h1 id="como-representar-esse-mapa">Como representar esse mapa?</h1>
+<hr />
+<pre class="mermaid">
+graph LR
+    A --- B
+    F --- A
+    B --- C
+    B --- D
+    B --- F
+    E --- C
+    A --- E
+</pre>
+
+<hr />
+<h1 id="grafo">Grafo</h1>
 <ul>
-<li>Na última aula do mutirão será aplicada uma prova de <em>C</em>.</li>
-<li>Façam as atividades do módulo <a href="https://us.prairielearn.com/pl/course_instance/137302/assessments">Linguagem C</a> na área do curso no PrairieLearn</li>
+<li>$V = {1 \dots N}$ - conjunto de vértices</li>
+<li>$E = { (x, y) | x, y \in V; x \neq y}$ <ul>
+<li>conjunto de arestas (<em>edges</em>)</li>
+<li>sai de $x$ e chega em $y$</li>
 </ul>
+</li>
+</ul>
+<hr />
+<h1 id="e-o-mapa">E o mapa?</h1>
+<h2 id="alguma-area-esta-isolada-do-resto-da-comunidade">Alguma área está isolada do resto da comunidade?</h2>
+<ol>
+<li>o que cada vértice do grafo representa?</li>
+<li>qual relação  entre vértices uma aresta representa?</li>
+<li>essa relação tem direção ou é sempre simétrica?</li>
+<li>essa relação tem pesos/preferências ou todas arestas são equivalentes?</li>
+</ol>
+<hr />
+<h1 id="tipos-de-grafos">Tipos de grafos</h1>
+<ol>
+<li>simetria:<ul>
+<li>não direcionado: associações são sempre bi-direcionais (${i,j} \in E \Leftrightarrow {j,i} \in E$)</li>
+<li>direcionado: associações podem ou não ser bi-direcionais</li>
+</ul>
+</li>
+<li>pesos:<ul>
+<li>arestas são todas equivalente</li>
+<li>cada aresta tem um número real associado a ela</li>
+</ul>
+</li>
+</ol>
+<p>Em alguns problema específicos podem ser permitidos loops (${i, i} \in E$) ou mais de uma aresta por par de vértices. Isso <strong>não deve ocorrer nos problemas desta disciplina</strong>.</p>
+<hr />
+<h1 id="outros-exemplos">Outros exemplos</h1>
+<ul>
+<li>dependência entre partes de produção</li>
+<li>traçar caminhos em um mapa</li>
+<li>conectar cidades com mínimo de ligações</li>
+<li>criação de agrupamentos ou equipes</li>
+</ul>
+<hr />
+<h1 id="representacao-computacional">Representação computacional</h1>
+<p><strong>Representação formal</strong>:
+- $V = {1 \dots N}$
+- $E = { (x, y) | x, y \in V; x \neq y}$ </p>
+<p>Como transformar em uma representação <strong>computacional</strong> eficiente?</p>
+<hr />
+<h1 id="representacao-computacional_1">Representação computacional</h1>
+<ul>
+<li>$V$ pode ser representado só pelos números mesmo. Só preciso guardar $|V| = N_v$</li>
+<li>$E$ pode ser representado como uma matriz $A$ quadrada com $N_v$ linhas e colunas</li>
+</ul>
+<p>$$
+A_{i,j} = \begin{cases}
+1 \text{ se } {i,j} \in E \
+0 \text{ caso contrário }
+\end{cases}
+$$</p>
+<hr />
+<h1 id="representacao-computacional_2">Representação computacional</h1>
+<ul>
+<li>quantas arestas <strong>chegam</strong> no vértice $i$?</li>
+<li>quantas arestas <strong>saem</strong> no vértice $i$?</li>
+<li>como é a matriz se o grafo for <strong>não direcionado</strong>?</li>
+<li>e se tiver pesos?</li>
+</ul>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.0/dist/mermaid.esm.min.mjs';
+setTimeout(300, function () {
+    mermaid.initialize({ startOnLoad: true })
+});
+</script>
+
 
 
 </section>
@@ -221,26 +295,12 @@
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
-            <a href="../sobre/"
-               class="ah-prev"
-               title="Sobre">
-              <span class="nav-label">Previous</span>
-              <span class="nav-title">Sobre</span>
-            </a>
-          
-          
-            <a href="../1-grafos-componentes/"
-               class="ah-next"
-               title="1 - Grafos e Componentes">
-              <span class="nav-label">Next</span>
-              <span class="nav-title">1 - Grafos e Componentes</span>
-            </a>
           
         </div>
       </footer>
     </div>
     
-      <script src="../js/external.js"></script>
+      <script src="../../js/external.js"></script>
     
   </body>
 </html>
