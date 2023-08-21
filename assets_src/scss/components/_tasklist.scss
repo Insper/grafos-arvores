@@ -1,0 +1,58 @@
+@use "../abstracts/index" as *;
+
+.ah-typeset {
+  .task-list {
+    padding-left: 0;
+    margin-bottom: $space-between-block;
+
+    &-item {
+      &::marker {
+        content: "";
+      }
+    }
+
+    .task-list-control {
+      input[type="checkbox"]:disabled {
+        display: none;
+
+        + .task-list-indicator {
+          position: relative;
+          isolation: isolate;
+          width: 1em;
+          height: 1em;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-60%, -50%);
+            width: 0.9em;
+            height: 0.9em;
+            border: 2px solid var(--clr-bullet);
+            z-index: -1;
+            border-radius: $border-radius;
+          }
+
+          &::after {
+            content: "\2713";
+            color: transparent;
+            font-size: 1.5em;
+          }
+        }
+
+        &:checked + .task-list-indicator {
+          &::after {
+            color: var(--clr-title);
+          }
+        }
+
+        &:not(:checked) + .task-list-indicator {
+          &::after {
+            color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,213 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.admonition.exercise {
+  --clr-admonition-background: var(--clr-exercise-background);
+
+  position: relative;
+
+  &,
+  & * {
+    transition: background 0.1s ease-in-out;
+  }
+
+  &.done {
+    > * {
+      filter: grayscale(0.7);
+    }
+
+    .alternative {
+      &:hover,
+      &:active,
+      &:focus {
+        cursor: inherit;
+        transform: none;
+      }
+    }
+
+    .admonition.answer {
+      --answer-hue-rotate: 180deg;
+
+      display: inherit;
+      filter: hue-rotate(var(--answer-hue-rotate));
+    }
+
+    &.correct {
+      .admonition.answer {
+        --answer-hue-rotate: 260deg;
+      }
+    }
+
+    &.wrong {
+      .admonition.answer {
+        --answer-hue-rotate: 100deg;
+      }
+    }
+  }
+
+  &.wrong {
+    animation-name: shakeIt;
+    animation-duration: 0.25s;
+    animation-iteration-count: 2;
+  }
+
+  form {
+    display: grid;
+  }
+}
+
+@keyframes shakeIt {
+  from {
+    top: 0px;
+    left: 0px;
+  }
+
+  25% {
+    left: -40px;
+  }
+
+  75% {
+    left: 40px;
+  }
+
+  to {
+    top: 0px;
+    left: 0px;
+  }
+}
+
+.admonition.answer {
+  display: none;
+  margin-top: (2 * $admonition-extra-block);
+  margin-bottom: (-$admonition-extra-block);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-elements {
+  display: flex;
+  flex-direction: column;
+  counter-reset: alternative-counter;
+  margin-bottom: $admonition-extra-block;
+
+  input[type="submit"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: $admonition-extra-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+
+    font-weight: bold;
+  }
+
+  .ah-btn-group,
+  input[type="submit"] {
+    display: flex;
+    align-self: flex-end;
+  }
+
+  .alternative-set {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    max-width: 100%;
+
+    &:has(.alternative.selected) .alternative:not(.selected),
+    .alternative:is(.correct, .wrong) {
+      filter: brightness(0.95);
+    }
+  }
+
+  .alternative {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    background: var(--clr-alternative-background);
+    padding-right: $admonition-extra-inline;
+    counter-increment: alternative-counter;
+    border-radius: $border-radius;
+    transition: transform 0.1s ease-in-out;
+    max-width: 100%;
+
+    &.selected {
+      outline: 0.3em solid var(--clr-alternative-selected-outline);
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      cursor: pointer;
+      transform: scale(1.01);
+    }
+
+    &.correct {
+      &::before {
+        content: "\2713";
+        background: var(--clr-alternative-correct-outline);
+      }
+
+      &.selected {
+        outline-color: var(--clr-alternative-correct-outline);
+      }
+    }
+
+    &.wrong {
+      &::before {
+        content: "\2715";
+      }
+
+      &.selected {
+        outline-color: var(--clr-alternative-wrong-outline);
+      }
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      margin-top: 0;
+      padding-block: $admonition-extra-block;
+
+      div.highlight {
+        display: grid;
+        grid-template-columns: 0;
+      }
+    }
+
+    &::before {
+      content: counter(alternative-counter, upper-alpha);
+      display: inline-grid;
+      place-items: center;
+
+      background: var(--clr-alternative-label-background);
+      padding: $admonition-extra-block;
+      margin-right: $admonition-extra-block;
+      border-radius: $border-radius 0 0 $border-radius;
+      width: calc(2 * $admonition-extra-block + 1em);
+      height: 100%;
+
+      color: white;
+      font-weight: 900;
+    }
+
+    .highlight:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include greater-than("medium") {
+  .two-cols .alternative-set {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.admonition.answer {
+  margin-inline: (-$admonition-extra-inline);
+}
