@@ -8,10 +8,6 @@ Neste módulo iremos
 4. definir o que é um componente conexo em um grafo
 5. implementar algoritmos para encontrar componentes conexos em grafos
 
-## Programação em C
-
-- [Tipos de Dados em C](adt-c.md)
-
 ## Atividades
 
 - [O que são grafos? Como usá-los?](intro.md)

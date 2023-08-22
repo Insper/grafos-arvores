@@ -6,6 +6,7 @@ Usaremos a linguagem *C* nesta disciplina.
 
 - [Mutirão C](https://insper.github.io/Labs-de-C-BCC): atividade integrada com *Sistemas Hardware Software* para aprendizado da sintaxe e uso básico de C. 
 - [Alocação de memória](malloc.md): o equivalente ao `new` de Java e à criação de listas/dicts/instâncias de Classes em Python
+- [Estruturas de Dados em C](adt-c.md): criação de um vetor dinâmico em *C*
 
 ## Para entregar
 

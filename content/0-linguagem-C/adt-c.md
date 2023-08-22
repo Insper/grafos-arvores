@@ -22,5 +22,6 @@ A implementação de um ADT é dividida em dois arquivos:
 - `list.h` contém a *declaração* de todas as funções disponíveis, assim como a definição do `struct`
 - `list.c` contém a *implementação* de todas as funções e se inicia com `#include "list.h"` 
 
+Vamos implementar o *Vetor Dinâmico* que já fizemos em TecProg, mas agora em *C*.
 
-
+<ah-button href="https://us.prairielearn.com/pl/course_instance/137302/assessment/2352818">Ir para a prática</ah-button>
