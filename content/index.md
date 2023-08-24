@@ -2,7 +2,17 @@
 
 Bem vindos à disciplina **Grafos e Árvores** do 4^o^ semestre do BCC - Insper Aqui estão todos os materiais importantes para a disciplina. .
 
-![](arvore.svg){: style="width: 500px;" }
+<ah-diagram>
+graph TB
+A --- B
+A --- C
+B --- D
+B --- E
+D --- F
+D --- H( ) 
+C --- J( )
+C --- I
+</ah-diagram>
 
 ## Links importantes
 
