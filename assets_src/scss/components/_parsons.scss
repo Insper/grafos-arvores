@@ -1,0 +1,90 @@
+@use "../abstracts/index" as *;
+
+$subslot-count: 6;
+$indent-size: 4ch;
+
+.parsons {
+  position: relative;
+
+  .correct-answer,
+  .wrong-answer {
+    display: none;
+  }
+
+  pre.parsons-answer {
+    display: none;
+  }
+
+  &.correct {
+    .correct-answer {
+      display: inherit;
+    }
+  }
+
+  &.wrong {
+    .wrong-answer {
+      display: inherit;
+    }
+  }
+}
+
+.parsons-outer-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.parsons-container {
+  display: grid;
+  font-size: 1rem;
+  border: $border-thickness solid var(--clr-parsons-line-border);
+
+  pre {
+    white-space: inherit;
+  }
+}
+
+.admonition div.highlight.parsons-container {
+  padding: 0.4em;
+  background: var(--clr-background);
+  overflow: visible;
+}
+
+.parsons-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+
+  width: 100%;
+  min-height: 100%;
+}
+
+.parsons-code {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+
+  @include smaller-than(medium) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.parsons-line-container {
+  display: flex;
+}
+
+.parsons-line {
+  flex-grow: 1;
+  background: var(--clr-code-background);
+  padding: 0.1em 0.4em;
+  white-space: pre-wrap;
+  line-break: anywhere;
+  cursor: move;
+}
+
+.indent-btn {
+  padding-inline: 0.2em;
+
+  &:disabled {
+    color: var(--clr-btn-disabled);
+  }
+}
