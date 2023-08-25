@@ -26,16 +26,7 @@
 
 -----
 
-<pre class="mermaid">
-graph LR
-    A --- B
-    F --- A
-    B --- C
-    B --- D
-    B --- F
-    E --- C
-    A --- E
-</pre>
+![](grafo.png)
 
 -----
 

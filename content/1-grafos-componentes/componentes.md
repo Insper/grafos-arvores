@@ -1,6 +1,9 @@
 # Componentes Conexos em Grafos
 
-TODO: slides
+!!! warning 
+    material não finalizado ainda
+
+<ah-external-content src="../slides-componentes.html" />
 
 Seja $G = (V, A)$ um grafo não direcionado sem pesos. Um subconjunto $C \subseteq V$  de vértices é um *componente conexo* se e somente se
 
@@ -141,15 +144,62 @@ Em IA e TecProg já vimos um algoritmo que lembra muito a definição de Compone
         Na lousa hoje.
 
 
-Numerar vértices em três exemplos: um componente semciclo, dois compnentes (com ciclo e sem ciclo)
+Várias coisas relevantes acontecem nos exemplos acima:
 
-Revisar quando aplicamos esse algoritmo para o Labirinto em TecProg e pedir pro aluno listar variáveis de estado do algoritmo
+1. no primeiro todos os nós são visitados. Isso acontece pois há somente um componente conexo. 
+1. ainda no primeiro, quando temos um ciclo (como na sequência `D-B-A-C`) chega um momento em que encontramos um vértice que já foi visitado e que não é o predecessor.  
+1. no segundo exemplo iniciamos no vértice `D`, que não conecta com o componente de baixo. Por isso alguns nós ficam sem número quando acabamos a DFS
 
-Escrever pseudo código como exercício aqui. Usar ADT grafo que criamos
+!!! tip
+    Entenda bem as propriedades acima antes de continuar! Elas são importantes no desenvolvimento desse e de outros algoritmos baseados em DFS
 
-(resposta na próxima aula nalousa)
+Vamos agora formalizar nosso algoritmo `IDENTIFICA-COMPONENTES(G)`. A saída do algoritmo será um array em que cada vértice contém um número identificador de seu componente (começando em 1). Dois vértices estão no mesmo componente se eles possuem o mesmo identificador. Vejamos um exemplo.
 
-exercício de código no PL. Contador de componentes conexas. Devolve número mais um vetorcom o component id de cada vértice
+**Entrada**:
+<ah-diagram>
+graph LR
+A --- B
+C --- A
+D --- B
+C --- D
+F --- G
+G --- J
+I --- G
+I --- F
+</ah-diagram>
+
+**Saída**: Duas saídas são possíveis: `[ 1, 1, 1, 1, 2, 2, 2, 2 ]` (se começamos em `A, B, C` ou `D`) ou `[ 2, 2, 2, 2, 1, 1, 1, 1 ]` (se começamos em `F, G, I` ou `J`). Visualmente isso seria equivalente a:
+<ah-diagram>
+graph LR
+A(1) --- B(1)
+C(1) --- A
+D(1) --- B
+C --- D
+F(2) --- G(2)
+G --- J(2)
+I(2) --- G
+I --- F
+</ah-diagram>
+
+Já sabemos que o `IDENTIFICA-COMPONENTES` será baseado em DFS e que esse algoritmo depende de algumas outras subrotinas. Você pode supor que os seguintes algoritmos estão disponíveis para usar como subrotinas.
+
+1. `NVERTICES(G)` retorna o número de vértices do grafo 
+1. `EH_VIZINHO(G, I, J)` retorna `VERDADEIRO` se os vértices `I` e `J` são ligados por uma aresta
+1. todos algoritmos da ADT [Array](https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/array/) que já usamos em TecProg. 
+
+Com isso já temos o necessário para criar nosso algoritmo. Vamos tentar?
+
+!!! question long
+    Escreva o algoritmo `IDENTIFICA-COMPONENTES(G)` abaixo. Você pode criar uma subrotina separada para a parte recursiva se achar conveniente. 
+
+    !!! answer
+        Na lousa ;)
+
+
+## Entrega
+
+Visite a área da disciplina no PrairieLearn e implemente a DFS baseado no seu pseudo-código acima. 
+
 
 
 

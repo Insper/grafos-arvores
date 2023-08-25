@@ -1,10 +1,5 @@
 # Introdução a Grafos
 
-<script src="/js/ah-terminal.mjs" type="module"></script>
-<script src="/js/ah-button.mjs" type="module"></script>
-<script src="/js/ah-external-content.mjs" type="module"></script>
-<script src="/js/ah-diagram.mjs" type="module"></script>
-
 <ah-external-content src="../slides-intro.html" />
 
 ## Atividades básicas
@@ -219,7 +214,7 @@ Conseguimos tirar diversas informações interessantes diretamente da matriz de 
 
 ## Entrega
 
-Agora que já estamos mais familiarizados com grafos iremos implementar a estrutura de dados que será usada em todos os trabalhos com grafos no semestre. É recomendado fazer antes a atividade de [Tipos de Dados em C](adt-c.md).
+Agora que já estamos mais familiarizados com grafos iremos implementar a estrutura de dados que será usada em todos os trabalhos com grafos no semestre. É recomendado fazer antes a atividade de [Tipos de Dados em C](../0-linguagem-C/adt-c.md).
 
 Os objetivos desta atividade são:
 
@@ -227,4 +222,3 @@ Os objetivos desta atividade são:
 2. representar grafos como matrizes e entender a relação de cada elemento da matriz com a representação visual do grafo
 3. encontrar problems em uma implementação em *C* usando como auxílio testes de unidade
 
-Neste módulo teremos uma dificuldade adicional no exercício: além dos testes que estão dentro do workspace dessa atividade teremos também testes cujo código não estará disponível para vocês. Se algum desses falhar vocês terão somente a mensagem de erro do teste como auxílio para debug.
