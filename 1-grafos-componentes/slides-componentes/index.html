@@ -187,8 +187,90 @@
 </style>
 
 <h1 id="grafos-e-arvores">Grafos e Árvores</h1>
-<h2 id="introducao-a-grafos">Introdução a grafos</h2>
+<h2 id="componentes-conexas">Componentes conexas</h2>
 <hr />
+<h1 id="identificacao-de-regioes-isoladas">Identificação de regiões isoladas</h1>
+<p>No carnaval de 2023 tivemos regiões fortes em diversas partes do litoral do Estado de São Paulo. Isso provocou deslizamentos de terras e muitas estradas foram danificadas ou fechadas por risco de desabamentos. Gostaríamos de saber se regiões do estado ficaram isoladas devido a esse acontecimento. Vamos modelar esse problema com grafos:</p>
+<ul>
+<li>O que são os vértices nesse problema?</li>
+<li>E as arestas?</li>
+</ul>
+<hr />
+<h1 id="identificacao-de-regioes-isoladas_1">Identificação de regiões isoladas</h1>
+<p>No carnaval de 2023 tivemos regiões fortes em diversas partes do litoral do Estado de São Paulo. Isso provocou deslizamentos de terras e muitas estradas foram danificadas ou fechadas por risco de desabamentos. Gostaríamos de saber se regiões do estado ficaram isoladas devido a esse acontecimento. Vamos modelar esse problema com grafos:</p>
+<ul>
+<li>Vértices = cidades do estado</li>
+<li>Arestas = estradas ligando cidades</li>
+<li>Como representar essa pergunta usando vocabulário de grafos?</li>
+</ul>
+<hr />
+<h1 id="definicao-caminho">Definição - Caminho</h1>
+<p>Um <em>caminho</em> $\pi$ de tamanho $n$ em um grafo $G = (V, A)$ é uma sequência de vértices $v_1, \dots, v_n \in V$ tal que a aresta $v_i\textemdash v_{i+1}$ está em $A$</p>
+<h4 id="dizemos-que-pi-comeca-em-v_1-e-termina-em-v_n">Dizemos que $pi$ começa em $v_1$ e termina em $v_n$</h4>
+<hr />
+<h1 id="definicao-componente-conexo">Definição - Componente Conexo</h1>
+<p>Seja $G = (V, A)$ um grafo não direcionado, um subconjunto $C \subseteq V$  de vértices é um <em>componente conexo</em> se e somente se</p>
+<ol>
+<li>para todos par de vértices $v, w \in C$ existe um caminho que começa em $v$ e termina em $w$</li>
+<li>para todo $v \in C$ e $w \in V \ C$, não existe caminho entre $v$ e $w$.</li>
+</ol>
+<hr />
+<h1 id="existem-regioes-do-estado-que-ficaram-isoladas">Existem regiões do estado que ficaram isoladas?</h1>
+<h2 id="pergunta-formulada-usando-vocabulario-de-grafos-agora">Pergunta formulada usando vocabulário de grafos agora</h2>
+<hr />
+<h1 id="existem-regioes-do-estado-que-ficaram-isoladas_1">Existem regiões do estado que ficaram isoladas?</h1>
+<h2 id="existe-mais-de-um-componente-conexo-no-grafo">Existe mais de um componente conexo no grafo?</h2>
+<hr />
+<h1 id="interpretacao">Interpretação</h1>
+<ul>
+<li>Componentes conexas são conjuntos de vértices isolados uns dos outros</li>
+<li><strong>Não há</strong> caminho entre <strong>grupos</strong> de vértices de componentes diferentes</li>
+<li><strong>Há caminho</strong> entre <strong>grupos</strong> de vértices do mesmo componente</li>
+<li>Todo grafo tem no mínimo 1 e no máximo $V$ componentes</li>
+</ul>
+<hr />
+<h1 id="problemas-relacionados">Problemas relacionados</h1>
+<ol>
+<li>Segmentação de Imagens<ul>
+<li>área enorme de processamento de imagens baseada em grafos</li>
+</ul>
+</li>
+<li>Dependências em projetos </li>
+<li>Agrupamentos (clustering)</li>
+</ol>
+<hr />
+<h1 id="como-contar-componentes-conexos">Como contar Componentes Conexos?</h1>
+<!--
+graph LR
+    A --- B
+    B --- D
+    D --- A 
+    D --- F
+
+    G --- T
+    T --- I
+    I --- G
+    J --- I
+    J --- G
+
+    Z --- W
+    Z --- Y
+-->
+
+<p><a href="https://mermaid.live/edit#pako:eNpNz8EKgzAMBuBXKTnrC_SmdBNlp00YG70EG6dgq3TtYYjvvq6dYE75-P9DskI3KwIOL4vLwC5XaViYguV5zsqEMkIkiIiCHXWWJrGKbBPaiDqhjqgSmmPS7EniM_J-xAMy0GQ1jiocuv4iCW4gTRJ4WBX16CcnQZotVP2i0NFJjW62wHuc3pQBejffPqYD7qynvSRGDH_rf2v7AhlISCw"><img alt="" src="https://mermaid.ink/img/pako:eNpNz8EKgzAMBuBXKTnrC_SmdBNlp00YG70EG6dgq3TtYYjvvq6dYE75-P9DskI3KwIOL4vLwC5XaViYguV5zsqEMkIkiIiCHXWWJrGKbBPaiDqhjqgSmmPS7EniM_J-xAMy0GQ1jiocuv4iCW4gTRJ4WBX16CcnQZotVP2i0NFJjW62wHuc3pQBejffPqYD7qynvSRGDH_rf2v7AhlISCw?type=png" /></a></p>
+<hr />
+<h1 id="busca-em-profundidade-dfs">Busca em Profundidade (DFS)</h1>
+<ul>
+<li>Visita todos os vértices acessíveis a partir da raiz</li>
+<li>Precisa chamar mais de uma vez</li>
+<li>Pode ser usada para identificar componentes além de somente contá-los</li>
+</ul>
+<hr />
+<h1 id="atividades">Atividades</h1>
+<ol>
+<li>seguir handout do dia com mais detalhes sobre Componentes Conexas</li>
+<li>implementar DFS para identificar componentes em grafos (PrairieLearn)</li>
+</ol>
 
 
 </section>
