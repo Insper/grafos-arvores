@@ -1,7 +1,7 @@
 #  Alocação Dinâmica de Memória
 
 
-<ah-external-content src="/0-linguagem-C/slides-malloc.html"/>
+<ah-external-content src="../slides-malloc.html"/>
 
 
 ## Exercícios básicos
