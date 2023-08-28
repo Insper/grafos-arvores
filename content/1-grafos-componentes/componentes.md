@@ -189,7 +189,7 @@ Já sabemos que o `IDENTIFICA-COMPONENTES` será baseado em DFS e que esse algor
 
 Com isso já temos o necessário para criar nosso algoritmo. Vamos tentar?
 
-!!! question long
+!!! exercise  long
     Escreva o algoritmo `IDENTIFICA-COMPONENTES(G)` abaixo. Você pode criar uma subrotina separada para a parte recursiva se achar conveniente. 
 
     !!! answer
