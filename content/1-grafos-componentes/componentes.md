@@ -1,7 +1,9 @@
 # Componentes Conexos em Grafos
 
-!!! warning 
-    material não finalizado ainda
+!!! tip "Pesquisa dos Labs de C"
+    Estamos fazendo uma pesquisa para entender melhor os Labs de C. Por favor, respondam o form linkado abaixo. 
+
+    <ah-button href="https://docs.google.com/forms/d/e/1FAIpQLSdzSeUM1iFQpDIMELZKmQLC24noiWwkfSSv-8V3JFAgjFqlGA/viewform">Responder pesquisa</ah-button>
 
 <ah-external-content src="../slides-componentes.html" />
 
