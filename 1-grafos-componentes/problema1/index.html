@@ -182,18 +182,45 @@
             <section class="progress-section show">
 <h1 id="compilacao-de-codigo-c">Compilação de Código <em>C</em></h1>
 <p>Ao implementarmos o tipo de dados <code>graph_t</code> começamos a criar programas que usam vários arquivos diferentes. Com projetos pequenos como os que fazemos nesta disciplina não é um problema compilar tudo em um mesmo comando:</p>
-<p><ah-terminal></p>
-<blockquote>
-<p>gcc arq1.c arq2.c ... -o app
+<p><ah-terminal>
+$ gcc arq1.c arq2.c ... -o app
 </ah-terminal></p>
-</blockquote>
-<p>Isto começa a complicar quando temos <strong>centenas</strong> de arquivos em um projeto, pois o tempo de compilação cresce conforme o númerode arquivos aumenta, indo de alguns segundos ou menos para <strong>horas</strong>. Por isso um tema importante em qualquer sistema de <strong>build</strong> é a <em>compilação incremental</em> (ou <em>parcial</em>). </p>
-<p>Um conceito fundamental em sistemas de <strong>build</strong> é a <em>dependência</em>. Um arquivo <code>A</code><em>depende</em> de outro arquivo <code>B</code> se recompilar <code>B</code> torna necessário recompilar <code>A</code> também. Ou seja, se mexermos em um arquivo <code>X</code> precisaremos recompilar o próprio <code>X</code> mais todos os arquivos que dependem de <code>X</code>. Note, porém, que não acaba por aí! Agora precisamos recompilar todas os arquivos que tem como dependências as dependências de <code>X! E por aí vai até recompilarmos todos arquivos afetados pela mudança em</code>X`.</p>
-<p>No modelo <em>incremental</em> tentamos aproveitar o máximo possível de uma compilação anterior, refazendo trabalho somente para os arquivos que forem modificados. Este modelo tem potencial de ser muito mais rápido que uma <em>compilação completa</em> do projeto, já que (em teoria) nossas modificações a cada ciclo de compilação são pequenas enquanto fazemos modificações.</p>
+<p>Isto começa a complicar quando temos <strong>centenas</strong> de arquivos em um projeto, pois o tempo de compilação cresce conforme o número de arquivos aumenta, indo de alguns segundos ou menos para <strong>horas</strong>. Por isso um tema importante em qualquer sistema de <strong>build</strong> é a <em>compilação incremental</em> (ou <em>parcial</em>). </p>
+<p>Neste contexto, se um arquivo foi modificado ele deve ser recompilado. Note que mudanças em um arquivo podem impactar outros, então deve ser recompilada toda a sequência de <strong>dependências</strong> dos arquivos modificados. Um arquivo <code>A</code> <em>depende</em> de outro arquivo <code>B</code> se recompilar <code>B</code> torna necessário recompilar <code>A</code> também. Ou seja, se mexermos em um arquivo <code>X</code> precisaremos recompilar o próprio <code>X</code> mais todos os arquivos que dependem de <code>X</code>. Note, porém, que não acaba por aí! Agora precisamos recompilar todas os arquivos que tem como dependências as dependências de <code>X</code>! E por aí vai até recompilarmos todos arquivos afetados pela mudança em <code>X</code>.</p>
+<p>Neste mini-projeto você lerá a descrição das dependências de um projeto e terá três objetivos:</p>
+<ol>
+<li>verificar se o projeto possui dependências circulares. Ou seja, se <code>A</code> depende de <code>B</code>, que depende de <code>C</code>, que depende de <code>A</code> de novo! Em geral não é possível compilar <strong>dependências circulares</strong> como esta e existir esse tipo de dependência no código é um sinal de uma arquitetura ruim</li>
+<li>dado um arquivo modificado, devolver quais outros arquivos precisarão ser recompilados</li>
+<li>determinar uma ordem possível para compilar o projeto do zero de maneira que um arquivo só seja compilado se todas suas dependências já foram compiladas também.</li>
+</ol>
+<p>Este trabalho terá créditos parciais por cada tarefa feita corretamente, sendo que só é possível completar 100% se forem feitas as 3 tarefas.</p>
 <h2 id="entrada">Entrada</h2>
-<p>Seu arquivo de entrada poderá conter um número arbitrário de linhas com tamanho máximode 2048 caracteres. </p>
-<h2 id="parte-1-dependencia-circular">Parte 1 - Dependência circular</h2>
-<p>Dadas as relações de dependência podemos chegar em uma situação em que há um <em>ciclo</em> no grafo. Ou seja, um arquivo depende de outros que eventualmente dependem do arquivo inicial. </p>
+<p>O arquivo se inicia com dois inteiros <code>N</code> (número de arquivos) e <code>M</code> (número de arquivos com dependências). Em seguida vem <code>N</code> linhas com os nomes dos arquivos e <code>M</code> linhas descrevendo as dependências. Cada linha de dependência se inicia com o nome do arquivo seguido de <code>:</code> e de uma lista de arquivos separada por espaço. A última linha contém um inteiro <code>OP</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>N M
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>arq1
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>....
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>arqN
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>arqI: arqD1 ... arqDK # dependencia 1
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>....
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>arqII: arqD11 ... arqDKK # dependencia M
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>OP
+</code></pre></div>
+<p>Você pode supor que</p>
+<ol>
+<li><code>M &lt;= N</code></li>
+<li>os arquivos antes de <code>:</code> em cada uma das <code>M</code> linhas estão na mesma ordem da entrada</li>
+<li>os arquivos após <code>:</code> em cada uma das <code>M</code> linhas também estão na mesma ordem da entrada</li>
+</ol>
+<h2 id="saida">Saída</h2>
+<p>Se <code>OP</code> for</p>
+<ol>
+<li>devolva a string "tem ciclo" se houver dependência circular e "sem ciclo" se não houver</li>
+<li>para cada arquivo, mostre quais outros arquivos precisam ser recompilados. A saída deve estar no seguinte formato
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>arq1 -&gt; ....
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>arq2 -&gt; ...
+</code></pre></div></li>
+<li>escreva, em uma só linha, uma ordem em que é possível compilar o projeto do zero respeitando as dependências entre arquivos</li>
+</ol>
 
 
 </section>
