@@ -12,7 +12,7 @@ Neste módulo iremos
 
 - [O que são grafos? Como usá-los?](intro.md)
 - [Componentes Conexos e Busca em Profundidade](componentes.md)
-- Compilação de Arquivos em C
+- [Dependências em compilação de projetos em C](problema1.md)
 
 ## Para entregar
 

@@ -6,8 +6,15 @@ nav:
   - index.md
   - sobre.md
   - "Módulos":
-    - "0 - Linguagem C": 0-linguagem-C/index.md
-    - "1 - Grafos e Componentes": 1-grafos-componentes/index.md
+    - "0 - Linguagem C": 
+      - "Labs de C": 0-linguagem-C/index.md
+      - "Alocação de memória": 0-linguagem-C/malloc.md
+      - "ADT em C": 0-linguagem-C/adt-c.md
+    - "1 - Grafos e Componentes": 
+      - "Índice": 1-grafos-componentes/index.md
+      - "Introdução": 1-grafos-componentes/intro.md
+      - "Componentes Conexas": 1-grafos-componentes/componentes.md
+      - "Problema": 1-grafos-componentes/problema1.md
     - "2 - Grafos e Caminhos": 2-grafos-caminhos/index.md
     - "3 - Grafos esparsos": 3-grafos-esparsos/index.md
     - "4 - Árvores": 4-arvores-intro/index.md
