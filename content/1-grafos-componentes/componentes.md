@@ -70,8 +70,8 @@ Vamos praticar um pouco a identificação de componentes conexas?
 
     - [ ] 0
     - [ ] 1
-    - [x] 2 
-    - [ ] 3
+    - [ ] 2 
+    - [x] 3
     - [ ] 4
     - [ ] 5
 
