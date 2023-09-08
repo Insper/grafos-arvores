@@ -1,11 +1,12 @@
 # 2 - Caminhos em Grafos
 
-TODO: descrição do módulo aqui
+Neste módulo iremos ver os principais algoritmos para encontrar caminhos mínimos em grafos. Também veremos algumas aplicações simples desses algoritmos.
 
 ## Atividades
 
-- Caminhos mais curtos (sem pesos)
-- Caminhos mais curtos (com pesos)
+- [Caminhos mais curtos (sem pesos)](bfs.md)
+- [Caminhos mais curtos (com pesos)](dijkstra.md)
+- [Grafos esparsos](lista-adjacencia.md)
 
 ## Para entregar
 
