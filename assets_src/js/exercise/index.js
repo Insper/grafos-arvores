@@ -36,17 +36,6 @@ export function initExercisePlugin() {
       }, 200);
     });
   }
-
-  document.querySelectorAll(".editable-button").forEach((val) => {
-    const exerciseRoot = val.closest(".exercise.admonition");
-
-    val.addEventListener("click", (evt) => {
-      evt.preventDefault();
-      exerciseRoot.querySelectorAll(":disabled").forEach((el) => {
-        el.disabled = false;
-      });
-    });
-  });
 }
 
 function initExerciseForms() {
@@ -96,21 +85,17 @@ function initChoiceExercises() {
     const correctIdx = queryCorrectOptionIdx(exercise);
 
     function showResults(shouldSubmit) {
-      const hasCorrectAnswer = correctIdx >= 0;
-
       for (let choice of choices) {
         const alternative = queryParentAlternative(choice);
-        if (hasCorrectAnswer) {
-          if (correctIdx === choice.value) {
-            alternative.classList.add("correct");
-            if (choice.checked) {
-              exercise.classList.add("correct");
-            }
-          } else {
-            alternative.classList.add("wrong");
-            if (choice.checked) {
-              exercise.classList.add("wrong");
-            }
+        if (correctIdx === choice.value) {
+          alternative.classList.add("correct");
+          if (choice.checked) {
+            exercise.classList.add("correct");
+          }
+        } else {
+          alternative.classList.add("wrong");
+          if (choice.checked) {
+            exercise.classList.add("wrong");
           }
         }
 
