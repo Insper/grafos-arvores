@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>4 - Árvores - Grafos e Árvores</title>
+        <title>Debug - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
     <script>
       // SETUP GLOBAL CONSTANTS
-      var base_url = '..';
+      var base_url = '../..';
       
       var telemetryEnabled = false;
       var backendUrl = "";
@@ -46,7 +46,7 @@
     <script src="https://unpkg.com/htmx.org@1.8.4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
     
     
   </head>
@@ -60,7 +60,7 @@
   <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
 </svg>
         </button>
-        <a href=".."
+        <a href="../.."
            title="Grafos e Árvores"
            class="ah-logo"
            aria-label="Grafos e Árvores">
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="..">Grafos e Árvores</a>
+      <a href="../..">Grafos e Árvores</a>
     </li>
   
 
@@ -102,7 +102,7 @@
               
   
     <li>
-      <a href="../sobre/">Sobre a disciplina</a>
+      <a href="../../sobre/">Sobre a disciplina</a>
     </li>
   
 
@@ -113,14 +113,14 @@
     <ul>
       
         
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">0 - Linguagem C</span>
     <ul>
       
         
   
     <li>
-      <a href="../0-linguagem-C/">Labs de C</a>
+      <a href="../">Labs de C</a>
     </li>
   
 
@@ -128,7 +128,7 @@
         
   
     <li>
-      <a href="../0-linguagem-C/malloc/">Alocação de memória</a>
+      <a href="../malloc/">Alocação de memória</a>
     </li>
   
 
@@ -136,15 +136,23 @@
         
   
     <li>
-      <a href="../0-linguagem-C/adt-c/">ADT em C</a>
+      <a href="../adt-c/">ADT em C</a>
     </li>
   
 
       
         
   
-    <li>
-      <a href="../0-linguagem-C/debug/">Debug</a>
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Debug</span>
+      <ul>
+        
+          
+            
+            
+        
+      </ul>
     </li>
   
 
@@ -161,7 +169,7 @@
         
   
     <li>
-      <a href="../1-grafos-componentes/">Índice</a>
+      <a href="../../1-grafos-componentes/">Índice</a>
     </li>
   
 
@@ -169,7 +177,7 @@
         
   
     <li>
-      <a href="../1-grafos-componentes/intro/">Introdução</a>
+      <a href="../../1-grafos-componentes/intro/">Introdução</a>
     </li>
   
 
@@ -177,7 +185,7 @@
         
   
     <li>
-      <a href="../1-grafos-componentes/componentes/">Componentes Conexas</a>
+      <a href="../../1-grafos-componentes/componentes/">Componentes Conexas</a>
     </li>
   
 
@@ -185,7 +193,7 @@
         
   
     <li>
-      <a href="../1-grafos-componentes/problema1/">Problema</a>
+      <a href="../../1-grafos-componentes/problema1/">Problema</a>
     </li>
   
 
@@ -202,7 +210,7 @@
         
   
     <li>
-      <a href="../2-grafos-caminhos/">Índice</a>
+      <a href="../../2-grafos-caminhos/">Índice</a>
     </li>
   
 
@@ -210,7 +218,7 @@
         
   
     <li>
-      <a href="../2-grafos-caminhos/bfs/">Busca em Largura</a>
+      <a href="../../2-grafos-caminhos/bfs/">Busca em Largura</a>
     </li>
   
 
@@ -222,31 +230,7 @@
         
   
     <li>
-      <a href="../3-grafos-esparsos/">3 - Grafos esparsos</a>
-    </li>
-  
-
-      
-        
-  
-
-    <li class="active ah-togglable-item opened">
-      <span class="ah-togglable-handle">4 - Árvores</span>
-      <ul>
-        
-          
-            
-            
-              <li class="ah-toc-item">
-                <a href="#atividades">Atividades</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#para-entregar">Para entregar</a>
-              </li>
-            
-        
-      </ul>
+      <a href="../../3-grafos-esparsos/">3 - Grafos esparsos</a>
     </li>
   
 
@@ -254,7 +238,15 @@
         
   
     <li>
-      <a href="../5-arvores-balanceadas/">5 - Árvores balanceadas</a>
+      <a href="../../4-arvores-intro/">4 - Árvores</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../5-arvores-balanceadas/">5 - Árvores balanceadas</a>
     </li>
   
 
@@ -276,6 +268,10 @@
                     <li>Módulos</li>
                   
                 
+                  
+                    <li>0 - Linguagem C</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -283,20 +279,40 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="4-arvores">4 - Árvores</h1>
-<p>TODO: descrição do módulo aqui</p>
-<h2 id="atividades">Atividades</h2>
-<ul>
-<li>Arrays associativos</li>
-<li>Árvores binárias (definição)</li>
-<li>Árvores binárias (inserção)</li>
-<li>Árvores binárias (remoção)</li>
-<li>Problema: auto complete</li>
-</ul>
-<h2 id="para-entregar">Para entregar</h2>
-<ul>
-<li>Atividades do módulo no PrairieLearn.</li>
-</ul>
+<h1 id="debug-c-no-vscode">Debug C no VSCode</h1>
+<p>Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão <a href="https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode">Eclipse CDT</a> instalada a partir de 12/09 e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestre. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Para que as confiruações feitas nesse guia sejam salvas com os seus arquivos, é recomendado que vocês abram a pasta <code>mygraph</code> usando o comando abaixo.</p>
+<p><img alt="" src="../open-folder.png" /></p>
+</div>
+<p>A configuração dessa extensão é via um arquivo <code>launch.json</code> dentro da pasta <code>.vscode</code> do projeto de vocês. Um arquivo deste tipo é criado ao selecionar a opção abaixo.</p>
+<p><img alt="" src="../debug-step1.png" /></p>
+<p>Selecione <em>GDB</em> na caixa de seleção que aparecer. Delete o conteúdo padrão do arquivo e cole o seguinte.</p>
+<div class="language-json highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb launch&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/a.out&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// edite para o caminho do executável desejado</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">&quot;initCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                </span><span class="s2">&quot;set environment CK_FORK no&quot;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="p">]</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Agora você deve ter o debug ativado e pode usá-lo para encontrar erros nos programas de vocês :)</p>
+<p><img alt="" src="../debug-ativado.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Não se esqueçam de compilar o programa com as flags <code>-O0 -g</code> para ter acesso a todas as variáveis ao debugar. A linha de comando completa ficaria assim:</p>
+<p><ah-terminal>
+gcc -Wall -O0 -g lista de arquivos.c  `pkg-config --cflags --libs check`
+</ah-terminal></p>
+</div>
 
 
 </section>
@@ -306,26 +322,26 @@
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
-            <a href="../3-grafos-esparsos/"
+            <a href="../adt-c/"
                class="ah-prev"
-               title="3 - Grafos esparsos">
+               title="ADT em C">
               <span class="nav-label">Previous</span>
-              <span class="nav-title">3 - Grafos esparsos</span>
+              <span class="nav-title">ADT em C</span>
             </a>
           
           
-            <a href="../5-arvores-balanceadas/"
+            <a href="../../1-grafos-componentes/"
                class="ah-next"
-               title="5 - Árvores balanceadas">
+               title="Índice">
               <span class="nav-label">Next</span>
-              <span class="nav-title">5 - Árvores balanceadas</span>
+              <span class="nav-title">Índice</span>
             </a>
           
         </div>
       </footer>
     </div>
     
-      <script src="../js/external.js"></script>
+      <script src="../../js/external.js"></script>
     
   </body>
 </html>
