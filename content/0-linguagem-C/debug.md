@@ -30,4 +30,13 @@ Selecione *GDB* na caixa de seleção que aparecer. Delete o conteúdo padrão d
 }
 ```
 
+Agora você deve ter o debug ativado e pode usá-lo para encontrar erros nos programas de vocês :)
 
+![](debug-ativado.png)
+
+!!! warning
+    Não se esqueçam de compilar o programa com as flags `-O0 -g` para ter acesso a todas as variáveis ao debugar. A linha de comando completa ficaria assim:
+
+    <ah-terminal>
+    gcc -Wall -O0 -g lista de arquivos.c  \`pkg-config --cflags --libs check\`
+    </ah-terminal>
