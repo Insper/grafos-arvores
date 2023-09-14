@@ -74,7 +74,7 @@ Teremos uma sequência de perguntas sobre grafos com pesos
 
 - menor caminho em grafos com pesos não negativos
 - ideia central: **iterativamente pegar o vértice mais próximo da fonte**
-- implementação "ingênua": $\mathcal{O}(V^2)$
+- ao processarmos um vértice a distância até ele não muda mais
 
 ----
 
@@ -82,18 +82,19 @@ Teremos uma sequência de perguntas sobre grafos com pesos
 
 **Entradas**: 
 
-- $G=(V, E)$ um grafo direcionado com pesos não negativos 
-- uma matriz $P \in \mathbb{R}^{|V|,|V|} em que o elemento $P_{i,j}$ representa o peso da aresta que sai de $i$ e chega em $j$
+- $G=(V, E)$ um grafo direcionado com pesos não negativos armazenados em uma matriz quadrada $P$ 
 -  $s, t \in V$ dois vértices (fonte e destino)
 
 **Auxiliares**:
 
 - array `pred` de tamanho $|V|$ inicializado com `-1`
-- array `dist` de tamanho $|V|$ inicializado com $+\inf$
+- array `dist` de tamanho $|V|$ inicializado com $+\infty$
+- conjunto `h` contendo vértices já alcançados mas ainda não processados
 
 **Saída**:
 
 - array `path` com o caminho de $s$ até $t$ ou $\emptyset$ se não houver caminho
+- tamanho do caminho
 
 ------
 
@@ -102,40 +103,35 @@ Teremos uma sequência de perguntas sobre grafos com pesos
 ```
 dist[s] <- 0
 pred[s] <- s
-tem-caminho <- FALSO
+INSERE s EM h
 
-PARA I=1 até |V| FAÇA
-    menor_dist = +infinito
-    menor_idx = -1
-    PARA J = 1 até |V| FAÇA
-        SE dist[J] < menor_dist ENTÃO
-            menor_dist <- dist[J]
-            menor_idx <- j
-        FIM 
-    FIM
-    SE menor_idx = t ENTÃO
-        tem-caminho <- VERDADEIRO
-        PARA LOOP
-    FIM
+PARA i=1 até |V| FAÇA
+    
+    k <- elemento em h com menor dist
 
-    PARA CADA VIZINHO K DE J FAÇA
-        distK = dist[J] + P[J, K]
-        SE 
-           // 
+    PARA CADA VIZINHO j DE k FAÇA
+        distK <- dist[k] + P[k, j]
+        SE distK < dist[j] ENTÃO
+            dist[j] <- distK
+            pred[j] <- k
+            INSERE j EM h # não faz nada se já estiver em h
+        FIM
     FIM
-FIM
-
-SE tem-caminho = FALSO ENTÃO
-    DEVOLVA VAZIO
 FIM
 
 PREENCHA path USANDO O ARRAY pred
-DEVOLVA pred
+DEVOLVA path, dist[t]
 ```
 
 ------
 
 # Algoritmo de Dijkstra
+
+- Complexidade depende da operação `elemento em h com menor dist`
+    - guardar todos em um vetor dinâmico e pegar o menor é $\mathcal{O}(V)$
+    - faço isso no máximo $V$ vezes
+
+- Calculamos `distK` no máximo `E` vezes
 
 #### Total $\mathcal{O}(E + V^2) = \mathcal{O}(V^2)$
 
@@ -147,7 +143,7 @@ DEVOLVA pred
 
 # Min-heap
 
-![](min-heap.JPG)
+![width:600px](min-heap.JPG)
 
 **Propriedades**:
 
@@ -155,7 +151,7 @@ DEVOLVA pred
 2. "completo" à esquerda
 3. valor de um nó é menor que o valor de seus filhos
 
-** Operações**:
+**Operações**:
 
 - `INSERE(H, V)`
 - `MENOR(H)` devolve o menor valor e o remove
@@ -176,7 +172,7 @@ DEVOLVA pred
 
 # Representação como array
 
-![width:300px](max-heap.png)
+![width:800px](min-heap.JPG)
 
 Dado um nó armazenado no índice $i$
 
@@ -187,7 +183,7 @@ Dado um nó armazenado no índice $i$
 
 # Representação como array
 
-![width:300px](max-heap.png)
+![width:800px](min-heap.JPG)
 
 Dado um nó armazenado no índice $i$
 
@@ -196,12 +192,59 @@ Dado um nó armazenado no índice $i$
 
 --------
 
+# Como representar as operações?
+
+- `INSERE`
+    1. colocar no final do heap
+    2. troca com pai se for menor
+    3. faz passo 2 até não dar mais
+
+- `REMOVE`
+    1. troca elemento 0 com último elemento
+    2. diminui tamanho do min-heap
+    2. troca raiz com o menor dos filhos até não dar mais
+
+-----------
+
 # Melhorando Dijkstra com min-heap
 
-algoritmo aqui
+```
+PARA i=1 até |V| FAÇA
+    
+    _, k <- MENOR(h) # pega o com menor dist
+    SE k já foi visitado ENTÃO continua loop FIM
+
+    PARA CADA VIZINHO j DE k FAÇA
+        distK <- dist[k] + P[k, j]
+        SE distK < dist[j] ENTÃO
+            dist[j] <- distK
+            pred[j] <- k
+            INSERE(h, (distK, j)) # insere o par (dist, índice), 
+                                  # usando dist como valor
+        FIM
+    FIM
+FIM
+```
 
 -------
 
+# Melhorando Dijkstra com min-heap
 
+Qual a complexidade de
+
+- `INSERE`?
+- `MENOR`?
 
 ------
+
+# Melhorando Dijkstra com min-heap
+
+Qual a complexidade de
+
+- `INSERE`? $\mathcal{O}(\log N)$
+- `MENOR`? $\mathcal{O}(\log N)$
+
+Loop externo roda no máximo $E$ vezes. (Por que?)
+
+#### Total $\mathcal{O}(E\log V)$
+
