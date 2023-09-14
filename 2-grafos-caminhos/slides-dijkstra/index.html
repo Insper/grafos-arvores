@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      
+        <title>Slides dijkstra - Grafos e Árvores</title>
+      
+    
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <script>
+      // SETUP GLOBAL CONSTANTS
+      var base_url = '../..';
+      
+      var telemetryEnabled = false;
+      var backendUrl = "";
+      var courseSlug = "";
+      
+      
+      var dashboardEnabled = false;
+      var tagTree = {};
+      
+
+      // SETUP PLUGIN
+      window.initialized = false;
+      if (!window.initializers) window.initializers = [];
+      window.registerInitializer = (initialize) => {
+        if (window.initialized) initialize();
+        else window.initializers.push(initialize);
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://unpkg.com/hyperscript.org"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    
+    
+  </head>
+  <body>
+    <div class="ah-main-container">
+      <header class="ah-header">
+        <button class="ah-menu-btn ah-button ah-button--borderless"
+                aria-label="toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+</svg>
+        </button>
+        <a href="../.."
+           title="Grafos e Árvores"
+           class="ah-logo"
+           aria-label="Grafos e Árvores">
+          Grafos e Árvores
+        </a>
+        <div class="ah-header--right">
+          
+          
+          
+          <button id="resetHandoutButton">
+            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg></span>
+          </button>
+          
+
+          
+        </div>
+      </header>
+      <nav class="ah-navigation preload">
+        <div class="ah-nav-container">
+          <button class="ah-menu-btn ah-button ah-button--borderless close-menu"
+                  aria-label="close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+</svg>
+          </button>
+          <ul class="ah-nav-body">
+            
+              
+  
+    <li>
+      <a href="../..">Grafos e Árvores</a>
+    </li>
+  
+
+            
+              
+  
+    <li>
+      <a href="../../sobre/">Sobre a disciplina</a>
+    </li>
+  
+
+            
+              
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">Módulos</span>
+    <ul>
+      
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">0 - Linguagem C</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/">Labs de C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/malloc/">Alocação de memória</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/adt-c/">ADT em C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/debug/">Debug</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">1 - Grafos e Componentes</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/componentes/">Componentes Conexas</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/problema1/">Problema</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">2 - Grafos e Caminhos</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../bfs/">Busca em Largura</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../dijkstra/">Algoritmo de Dijkstra</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  
+    <li>
+      <a href="../../3-grafos-esparsos/">3 - Grafos esparsos</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../4-arvores-intro/">4 - Árvores</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../5-arvores-balanceadas/">5 - Árvores balanceadas</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+            
+          </ul>
+        </div>
+      </nav>
+      <main class="ah-content ah-typeset">
+        
+          <div class="ah-title-box">
+            <ul class="ah-breadcrumbs">
+              
+                
+                <li></li>
+            </ul>
+            
+            
+          </div>
+          
+            <section class="progress-section show">
+<style>
+.mermaid {
+    font-size: 10pt;
+}
+</style>
+
+<h1 id="grafos-e-arvores">Grafos e Árvores</h1>
+<h2 id="caminhos-minimos-com-pesos">Caminhos mínimos (com pesos)</h2>
+<hr />
+<h1 id="busca-em-profundidade-dfs">Busca em Profundidade (DFS)</h1>
+<ul>
+<li>
+<p>Algoritmo recursivo curto que encontra todos os vértices acessíveis a partir da raiz</p>
+</li>
+<li>
+<p>Útil para problemas como</p>
+<ul>
+<li>identificar/contar componentes conexos</li>
+<li>encontrar ciclos</li>
+<li>ordenação topológica</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1 id="caminhos-minimos">Caminhos mínimos</h1>
+<p>Dados vértices $v$ e $w$, encontrar o caminho de menor tamanho entre eles.</p>
+<ul>
+<li>Busca em Largura -&gt; grafos sem pesos</li>
+<li>E se tem pesos?</li>
+</ul>
+<hr />
+<h1 id="think-pair-share">Think-pair-share</h1>
+<p>Teremos uma sequência de perguntas sobre grafos com pesos</p>
+<ol>
+<li>reservem um lugar para anotar suas ideias</li>
+<li>escolham uma dupla</li>
+<li>para cada pergunta, 30s para pensar em uma resposta</li>
+<li>30s para discutir com sua dupla</li>
+<li>1m para compartilhar ideias na sala </li>
+</ol>
+<hr />
+<h1 id="a-busca-em-largura-funciona-em-grafos-com-pesos">A busca em largura funciona em grafos com pesos?</h1>
+<h2 id="se-sim-explique-se-nao-de-um-contra-exemplo">Se sim explique, se não dê um contra-exemplo</h2>
+<hr />
+<h1 id="e-se-modificassemos-a-bfs-para-pegar-as-menores-arestas-primeiro">E se modificássemos a BFS para pegar as menores arestas primeiro?</h1>
+<h2 id="isso-funciona-se-sim-explique-se-nao-de-um-contra-exemplo">Isso funciona? Se sim explique, se não dê um contra-exemplo</h2>
+<hr />
+<h1 id="e-se-modificassemos-a-bfs-para-pegar-os-vertices-mais-proximos-primeiro">E se modificássemos a BFS para pegar os vértices mais próximos primeiro?</h1>
+<h2 id="isso-funciona-se-sim-explique-se-nao-de-um-contra-exemplo_1">Isso funciona? Se sim explique, se não dê um contra-exemplo</h2>
+<hr />
+<h1 id="vamos-pro-handout">Vamos pro handout!</h1>
+<h2 id="15-min">15 min</h2>
+<hr />
+<h1 id="conclusoes">Conclusões?</h1>
+<hr />
+<h1 id="algoritmo-de-dijkstra">Algoritmo de Dijkstra</h1>
+<ul>
+<li>menor caminho em grafos com pesos não negativos</li>
+<li>ideia central: <strong>iterativamente pegar o vértice mais próximo da fonte</strong></li>
+<li>ao processarmos um vértice a distância até ele não muda mais</li>
+</ul>
+<hr />
+<h1 id="algoritmo-de-dijkstra_1">Algoritmo de Dijkstra</h1>
+<p><strong>Entradas</strong>: </p>
+<ul>
+<li>$G=(V, E)$ um grafo direcionado com pesos não negativos armazenados em uma matriz quadrada $P$ </li>
+<li>$s, t \in V$ dois vértices (fonte e destino)</li>
+</ul>
+<p><strong>Auxiliares</strong>:</p>
+<ul>
+<li>array <code>pred</code> de tamanho $|V|$ inicializado com <code>-1</code></li>
+<li>array <code>dist</code> de tamanho $|V|$ inicializado com $+\infty$</li>
+<li>conjunto <code>h</code> contendo vértices já alcançados mas ainda não processados</li>
+</ul>
+<p><strong>Saída</strong>:</p>
+<ul>
+<li>array <code>path</code> com o caminho de $s$ até $t$ ou $\emptyset$ se não houver caminho</li>
+<li>tamanho do caminho</li>
+</ul>
+<hr />
+<h1 id="algoritmo-de-dijkstra_2">Algoritmo de Dijkstra</h1>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dist[s] &lt;- 0
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pred[s] &lt;- s
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>INSERE s EM h
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>PARA i=1 até |V| FAÇA
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    k &lt;- elemento em h com menor dist
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    PARA CADA VIZINHO j DE k FAÇA
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        distK &lt;- dist[k] + P[k, j]
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        SE distK &lt; dist[j] ENTÃO
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            dist[j] &lt;- distK
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            pred[j] &lt;- k
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            INSERE j EM h # não faz nada se já estiver em h
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        FIM
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    FIM
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>FIM
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>PREENCHA path USANDO O ARRAY pred
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>DEVOLVA path, dist[t]
+</code></pre></div>
+<hr />
+<h1 id="algoritmo-de-dijkstra_3">Algoritmo de Dijkstra</h1>
+<ul>
+<li>
+<p>Complexidade depende da operação <code>elemento em h com menor dist</code></p>
+<ul>
+<li>guardar todos em um vetor dinâmico e pegar o menor é $\mathcal{O}(V)$</li>
+<li>faço isso no máximo $V$ vezes</li>
+</ul>
+</li>
+<li>
+<p>Calculamos <code>distK</code> no máximo <code>E</code> vezes</p>
+</li>
+</ul>
+<h4 id="total-mathcaloe-v2-mathcalov2">Total $\mathcal{O}(E + V^2) = \mathcal{O}(V^2)$</h4>
+<hr />
+<h1 id="da-para-fazer-melhor">Dá para fazer melhor?</h1>
+<hr />
+<h1 id="min-heap">Min-heap</h1>
+<p><img alt="width:600px" src="../min-heap.JPG" /></p>
+<p><strong>Propriedades</strong>:</p>
+<ol>
+<li>todo nó tem no máximo dois filhos</li>
+<li>"completo" à esquerda</li>
+<li>valor de um nó é menor que o valor de seus filhos</li>
+</ol>
+<p><strong>Operações</strong>:</p>
+<ul>
+<li><code>INSERE(H, V)</code></li>
+<li><code>MENOR(H)</code> devolve o menor valor e o remove</li>
+</ul>
+<hr />
+<h1 id="max-heap-alternativa">Max-heap (alternativa)</h1>
+<p><img alt="width:300px" src="../max-heap.png" /></p>
+<p><strong>Propriedades</strong>:</p>
+<ol>
+<li>todo nó tem no máximo dois filhos</li>
+<li>"completo" à esquerda</li>
+<li>valor de um nó é maior que o valor de seus filhos</li>
+</ol>
+<hr />
+<h1 id="representacao-como-array">Representação como array</h1>
+<p><img alt="width:800px" src="../min-heap.JPG" /></p>
+<p>Dado um nó armazenado no índice $i$</p>
+<ol>
+<li>em quais índices estão seus dois filhos? </li>
+<li>em qual índice está seu pai?</li>
+</ol>
+<hr />
+<h1 id="representacao-como-array_1">Representação como array</h1>
+<p><img alt="width:800px" src="../min-heap.JPG" /></p>
+<p>Dado um nó armazenado no índice $i$</p>
+<ol>
+<li>em quais índices estão seus dois filhos? $2i+1$ e $2i+2$</li>
+<li>em qual índice está seu pai? $(i-1)//2$</li>
+</ol>
+<hr />
+<h1 id="como-representar-as-operacoes">Como representar as operações?</h1>
+<ul>
+<li>
+<p><code>INSERE</code></p>
+<ol>
+<li>colocar no final do heap</li>
+<li>troca com pai se for menor</li>
+<li>faz passo 2 até não dar mais</li>
+</ol>
+</li>
+<li>
+<p><code>REMOVE</code></p>
+<ol>
+<li>troca elemento 0 com último elemento</li>
+<li>diminui tamanho do min-heap</li>
+<li>troca raiz com o menor dos filhos até não dar mais</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h1 id="melhorando-dijkstra-com-min-heap">Melhorando Dijkstra com min-heap</h1>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PARA i=1 até |V| FAÇA
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    _, k &lt;- MENOR(h) # pega o com menor dist
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    SE k já foi visitado ENTÃO continua loop FIM
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    PARA CADA VIZINHO j DE k FAÇA
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        distK &lt;- dist[k] + P[k, j]
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        SE distK &lt; dist[j] ENTÃO
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            dist[j] &lt;- distK
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            pred[j] &lt;- k
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            INSERE(h, (distK, j)) # insere o par (dist, índice), 
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>                                  # usando dist como valor
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        FIM
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    FIM
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>FIM
+</code></pre></div>
+<hr />
+<h1 id="melhorando-dijkstra-com-min-heap_1">Melhorando Dijkstra com min-heap</h1>
+<p>Qual a complexidade de</p>
+<ul>
+<li><code>INSERE</code>?</li>
+<li><code>MENOR</code>?</li>
+</ul>
+<hr />
+<h1 id="melhorando-dijkstra-com-min-heap_2">Melhorando Dijkstra com min-heap</h1>
+<p>Qual a complexidade de</p>
+<ul>
+<li><code>INSERE</code>? $\mathcal{O}(\log N)$</li>
+<li><code>MENOR</code>? $\mathcal{O}(\log N)$</li>
+</ul>
+<p>Loop externo roda no máximo $E$ vezes. (Por que?)</p>
+<h4 id="total-mathcaloelog-v">Total $\mathcal{O}(E\log V)$</h4>
+
+
+</section>
+          
+        
+      </main>
+      <footer class="ah-footer ah-typeset">
+        <div class="ah-footer-nav">
+          
+          
+        </div>
+      </footer>
+    </div>
+    
+      <script src="../../js/external.js"></script>
+    
+  </body>
+</html>
