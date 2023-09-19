@@ -1,5 +1,12 @@
 # Busca em Largura
 
+!!! tip "Pesquisa sobre Sprint Session"
+    Como parte da Sprint Session do semestre passado estamos coletando . Por favor, respondam o form linkado abaixo. 
+
+    <ah-button href="https://forms.office.com/r/Ww8P1HLB5c">Responder pesquisa</ah-button>
+
+
+
 <ah-external-content src="../bfs-slides.html" />
 
 Nesta aula iremos simular a busca em largura (BFS) em três grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.

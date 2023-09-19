@@ -10,7 +10,7 @@
 Seja $G = (V, A)$ um grafo não direcionado sem pesos. Um subconjunto $C \subseteq V$  de vértices é um *componente conexo* se e somente se
 
 1. para todos par de vértices $v, w \in C$ existe um caminho que começa em $v$ e termina em $w$
-2. para todo $v \in C$ e $w \in V \\ C$, não existe caminho entre $v$ e $w$.
+2. para todo $v \in C$ e $w \in V - C$, não existe caminho entre $v$ e $w$.
 
 Vamos praticar um pouco a identificação de componentes conexas?
 

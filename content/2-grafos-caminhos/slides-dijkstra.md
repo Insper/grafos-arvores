@@ -209,7 +209,7 @@ Dado um nó armazenado no índice $i$
 # Melhorando Dijkstra com min-heap
 
 ```
-PARA i=1 até |V| FAÇA
+ENQUANTO TAM(h) > 0 FAÇA
     
     _, k <- MENOR(h) # pega o com menor dist
     SE k já foi visitado ENTÃO continua loop FIM
