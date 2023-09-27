@@ -24,7 +24,8 @@ Selecione *GDB* na caixa de seleção que aparecer. Delete o conteúdo padrão d
             "program": "${workspaceFolder}/a.out", // edite para o caminho do executável desejado
             "initCommands": [
                 "set environment CK_FORK no"
-            ]
+            ],
+            "arguments": "< in1.txt"
         }
     ]
 }
