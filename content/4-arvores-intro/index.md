@@ -1,14 +1,13 @@
-# 4 - Árvores
+# 4 - Árvores Binárias de Busca
 
-TODO: descrição do módulo aqui
-
+Este módulo será focado na implementação e aplicação de *Árvores de Busca Binária*. 
 ## Atividades
 
-- Arrays associativos
-- Árvores binárias (definição)
-- Árvores binárias (inserção)
-- Árvores binárias (remoção)
-- Problema: auto complete
+- [Definições e usos](intro)
+- [Busca e ordenações](query)
+- Inserção 
+- Remoção
+- Balanceamento
 
 ## Para entregar
 
