@@ -35,16 +35,59 @@ Se uma árvore não respeitar as propriedades acima então ela não é uma *ABB*
 
 A busca (*query*) é a operação mais básica de uma ABB e envolve dizer se existe um elemento com chave *k* na árvore. É também um ótimo lugar para começarmos a entender 
 
-Já fizemos uma simulação na parte expositiva. Vamos agora praticar em outras árvores antes de implementarmos esse algoritmo nós mesmos.
+Já fizemos uma simulação na parte expositiva. Vamos agora praticar antes de implementarmos esse algoritmo nós mesmos.
 
-TODO: duas simulações de buscas (caminho feito pelo algoritmo + resultado)
+<ah-diagram>
+graph TD
+A((15)) --- B((5))
+A --- C((20))
+B --- D((1))
+B --- E((10))
+E --- H((7))
+E --- NULL3(( ))
+C --- NULL2(( ))
+C --- F((25))
+F --- NULL1(( ))
+F --- G((30))
+<\ah-diagram>
+
+!!! exercise long 
+    Busque na árvore acima pelo valor $7$. Escreva abaixo a decisão tomada em cada nó.
+
+    !!! answer
+        Nó 15 -> esquerda
+        Nó 5 -> direita
+        Nó 10 -> esquerda
+        Nó 7 -> encontrou!
+
+!!! exercise long 
+    Busque na árvore acima pelo valor $3$. Escreva abaixo a decisão tomada em cada nó.
+
+    !!! answer
+        Nó 15 -> esquerda
+        Nó 5 -> esquerda
+        Nó 1 -> direita
+        Fim da árvore! -> não encontrou
+
+!!! exercise long 
+    Busque na árvore acima pelo valor $23$. Escreva abaixo a decisão tomada em cada nó.
+
+    !!! answer
+        Nó 15 -> direita
+        Nó 20 -> direita
+        Nó 25 -> esquerdaa
+        Fim da árvore! -> não encontrou
 
 !!! exercise long
-    Escreva abaixo um algoritmo `query(r, k)` que busca pela chave $k$ na ABB enraizada em $r$. Se encontrar devolve `VERDADEIRO`.
+    Escreva abaixo um algoritmo iterativo `query(r, k)` que busca pela chave $k$ na ABB enraizada em $r$. Se encontrar devolve `VERDADEIRO`.
 
     !!! answer
         Discutiremos esse algoritmo em sala. Use esse espaço para registrar sua solução
 
+Antes de prosseguir, volte nos exercícios acima e simule o seu algoritmo. 
+
+!!! exercise 
+    Faça agora uma versão recursiva. Veja que ela é muitomais sucinta que a anterior.
 
 !!! tip 
      Usaremos a seguinte `struct`em todos os exercícios deste módulo.
