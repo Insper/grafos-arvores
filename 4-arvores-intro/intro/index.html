@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Componentes Conexas - Grafos e Árvores</title>
+        <title>Introdução - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -154,14 +154,14 @@
 
       
         
-  <li class="ah-togglable-item opened">
+  <li class="ah-togglable-item">
     <span class="ah-togglable-handle">1 - Grafos e Componentes</span>
     <ul>
       
         
   
     <li>
-      <a href="../">Índice</a>
+      <a href="../../1-grafos-componentes/">Índice</a>
     </li>
   
 
@@ -169,31 +169,7 @@
         
   
     <li>
-      <a href="../intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-
-    <li class="active ah-togglable-item opened">
-      <span class="ah-togglable-handle">Componentes Conexas</span>
-      <ul>
-        
-          
-            
-            
-              <li class="ah-toc-item">
-                <a href="#um-algoritmo-simples-para-componentes-conexas">Um algoritmo simples para componentes conexas</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#entrega">Entrega</a>
-              </li>
-            
-        
-      </ul>
+      <a href="../../1-grafos-componentes/intro/">Introdução</a>
     </li>
   
 
@@ -201,7 +177,15 @@
         
   
     <li>
-      <a href="../problema1/">Problema</a>
+      <a href="../../1-grafos-componentes/componentes/">Componentes Conexas</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/problema1/">Problema</a>
     </li>
   
 
@@ -244,22 +228,42 @@
 
       
         
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">4 - Árvores</span>
     <ul>
       
         
   
     <li>
-      <a href="../../4-arvores-intro/">Índice</a>
+      <a href="../">Índice</a>
     </li>
   
 
       
         
   
-    <li>
-      <a href="../../4-arvores-intro/intro/">Introdução</a>
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Introdução</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#definicoes">Definições</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#buscando-por-elementos">Buscando por elementos</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#validar-uma-abb">Validar uma ABB</a>
+              </li>
+            
+        
+      </ul>
     </li>
   
 
@@ -294,7 +298,7 @@
                   
                 
                   
-                    <li>1 - Grafos e Componentes</li>
+                    <li>4 - Árvores</li>
                   
                 
                 <li></li>
@@ -304,224 +308,124 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="componentes-conexos-em-grafos">Componentes Conexos em Grafos</h1>
+<h1 id="introducao">Introdução</h1>
+<p><ah-external-content src="slides.html"/></p>
+<h2 id="definicoes">Definições</h2>
+<p>Vamos definir nossa linguagem para trabalhar com árvores nesta aula. Dado um nó $x$ de nossa árvore, </p>
+<ul>
+<li>$x.left$ é o filho esquerdo de $x$. Se ele não existir seu valor é $NIL$</li>
+<li>$x.right$ é o filho direito de $x$. Se ele não existir seu valor é $NIL$</li>
+<li>$x.parent$ é o pai de $x$. Todo nó possui somente um pai, sendo que se $x$ é o nó raiz $x.parent = x$</li>
+<li>$x.key$ é o valor que $x$ representa na árvore. </li>
+</ul>
+<p>Árvores são estruturas naturalmente recursivas. Se tormarmos um nó $x$ qualquer de uma árvore podemos falar em uma <em>subárvore enraizada em $x$</em>. Assim, podemos definir uma árvore como:</p>
+<ul>
+<li>um nó raiz $r$ com uma chave $r.key$</li>
+<li>um apontador para uma subárvore esquerda $r.left$</li>
+<li>um apontador para uma subárvore direita $r.right$</li>
+</ul>
+<p>A figura (<a href="https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/">fonte</a> abaixo é um bom resumo do vocabulário usado em árvores.</p>
+<p><img alt="Fonte: https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/" src="https://media.geeksforgeeks.org/wp-content/uploads/20221124153129/Treedatastructure.png" /></p>
+<p>Uma <em>Árvore de Busca Binária</em> é umaárvore especial que guarda seus elementos em ordem crescente de $key$. Para isso ela tem a seguinte propriedade:</p>
 <div class="admonition tip">
-<p class="admonition-title">Pesquisa dos Labs de C 1</p>
-<p>Estamos fazendo uma pesquisa para entender melhor os Labs de C. Por favor, respondam o form linkado abaixo. </p>
-<p><ah-button href="https://docs.google.com/forms/d/e/1FAIpQLSdzSeUM1iFQpDIMELZKmQLC24noiWwkfSSv-8V3JFAgjFqlGA/viewform">Responder pesquisa</ah-button></p>
+<p class="admonition-title">Propriedade básica da ABB 1</p>
+<p>Para todo nó $x$ em uma <em>ABB</em>:</p>
+<ul>
+<li>$x.key \geq l.key$ para todo nó $l$ na subárvore esquerda de $x$</li>
+<li>$x.key \leq r.key$ para todo nó $r$ na subárvore direita de $x$</li>
+</ul>
 </div>
-<p><ah-external-content src="../slides-componentes.html" /></p>
-<p>Seja $G = (V, A)$ um grafo não direcionado sem pesos. Um subconjunto $C \subseteq V$  de vértices é um <em>componente conexo</em> se e somente se</p>
-<ol>
-<li>para todos par de vértices $v, w \in C$ existe um caminho que começa em $v$ e termina em $w$</li>
-<li>para todo $v \in C$ e $w \in V \ C$, não existe caminho entre $v$ e $w$.</li>
-</ol>
-<p>Vamos praticar um pouco a identificação de componentes conexas?</p>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="2" data-slug="1-grafos-componentes/componentes/choice_1" id="choice_1_0">
-<p class="admonition-title">Exercise 1</p>
-<form class="exercise-form">
+<p>Se uma árvore não respeitar as propriedades acima então ela não é uma <em>ABB</em>. Isso facilita muito checarmos se um elemento está na árvore. </p>
+<h2 id="buscando-por-elementos">Buscando por elementos</h2>
+<p>A busca (<em>query</em>) é a operação mais básica de uma ABB e envolve dizer se existe um elemento com chave <em>k</em> na árvore. É também um ótimo lugar para começarmos a entender </p>
+<p>Já fizemos uma simulação na parte expositiva. Vamos agora praticar antes de implementarmos esse algoritmo nós mesmos.</p>
 <p><ah-diagram>
-graph LR
-0 --- 1
-0 --- 2
-1 --- 2
-3 --- 4
-4 --- 5
+graph TD
+A(15) --- B(5)
+A --- C(20)
+B --- D(1)
+B --- E(10)
+E --- H(7)
+E --- NULL3( )
+C --- NULL2( )
+C --- F(25)
+F --- NULL1( )
+F --- G(30)
 </ah-diagram></p>
-<p>Quantos componentes conexos tem o grafo acima?</p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_1" id="long_1_0">
+<p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Busque na árvore acima pelo valor $7$. Escreva abaixo a decisão tomada em cada nó.</p>
 <div class="form-elements">
-<div class="alternative-set">
-  
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="5" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    5
-  </div>
-</label>
+<div class="grow-wrap"><textarea name="data"></textarea></div>
 
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    3
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    0
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    1
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    2 
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    4
-  </div>
-</label>
-
-</div>
-<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Nó 15 -&gt; esquerda
+Nó 5 -&gt; direita
+Nó 10 -&gt; esquerda
+Nó 7 -&gt; encontrou!</p>
 </div>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="1" data-slug="1-grafos-componentes/componentes/choice_2" id="choice_2_0">
-<p class="admonition-title">Exercise 2</p>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_2" id="long_2_0">
+<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p><ah-diagram>
-graph LR
-0 --- 1
-0 --- 2
-1 --- 2
-3 --- 4
-4 --- 5
-0 --- 5
-</ah-diagram></p>
-<p>Quantos componentes conexos tem o grafo acima?</p>
+<p>Busque na árvore acima pelo valor $3$. Escreva abaixo a decisão tomada em cada nó.</p>
 <div class="form-elements">
-<div class="alternative-set">
-  
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    0
-  </div>
-</label>
+<div class="grow-wrap"><textarea name="data"></textarea></div>
 
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="5" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    5
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    1
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    3
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    2 
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    4
-  </div>
-</label>
-
-</div>
-<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Nó 15 -&gt; esquerda
+Nó 5 -&gt; esquerda
+Nó 1 -&gt; direita
+Fim da árvore! -&gt; não encontrou</p>
 </div>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="3" data-slug="1-grafos-componentes/componentes/choice_3" id="choice_3_0">
-<p class="admonition-title">Exercise 3</p>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_3" id="long_3_0">
+<p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p><ah-diagram>
-graph LR
-0 --- 1
-1 --- 2
-3 --- 4
-6 --- 3
-6 --- 4
-7 --- 4
-5[5]
-</ah-diagram></p>
-<p>Quantos componentes conexos tem o grafo acima?</p>
+<p>Busque na árvore acima pelo valor $23$. Escreva abaixo a decisão tomada em cada nó.</p>
 <div class="form-elements">
-<div class="alternative-set">
-  
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    3
-  </div>
-</label>
+<div class="grow-wrap"><textarea name="data"></textarea></div>
 
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    4
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    1
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="5" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    5
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    2 
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
-    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    0
-  </div>
-</label>
-
-</div>
-<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Nó 15 -&gt; direita
+Nó 20 -&gt; direita
+Nó 25 -&gt; esquerdaa
+Fim da árvore! -&gt; não encontrou</p>
 </div>
-<p>Vamos exercitar nossa compreensão dessa definição com algumas questões teóricas.</p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_1" id="long_1_0">
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_4" id="long_4_0">
 <p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p>Dado um grafo $G = (V, A), |V| &gt; 0$, quais são os números mínimo e máximode componentes conexos?</p>
+<p>Escreva abaixo um algoritmo iterativo <code>query(r, k)</code> que busca pela chave $k$ na ABB enraizada em $r$. Se encontrar devolve <code>VERDADEIRO</code>.</p>
 <div class="form-elements">
 <div class="grow-wrap"><textarea name="data"></textarea></div>
 
 <input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Discutiremos esse algoritmo em sala. Use esse espaço para registrar sua solução</p>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_2" id="long_2_0">
+</div>
+<p>Antes de prosseguir, volte nos exercícios acima e simule o seu algoritmo. </p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_5" id="long_5_0">
 <p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p>O item 1 da definição só diz que o início e o fim do caminho tem que estar em $C$. É possível existir um caminho entre dois vértices em $C$ que contenha ao menos um vértice que não está em $C$?</p>
+<p>Faça agora uma versão recursiva. Veja que ela é muito mais sucinta que a anterior.</p>
 <div class="form-elements">
 <div class="grow-wrap"><textarea name="data"></textarea></div>
 
@@ -529,122 +433,190 @@ graph LR
 </div>
 </form>
 </div>
-<hr />
-<h2 id="um-algoritmo-simples-para-componentes-conexas">Um algoritmo simples para componentes conexas</h2>
-<p>Em IA e TecProg já vimos um algoritmo que lembra muito a definição de Componente Conexo: Busca em Profundidade (DFS)! Como sempre, vamos começar simulando essa ideia para entender como o algoritmo pode ajudar.</p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_3" id="long_3_0">
-<p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
-<form class="exercise-form">
-<p>Dado o grafo abaixo, comece uma DFS a partir do vértice <code>D</code> e numere os vértices de acordo com quando eles forem visitados. </p>
-<p>A ordem de visitação dos vizinhos de um vértice é alfabética.</p>
-<p><ah-diagram>
-graph LR
-A --- B
-C --- A
-D --- B
-C --- D
-D --- F
-F --- G
-G --- I
-J --- G
-J --- F
-</ah-diagram></p>
-<div class="form-elements">
-<div class="grow-wrap"><textarea name="data"></textarea></div>
-
-<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
-</div>
-</form>
-<div class="admonition answer no-indent">
-<p class="admonition-title">Answer</p>
-<p>O diagrama numerado pela ordem da DFS ficaria como abaixo. Ele é único pois fixamos a ordem de visitação dos vizinhos. Com outra ordem teria outra numeração igualmente válida.</p>
-<p><ah-diagram>
-graph LR
-A --- B
-C(4) --- A(3)
-D(1) --- B(2)
-C --- D
-D --- F(5)
-F --- G(6)
-G --- I(7)
-J(8) --- G
-J --- F
-</ah-diagram></p>
-</div>
-</div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_4" id="long_4_0">
-<p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
-<form class="exercise-form">
-<p>Dado o grafo abaixo, comece uma DFS a partir do vértice <code>D</code> e numere os vértices de acordo com quando eles forem visitados. </p>
-<p>A ordem de visitação dos vizinhos de um vértice é alfabética.</p>
-<p><ah-diagram>
-graph LR
-A --- B
-C --- A
-D --- B
-C --- D
-F --- G
-G --- J
-I --- G
-I --- F
-</ah-diagram></p>
-<div class="form-elements">
-<div class="grow-wrap"><textarea name="data"></textarea></div>
-
-<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
-</div>
-</form>
-<div class="admonition answer no-indent">
-<p class="admonition-title">Answer</p>
-<p>Na lousa hoje.</p>
-</div>
-</div>
-<p>Várias coisas relevantes acontecem nos exemplos acima:</p>
-<ol>
-<li>no primeiro todos os nós são visitados. Isso acontece pois há somente um componente conexo. </li>
-<li>ainda no primeiro, quando temos um ciclo (como na sequência <code>D-B-A-C</code>) chega um momento em que encontramos um vértice que já foi visitado e que não é o predecessor.  </li>
-<li>no segundo exemplo iniciamos no vértice <code>D</code>, que não conecta com o componente de baixo. Por isso alguns nós ficam sem número quando acabamos a DFS</li>
-</ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip 2</p>
-<p>Entenda bem as propriedades acima antes de continuar! Elas são importantes no desenvolvimento desse e de outros algoritmos baseados em DFS</p>
+<p>Usaremos a seguinte <code>struct</code>em todos os exercícios deste módulo.</p>
+<div class="language-c highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_TreeNode</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">_TreeNode</span><span class="w"> </span><span class="o">*</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">;</span>
+</code></pre></div>
 </div>
-<p>Vamos agora formalizar nosso algoritmo <code>IDENTIFICA-COMPONENTES(G)</code>. A saída do algoritmo será um array em que cada vértice contém um número identificador de seu componente (começando em 1). Dois vértices estão no mesmo componente se eles possuem o mesmo identificador. Vejamos um exemplo.</p>
-<p><strong>Entrada</strong>:
-<ah-diagram>
-graph LR
-A --- B
-C --- A
-D --- B
-C --- D
-F --- G
-G --- J
-I --- G
-I --- F
-</ah-diagram></p>
-<p><strong>Saída</strong>: Duas saídas são possíveis: <code>[ 1, 1, 1, 1, 2, 2, 2, 2 ]</code> (se começamos em <code>A, B, C</code> ou <code>D</code>) ou <code>[ 2, 2, 2, 2, 1, 1, 1, 1 ]</code> (se começamos em <code>F, G, I</code> ou <code>J</code>). Visualmente isso seria equivalente a:
-<ah-diagram>
-graph LR
-A(1) --- B(1)
-C(1) --- A
-D(1) --- B
-C --- D
-F(2) --- G(2)
-G --- J(2)
-I(2) --- G
-I --- F
-</ah-diagram></p>
-<p>Já sabemos que o <code>IDENTIFICA-COMPONENTES</code> será baseado em DFS e que esse algoritmo depende de algumas outras subrotinas. Você pode supor que os seguintes algoritmos estão disponíveis para usar como subrotinas.</p>
-<ol>
-<li><code>NVERTICES(G)</code> retorna o número de vértices do grafo </li>
-<li><code>EH_VIZINHO(G, I, J)</code> retorna <code>VERDADEIRO</code> se os vértices <code>I</code> e <code>J</code> são ligados por uma aresta</li>
-<li>todos algoritmos da ADT <a href="https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/array/">Array</a> que já usamos em TecProg. </li>
-</ol>
-<p>Com isso já temos o necessário para criar nosso algoritmo. Vamos tentar?</p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_5" id="long_5_0">
-<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/intro/exercise_1" id="exercise_1_0">
+<p class="admonition-title">Exercise 6</p>
 <form class="exercise-form">
-<p>Escreva o algoritmo <code>IDENTIFICA-COMPONENTES(G)</code> abaixo. Você pode criar uma subrotina separada para a parte recursiva se achar conveniente. </p>
+<p>Implemente o algoritmo de busca no PrairieLearn.</p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Realize o exercício acima antes de prosseguir. As próximas soluções são baseadas na mesma ideia.</p>
+</div>
+<h2 id="validar-uma-abb">Validar uma <em>ABB</em></h2>
+<p>Vamos começar vendo alguns exemplos de árvores que não são <em>ABB</em>.</p>
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="4-arvores-intro/intro/choice_1" id="choice_1_0">
+<p class="admonition-title">Exercise 7</p>
+<form class="exercise-form">
+<p>Para qual nó da árvore abaixo a propriedade básica da ABB não vale?</p>
+<p><ah-diagram>
+graph TD
+A(15) --- B(14)
+A --- C(21)
+B --- F(10)
+B --- E(16)
+C --- G(17)
+C --- NULL( )
+</ah-diagram></p>
+<div class="form-elements">
+<div class="alternative-set">
+  
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="5" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    21
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    10
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    15
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    14
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="6" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    17
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    21 
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    16
+  </div>
+</label>
+
+</div>
+<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+</div>
+</form>
+</div>
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="2" data-slug="4-arvores-intro/intro/choice_2" id="choice_2_0">
+<p class="admonition-title">Exercise 8</p>
+<form class="exercise-form">
+<p>Para qual nó da árvore abaixo a propriedade básica da ABB não vale?</p>
+<p><ah-diagram>
+graph TD
+A(17) --- B(14)
+A --- C(22)
+B --- F(10)
+B --- E(16)
+C --- G(21)
+C --- NULL( )
+G --- A2(18)
+G --- A3(23)
+</ah-diagram></p>
+<div class="form-elements">
+<div class="alternative-set">
+  
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="7" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    23
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="5" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    21
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    14
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    17
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    22 
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="6" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    18
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    10
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    16
+  </div>
+</label>
+
+</div>
+<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+</div>
+</form>
+</div>
+<p>Percebemos que um algoritmo para isso precisa de várias partes!</p>
+<ol>
+<li>precisamos checar se a propriedade é válida para todosos nós</li>
+<li>para checar a propriedade precisamos percorrer toda a subárvore esquerda e toda a subárvore direita.</li>
+</ol>
+<p>Esses dois passos tem algo em comum: eles envolvem visitar todos os nós da árvore. </p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_6" id="long_6_0">
+<p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Escreva abaixo um rascunho de um algoritmo para visitar todos os nós de uma árvore.</p>
 <div class="form-elements">
 <div class="grow-wrap"><textarea name="data"></textarea></div>
 
@@ -653,11 +625,10 @@ I --- F
 </form>
 <div class="admonition answer no-indent">
 <p class="admonition-title">Answer</p>
-<p>Na lousa ;)</p>
+<p>Será discutido em <strong>02/10</strong>.</p>
 </div>
 </div>
-<h2 id="entrega">Entrega</h2>
-<p>Visite a área da disciplina no PrairieLearn e implemente a DFS baseado no seu pseudo-código acima. </p>
+<p>Com base nesse algoritmo, faça a implementação no PrairieLearn do algoritmo para checar se uma árvore é válida.</p>
 
 
 </section>
@@ -667,19 +638,19 @@ I --- F
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
-            <a href="../intro/"
+            <a href="../"
                class="ah-prev"
-               title="Introdução">
+               title="Índice">
               <span class="nav-label">Previous</span>
-              <span class="nav-title">Introdução</span>
+              <span class="nav-title">Índice</span>
             </a>
           
           
-            <a href="../problema1/"
+            <a href="../../5-arvores-balanceadas/"
                class="ah-next"
-               title="Problema">
+               title="5 - Árvores balanceadas">
               <span class="nav-label">Next</span>
-              <span class="nav-title">Problema</span>
+              <span class="nav-title">5 - Árvores balanceadas</span>
             </a>
           
         </div>
