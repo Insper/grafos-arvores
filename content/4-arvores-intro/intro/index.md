@@ -1,6 +1,6 @@
 # Introdução
 
-TODO: slides
+<ah-external-content src="slides.html"/>
 
 ## Definições
 
@@ -39,17 +39,17 @@ Já fizemos uma simulação na parte expositiva. Vamos agora praticar antes de i
 
 <ah-diagram>
 graph TD
-A((15)) --- B((5))
-A --- C((20))
-B --- D((1))
-B --- E((10))
-E --- H((7))
-E --- NULL3(( ))
-C --- NULL2(( ))
-C --- F((25))
-F --- NULL1(( ))
-F --- G((30))
-<\ah-diagram>
+A(15) --- B(5)
+A --- C(20)
+B --- D(1)
+B --- E(10)
+E --- H(7)
+E --- NULL3( )
+C --- NULL2( )
+C --- F(25)
+F --- NULL1( )
+F --- G(30)
+</ah-diagram>
 
 !!! exercise long 
     Busque na árvore acima pelo valor $7$. Escreva abaixo a decisão tomada em cada nó.
@@ -86,8 +86,8 @@ F --- G((30))
 
 Antes de prosseguir, volte nos exercícios acima e simule o seu algoritmo. 
 
-!!! exercise 
-    Faça agora uma versão recursiva. Veja que ela é muitomais sucinta que a anterior.
+!!! exercise long
+    Faça agora uma versão recursiva. Veja que ela é muito mais sucinta que a anterior.
 
 !!! tip 
      Usaremos a seguinte `struct`em todos os exercícios deste módulo.
@@ -107,17 +107,53 @@ Antes de prosseguir, volte nos exercícios acima e simule o seu algoritmo.
 
 ## Validar uma *ABB*
 
-Vamos começar vendo alguns exemplos de árvores que podem ou não serem *ABB*.
+Vamos começar vendo alguns exemplos de árvores que não são *ABB*.
 
 !!! exercise choice
 
-    TODO: árvore vai aqui
+    Para qual nó da árvore abaixo a propriedade básica da ABB não vale?
+    
+    <ah-diagram>
+    graph TD
+    A(15) --- B(14)
+    A --- C(21)
+    B --- F(10)
+    B --- E(16)
+    C --- G(17)
+    C --- NULL( )
+    </ah-diagram>
 
-    A árvore acima é uma *ABB*?
+    - [x] 15
+    - [ ] 14
+    - [ ] 21 
+    - [ ] 10
+    - [ ] 16
+    - [ ] 21
+    - [ ] 17
 
-    - [ ] SIM
-    - [x] NÃO
+!!! exercise choice
+    Para qual nó da árvore abaixo a propriedade básica da ABB não vale?
+    
+    <ah-diagram>
+    graph TD
+    A(17) --- B(14)
+    A --- C(22)
+    B --- F(10)
+    B --- E(16)
+    C --- G(21)
+    C --- NULL( )
+    G --- A2(18)
+    G --- A3(23)
+    </ah-diagram>
 
+    - [ ] 17
+    - [ ] 14
+    - [x] 22 
+    - [ ] 10
+    - [ ] 16
+    - [ ] 21
+    - [ ] 18
+    - [ ] 23
 
 Percebemos que um algoritmo para isso precisa de várias partes!
 
