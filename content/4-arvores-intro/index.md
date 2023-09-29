@@ -3,11 +3,10 @@
 Este módulo será focado na implementação e aplicação de *Árvores de Busca Binária*. 
 ## Atividades
 
-- [Definições e usos](intro)
-- [Busca e ordenações](query)
+- [Introdução e busca](intro/index.md)
 - Inserção 
-- Remoção
 - Balanceamento
+- Remoção
 
 ## Para entregar
 
