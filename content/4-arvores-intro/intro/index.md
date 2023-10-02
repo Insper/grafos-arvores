@@ -170,3 +170,11 @@ Esses dois passos tem algo em comum: eles envolvem visitar todos os nós da árv
 
 Com base nesse algoritmo, faça a implementação no PrairieLearn do algoritmo para checar se uma árvore é válida.
 
+
+## Estudo extra
+
+Os seguintes exercícios do leetcode são interessantes e relacionados ao assunto atual.
+
+1. [Soma de caminho até folha](https://leetcode.com/problems/path-sum/)
+2. [Soma K](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+3. [Altura mínima](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
