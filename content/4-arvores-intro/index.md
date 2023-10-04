@@ -1,4 +1,4 @@
-# 4 - Árvores Binárias de Busca
+# 3 - Árvores Binárias de Busca
 
 Este módulo será focado na implementação e aplicação de *Árvores de Busca Binária*. 
 ## Atividades
