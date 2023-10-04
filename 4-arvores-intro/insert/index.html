@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Algoritmo de Dijkstra - Grafos e Árvores</title>
+        <title>Inserção - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -195,8 +195,41 @@
 
       
         
-  <li class="ah-togglable-item opened">
+  <li class="ah-togglable-item">
     <span class="ah-togglable-handle">2 - Grafos e Caminhos</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/bfs/">Busca em Largura</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/dijkstra/">Algoritmo de Dijkstra</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">4 - Árvores</span>
     <ul>
       
         
@@ -210,7 +243,7 @@
         
   
     <li>
-      <a href="../bfs/">Busca em Largura</a>
+      <a href="../intro/">Introdução</a>
     </li>
   
 
@@ -219,59 +252,26 @@
   
 
     <li class="active ah-togglable-item opened">
-      <span class="ah-togglable-handle">Algoritmo de Dijkstra</span>
+      <span class="ah-togglable-handle">Inserção</span>
       <ul>
         
           
             
             
               <li class="ah-toc-item">
-                <a href="#simulacoes-grafos-com-pesos">Simulações: grafos com pesos</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#min-heap">Min-heap</a>
+                <a href="#exercitando-e-formalizando-esse-algoritmo">Exercitando e formalizando esse algoritmo</a>
               </li>
             
               <li class="ah-toc-item">
                 <a href="#entregas">Entregas</a>
               </li>
             
+              <li class="ah-toc-item">
+                <a href="#estudos-extras">Estudos extras</a>
+              </li>
+            
         
       </ul>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">4 - Árvores</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/insert/">Inserção</a>
     </li>
   
 
@@ -306,7 +306,7 @@
                   
                 
                   
-                    <li>2 - Grafos e Caminhos</li>
+                    <li>4 - Árvores</li>
                   
                 
                 <li></li>
@@ -316,157 +316,186 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="algoritmo-de-dijkstra">Algoritmo de Dijkstra</h1>
-<p><ah-external-content src="../slides-dijkstra.html" /></p>
-<h2 id="simulacoes-grafos-com-pesos">Simulações: grafos com pesos</h2>
-<p>Simule a ideia seguinte com todos os grafos em cada exercício. Iremos usar essas simulações para construir o algoritmo de Dijkstra.</p>
+<script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
+
+<h1 id="insercao">Inserção</h1>
+<p>Na última aula já discutimos ideias sobre a buscas em *ABB*s e vimos o que acontece quando o elemento buscado não está na árvore. Agora iremos inserir o valor $K$ na árvore. Ainda não sabemos fazer isto, então vamos começar pensando em como fazer a inserção. </p>
+<p>Comecemos por organizar nosso raciocínio pela altura da árvore. Alguns casos são bem fáceis:</p>
+<p><strong>Árvores com altura 0</strong>: crie um nó com o $key=K$ e faça-o a nova raiz da árvore. </p>
+<p><strong>Árvores com altura 1</strong>: seja $r$ esse único nó na árvore. Se $K &lt; r.key$ então podemos só inserir na subárvore esquerda, como mostrado abaixo.</p>
+<p><ah-diagram>
+graph TD
+A1(r)
+A2(K)
+N1(( ))
+A1 --- A2
+A1 --- N1
+</ah-diagram></p>
+<p>Caso contrário ($K &gt; r.key$), a inserção é na subárvore direita.</p>
+<p><ah-diagram>
+graph TD
+A1(r)
+A2(K)
+N1(( ))
+A1 --- N1
+A1 --- A2
+</ah-diagram></p>
+<p><strong>Árvores com altura 2</strong>: Vamos examinar algumas possibilidades abaixo:</p>
 <ol>
-<li>A partir da fonte, selecione iterativamente o vértice não visitado <code>K</code> com menor distância até a fonte</li>
-<li>para todos os vizinhos de <code>K</code>, atualize suas distâncias até a fonte se o caminho que passa <code>K</code> for melhor que o caminho já encontrado</li>
-<li>marque <code>K</code> como visitado</li>
-<li>continue até não haver mais vértices não visitados ou até chegar ao destino</li>
+<li>
+<p>só existe subárvore <em>esquerda</em> (como no exemplo abaixo) e $r.key &lt; $k. Este caso é fácil!</p>
+<p><em>Antes*</em>:
+<ah-diagram>
+graph TD
+A1(a1)
+A2(a2)
+N1(( ))
+A1 --- A2
+A1 --- N1
+</ah-diagram>
+<strong>Depois</strong>:
+<ah-diagram>
+graph TD
+A1(a1)
+A2(a2)
+A3(K)
+A1 --- A2
+A1 --- A3
+</ah-diagram></p>
+</li>
+<li>
+<p>só existe subárvore <strong>direita</strong> e $r.key &gt; K$. Este caso também é fácil!</p>
+<p><strong>Antes</strong>:
+<ah-diagram>
+graph TD
+A1(a1)
+A2(a2)
+N1(( ))
+A1 --- N1
+A1 --- A2
+</ah-diagram>
+<strong>Depois</strong>:
+<ah-diagram>
+graph TD
+A1(a1)
+A2(a2)
+A3(K)
+A1 --- A3
+A1 --- A2
+</ah-diagram></p>
+</li>
+<li>
+<p>Existe subárvore esquerda e $r.key &gt; K$. Ou seja, a busca iria para a esquerda em $r$, porém não podemos inserir $K$ diretamente pois já há um nó à esquerda de $r$. </p>
+<p><ah-diagram>
+graph TD
+A1(a1)
+A2(a2)
+N1(( ))
+A1 --- A2
+A1 --- N1
+</ah-diagram></p>
+</li>
+<li>
+<p>Existe subárvore direita e $r.key &lt; K$. Esse caso também não é óbvio. A busca iria para a direita em $r$, porém a mesma situação acima ocorre mas desta vez para a direita. </p>
+<p><ah-diagram>
+graph TD
+A1(a1)
+A2(a2)
+N1(( ))
+A1 --- N1
+A1 --- A2
+</ah-diagram></p>
+</li>
 </ol>
-<p>Você pode usar as seguintes estruturas auxiliares, se quiser:</p>
-<ul>
-<li><code>dist</code> - array com distâncias até a fonte</li>
-<li><code>pred</code> - array com predecessores no menor caminho até o elemento</li>
-<li><code>h</code> - conjunto com vértices já visitados</li>
-</ul>
-<div class="admonition exercise self-progress" data-slug="2-grafos-caminhos/dijkstra/exercise_1" id="exercise_1_0">
-<p class="admonition-title">Exercise 1</p>
+<p>Os casos 1 e 2 já estão resolvidos e são fáceis: é possível inserir o nó diretamente no lugar vazio. Já os casos 3 e 4 parecem complicados mas não são. Árvores são estruturas recursivas: cada nó $r$ contém uma ligação para uma subárvore esquerda (com todos valores $ &lt; r.key$) e uma subárvore direita (com todos valores $ &gt; r.key$). Logo, no caso 3 podemos realizar a inserção na árvore enraizada pelo elemento $a2$. Como a árvore enraizada em $a2$ tem altura1, podemos fazer o procedimento descrito anteriormente. O mesmo vale para o caso 4. </p>
+<p><strong>Árvores com altura $h &gt; 2$</strong>: Usar o argumento acima nos permite inserir em árvores de qualquer tamanho! Ou a inserção ocorreria em um espaço vazio (ou seja, um dos lados tem uma subárvore de altura 0) ou inserimos na subárvore correspondente (que tem altura $h-1$).</p>
+<h2 id="exercitando-e-formalizando-esse-algoritmo">Exercitando e formalizando esse algoritmo</h2>
+<p>Vejamos alguns exemplos abaixo. </p>
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="4-arvores-intro/insert/short_1" id="short_1_0">
+<p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B
-<ah-diagram>
-graph LR
-    A -- 1 --&gt; C
-    A -- 5 --&gt; D
-    C -- 1 --&gt; B
-    B -- 3 --&gt; D
-    linkStyle default color: red
-</ah-diagram></p>
+<p>Em qual lugar o valor $27$ seria inserido na árvore abaixo?</p>
+<p><graphviz-graph graph='
+digraph G{
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  20 -> null1
+  null1 [shape=point]
+  20 -&gt; 30
+  30 -&gt; null2 
+  null2 [shape=point]
+  30 -&gt; 40
+}'&gt;</graphviz-graph></p>
 <div class="form-elements">
-<input type="hidden" name="data" value="OK" />
-<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Na subárvore esquerda de $30$</p>
 </div>
-<div class="admonition exercise self-progress" data-slug="2-grafos-caminhos/dijkstra/exercise_2" id="exercise_2_0">
-<p class="admonition-title">Exercise 2</p>
+</div>
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="4-arvores-intro/insert/short_2" id="short_2_0">
+<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: D, <strong>Destino</strong>: A
-<ah-diagram>
-graph LR
-    D -- 3 --&gt; C
-    D -- 4 --&gt; A
-    D -- 2 --&gt; E
-    C -- 2 --&gt; A
-    E -- 5 --&gt; A
-    linkStyle default color: red
-</ah-diagram></p>
+<p>Em qual lugar o valor $15$ seria inserido na árvore abaixo?</p>
+<p><graphviz-graph graph='
+digraph G{
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  20 -> 10
+  10 -&gt; null1
+  10 -&gt; 13
+  null1 [shape=point]
+  20 -&gt; 30
+  30 -&gt; null2 
+  null2 [shape=point]
+  30 -&gt; 40
+}'&gt;</graphviz-graph></p>
 <div class="form-elements">
-<input type="hidden" name="data" value="OK" />
-<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Na subárvore direita de $13$</p>
 </div>
-<div class="admonition exercise self-progress" data-slug="2-grafos-caminhos/dijkstra/exercise_3" id="exercise_3_0">
-<p class="admonition-title">Exercise 3</p>
+</div>
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="4-arvores-intro/insert/short_3" id="short_3_0">
+<p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: D, <strong>Destino</strong>: A
-<ah-diagram>
-graph LR
-    D -- 3 --&gt; C
-    D -- 4 --&gt; F
-    D -- 2 --&gt; E
-    C -- 3 --&gt; A
-    E -- 5 --&gt; A
-    F -- 1 --&gt; A
-    linkStyle default color: red
-</ah-diagram></p>
+<p>Em qual lugar o valor $7$ seria inserido na árvore abaixo?</p>
+<p><graphviz-graph graph='
+digraph G{
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  20 -> 10
+  10 -&gt; 5
+  5 -&gt; 2
+  5 -&gt; null1
+  10 -&gt; 13
+  20 -&gt; 30
+  30 -&gt; null2 
+  30 -&gt; 40
+  null1 [shape=point]
+  null2 [shape=point]
+}'&gt;</graphviz-graph></p>
 <div class="form-elements">
-<input type="hidden" name="data" value="OK" />
-<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
 </div>
 </form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Na subárvore direita de $5$</p>
 </div>
-<div class="admonition exercise self-progress" data-slug="2-grafos-caminhos/dijkstra/exercise_4" id="exercise_4_0">
-<p class="admonition-title">Exercise 4</p>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/insert/long_4" id="long_4_0">
+<p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: A, <strong>Destino</strong>: E
-<ah-diagram>
-graph LR
-    A -- 4 --&gt; B
-    A -- 7 --&gt; E
-    A -- 3 --&gt; D
-    B -- 4 --&gt; E
-    C -- 3 --&gt; E
-    D -- 3 --&gt; C
-    linkStyle default color: red
-</ah-diagram></p>
-<div class="form-elements">
-<input type="hidden" name="data" value="OK" />
-<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
-</div>
-</form>
-</div>
-<div class="admonition exercise self-progress" data-slug="2-grafos-caminhos/dijkstra/exercise_5" id="exercise_5_0">
-<p class="admonition-title">Exercise 5</p>
-<form class="exercise-form">
-<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B
-<ah-diagram>
-graph LR
-    A -- 4 --&gt; B
-    A -- 7 --&gt; E
-    A -- 3 --&gt; D
-    B -- 4 --&gt; E
-    B -- 1 --&gt; A
-    C -- 3 --&gt; E
-    C -- 0 --&gt; B
-    D -- 3 --&gt; C
-    linkStyle default color: red
-</ah-diagram></p>
-<div class="form-elements">
-<input type="hidden" name="data" value="OK" />
-<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
-</div>
-</form>
-</div>
-<div class="admonition exercise self-progress" data-slug="2-grafos-caminhos/dijkstra/exercise_6" id="exercise_6_0">
-<p class="admonition-title">Exercise 6</p>
-<form class="exercise-form">
-<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B
-<ah-diagram>
-graph LR
-    A -- 2 --&gt; B
-    A -- 0 --&gt; C
-    C -- 1 --&gt; B
-    A -- 100 --&gt; D
-    D -- -150 --&gt; B
-    linkStyle default color: red
-</ah-diagram></p>
-<div class="form-elements">
-<input type="hidden" name="data" value="OK" />
-<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
-</div>
-</form>
-</div>
-<h2 id="min-heap">Min-heap</h2>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="2-grafos-caminhos/dijkstra/long_1" id="long_1_0">
-<p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
-<form class="exercise-form">
-<p>Escreva a representação em array do heap abaixo</p>
-<p><ah-diagram>
-graph TD
-    n1(1) --- n2(5)
-    n1 --- n3(9)
-    n2 --- n4(10)
-    n2 --- n5(44)
-    n3 --- n6(11)
-    n3 --- n7(44)
-    n4 --- n8(13)
-    n4 --- n9(55)
-    n5 --- n10(46)
-</ah-diagram></p>
+<p>Agora formalize o algoritmo <code>insere(r, K)</code> que aplicamos nos exemplos acima. Escreva um algoritmo iterativo nesta questão.</p>
 <div class="form-elements">
 <div class="grow-wrap"><textarea name="data"></textarea></div>
 
@@ -475,25 +504,13 @@ graph TD
 </form>
 <div class="admonition answer no-indent">
 <p class="admonition-title">Answer</p>
-<p><code>1 5 9 10 44 11 44 13 55 46</code></p>
+<p>Discutido no fim da aula</p>
 </div>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="2-grafos-caminhos/dijkstra/long_2" id="long_2_0">
-<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/insert/long_5" id="long_5_0">
+<p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
-<p>Execute <code>MENOR</code> no heap abaixo e escreva sua representação em array.</p>
-<p><ah-diagram>
-graph TD
-    n1(1) --- n2(5)
-    n1 --- n3(9)
-    n2 --- n4(10)
-    n2 --- n5(44)
-    n3 --- n6(11)
-    n3 --- n7(44)
-    n4 --- n8(13)
-    n4 --- n9(55)
-    n5 --- n10(46)
-</ah-diagram></p>
+<p>Agora formalize o algoritmo <code>insere(r, K)</code> que aplicamos nos exemplos acima. Escreva um algoritmo recursivo nesta questão.</p>
 <div class="form-elements">
 <div class="grow-wrap"><textarea name="data"></textarea></div>
 
@@ -502,38 +519,12 @@ graph TD
 </form>
 <div class="admonition answer no-indent">
 <p class="admonition-title">Answer</p>
-<p><code>5 10 9 13 44 11 44 46 55</code></p>
-</div>
-</div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="2-grafos-caminhos/dijkstra/long_3" id="long_3_0">
-<p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
-<form class="exercise-form">
-<p>Execute <code>INSERE(3)</code> no heap abaixo e escreva sua representação em array.</p>
-<p><ah-diagram>
-graph TD
-    n1(1) --- n2(5)
-    n1 --- n3(9)
-    n2 --- n4(10)
-    n2 --- n5(44)
-    n3 --- n6(11)
-    n3 --- n7(44)
-    n4 --- n8(13)
-    n4 --- n9(55)
-    n5 --- n10(46)
-</ah-diagram></p>
-<div class="form-elements">
-<div class="grow-wrap"><textarea name="data"></textarea></div>
-
-<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
-</div>
-</form>
-<div class="admonition answer no-indent">
-<p class="admonition-title">Answer</p>
-<p><code>1 3 9 10 5 11 44 13 55 46 44</code></p>
+<p>Discutido no fim da aula</p>
 </div>
 </div>
 <h2 id="entregas">Entregas</h2>
-<p>Implementações de min-heap e Dijkstra no PrairieLearn</p>
+<p>Faça o exercício de implementação do algoritmo no PrairieLearn. Teste ambas as versões do algoritmo criado.</p>
+<h2 id="estudos-extras">Estudos extras</h2>
 
 
 </section>
@@ -543,19 +534,19 @@ graph TD
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
-            <a href="../bfs/"
+            <a href="../intro/"
                class="ah-prev"
-               title="Busca em Largura">
+               title="Introdução">
               <span class="nav-label">Previous</span>
-              <span class="nav-title">Busca em Largura</span>
+              <span class="nav-title">Introdução</span>
             </a>
           
           
-            <a href="../../4-arvores-intro/"
+            <a href="../../5-arvores-balanceadas/"
                class="ah-next"
-               title="Índice">
+               title="5 - Árvores balanceadas">
               <span class="nav-label">Next</span>
-              <span class="nav-title">Índice</span>
+              <span class="nav-title">5 - Árvores balanceadas</span>
             </a>
           
         </div>
