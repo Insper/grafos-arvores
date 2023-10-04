@@ -4,7 +4,7 @@ Este módulo será focado na implementação e aplicação de *Árvores de Busca
 ## Atividades
 
 - [Introdução e busca](intro/index.md)
-- Inserção 
+- [Inserção](insert/index.md)
 - Balanceamento
 - Remoção
 

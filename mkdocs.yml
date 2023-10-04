@@ -23,6 +23,7 @@ nav:
     - "4 - Árvores": 
       - "Índice": 4-arvores-intro/index.md
       - "Introdução": 4-arvores-intro/intro/index.md
+      - "Inserção": 4-arvores-intro/insert/index.md
     - "5 - Árvores balanceadas": 5-arvores-balanceadas/index.md
 
 extra_javascript:
