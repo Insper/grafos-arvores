@@ -514,6 +514,67 @@ digraph G{
 <p>Discutido no fim da aula</p>
 </div>
 </div>
+<p>Vamos agora exercitar nosso conhecimento sobre inserção.</p>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/insert/exercise_1" id="exercise_1_0">
+<p class="admonition-title">Exercise 6</p>
+<form class="exercise-form">
+<p>Desenhe as *ABB*s resultado da inserção dos seguintes valores.</p>
+<ul>
+<li>1 5 -2 4 7 12 45 30 24</li>
+<li>15 12 20 33 10 60 5 14 122</li>
+<li>-2 4 7 12 5  45 30 24 1</li>
+</ul>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/insert/long_6" id="long_6_0">
+<p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Qual ordem de inserção nos permitiria reconstruir a árvore abaixo?</p>
+<p><graphviz-graph graph='
+digraph G{
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  20 -> 10
+  10 -&gt; 5
+  5 -&gt; 2
+  5 -&gt; null1
+  10 -&gt; 13
+  20 -&gt; 30
+  30 -&gt; null2 
+  30 -&gt; 40
+  null1 [shape=point]
+  null2 [shape=point]
+}' /&gt;</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Discutido em sala.</p>
+</div>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/insert/long_7" id="long_7_0">
+<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Para a árvore acima, tente encontrar uma ordem de inserção que diminui a altura da árvore. </p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+</div>
+<p>Por fim, faça as seguintes reflexões e anote os resultados em algum lugar.</p>
+<ol>
+<li>Qual é a altura de uma ABB, no pior caso?</li>
+<li>Em que situações o pior caso acontece?</li>
+</ol>
 <h2 id="entregas">Entregas</h2>
 <p>Faça o exercício de implementação do algoritmo no PrairieLearn. Teste ambas as versões do algoritmo criado.</p>
 <h2 id="estudos-extras">Estudos extras</h2>
