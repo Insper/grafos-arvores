@@ -181,10 +181,50 @@ Vejamos alguns exemplos abaixo.
     !!! answer
         Discutido no fim da aula
 
+Vamos agora exercitar nosso conhecimento sobre inserção.
+
+!!! exercise 
+    Desenhe as *ABB*s resultado da inserção dos seguintes valores.
+
+    - 1 5 -2 4 7 12 45 30 24
+    - 15 12 20 33 10 60 5 14 122
+    - -2 4 7 12 5  45 30 24 1
+
+!!! exercise long
+    Qual ordem de inserção nos permitiria reconstruir a árvore abaixo?
+
+    <graphviz-graph graph='
+    digraph G{
+      node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+      20 -> 10
+      10 -> 5
+      5 -> 2
+      5 -> null1
+      10 -> 13
+      20 -> 30
+      30 -> null2 
+      30 -> 40
+      null1 [shape=point]
+      null2 [shape=point]
+    }' />
+
+    !!! answer
+        Discutido em sala.
+
+!!! exercise long
+    Para a árvore acima, tente encontrar uma ordem de inserção que diminui a altura da árvore. 
+
+
+
+Por fim, faça as seguintes reflexões e anote os resultados em algum lugar.
+
+1. Qual é a altura de uma ABB, no pior caso?
+2. Em que situações o pior caso acontece?
+
 ## Entregas
 
 Faça o exercício de implementação do algoritmo no PrairieLearn. Teste ambas as versões do algoritmo criado.
 
 ## Estudos extras
 
-
+- [Visitando em pré-ordem](https://www.hackerrank.com/contests/2014-icpc-north-central-regional-north-america-practice/challenges/preorder-traversals)
