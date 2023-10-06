@@ -4,5 +4,6 @@ mkShell {
     ripgrep
     neovim
     python311
+    nodejs_18
   ];
 }
