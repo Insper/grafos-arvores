@@ -17,3 +17,4 @@ Este módulo será focado na implementação e aplicação de *Árvores de Busca
 Os seguintes exercícios do LeetCode são interessantes e tem um pouquinho mais de contexto que o usual.
 
 1. [Nós infectados](https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/)
+2. [Valor do nó avô](https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/)

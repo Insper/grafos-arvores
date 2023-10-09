@@ -228,3 +228,5 @@ Faça o exercício de implementação do algoritmo no PrairieLearn. Teste ambas 
 ## Estudos extras
 
 - [Visitando em pré-ordem](https://www.hackerrank.com/contests/2014-icpc-north-central-regional-north-america-practice/challenges/preorder-traversals)
+- [Convertendo array ordenado em árvore](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+
