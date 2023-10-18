@@ -256,6 +256,14 @@
   
 
       
+        
+  
+    <li>
+      <a href="../">Balanceamento</a>
+    </li>
+  
+
+      
     </ul>
   </li>
 
@@ -273,13 +281,12 @@
             <ul class="ah-breadcrumbs">
               
                 
-                <li></li>
+                <li>Slides</li>
             </ul>
             
             
           </div>
-          
-            <section class="progress-section show">
+          <section class="progress-section show">
 <script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
 
 <h1 id="grafos-e-arvores">Grafos e Árvores</h1>
@@ -326,39 +333,50 @@ n1 [shape=point]
 </ul>
 <hr />
 <h1 id="balanceamento">Balanceamento</h1>
-<p><strong>Ideia</strong>: uma (subárvore) está desbalanceada se a altura de sua subárvore esquerda difere da altura da subárvore direita por mais de um.</p>
-<p>$|h_L - h_R| &gt; 1$</p>
+<p><strong>Definição</strong>: uma (sub)árvore com $N$ elementos está balanceada se $h = \log N$.</p>
+<!--está desbalanceada se a altura de sua subárvore esquerda difere da altura da subárvore direita por mais de um.
+
+$|h_L - h_R| > 1$
+
+- $h_L$ é a altura da subárvore esquerda
+- $h_R$ é a altura da subárvore direita 
+-->
+<hr />
+<h1 id="alguma-primeira-ideia-de-como-balancear-uma-arvore">Alguma primeira ideia de como balancear uma árvore?</h1>
+<hr />
+<h1 id="dica-1-pode-usar-array-auxiliar">Dica 1: pode usar array auxiliar</h1>
+<hr />
+<h1 id="dica-2-pode-criar-uma-nova-arvore">Dica 2: pode criar uma nova árvore</h1>
+<hr />
+<h1 id="balanceamento-i">Balanceamento (I)</h1>
+<ol>
+<li>passa por todos elementos em-ordem, guardando o valor em um array</li>
+<li>insere como raiz o elemento do meio do array</li>
+<li>faz o passo <em>2</em> recursivamente para cada lado do array</li>
+</ol>
+<hr />
+<h1 id="balanceamento-i_1">Balanceamento (I)</h1>
 <ul>
-<li>$h_L$ é a altura da subárvore esquerda</li>
-<li>$h_R$ é a altura da subárvore direita </li>
+<li>Qual a complexidade computacional disso?</li>
+<li>Qual o consumo de espaço disso?</li>
 </ul>
 <hr />
-<h1 id="balanceamento_1">Balanceamento</h1>
-<p>Como dar um passo em direção a uma árvore melhor balanceada? </p>
-<p><graphviz-graph graph='
-digraph G {
-1 -> n1
-1 -&gt; 2
-2 -&gt; n2
-2 -&gt; 3
-3 -&gt; n3
-3 -&gt; 4
-4 -&gt; n4
-4 -&gt; 5
-5 -&gt; n5
-5 -&gt; 6
-n1 [shape=point]
-n2 [shape=point]
-n3 [shape=point]
-n4 [shape=point]
-n5 [shape=point]
-}
-' /&gt;</p>
+<h1 id="balanceamento-i_2">Balanceamento (I)</h1>
+<h3 id="isso-e-bom">Isso é bom?</h3>
 <hr />
+<h1 id="balanceamento-ii">Balanceamento (II)</h1>
+<h3 id="extra-procure-pelo-algoritmo-day-stout-warren">Extra: procure pelo algoritmo Day-Stout-Warren</h3>
+<hr />
+<h1 id="arvores-balanceadas">Árvores balanceadas</h1>
+<p>Algoritmos de inserção/remoção que mantém $h = \log N$</p>
+<ul>
+<li>AVL </li>
+<li>Red-Black Tree</li>
+</ul>
+<p><strong>Não veremos nesta disciplina</strong></p>
 
 
 </section>
-          
         
       </main>
       <footer class="ah-footer ah-typeset">

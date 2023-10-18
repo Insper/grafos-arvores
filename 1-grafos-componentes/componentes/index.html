@@ -176,22 +176,22 @@
       
         
   
-
     <li class="active ah-togglable-item opened">
       <span class="ah-togglable-handle">Componentes Conexas</span>
       <ul>
         
+          <li class="ah-toc-item">
+            <a href="#componentes-conexos-em-grafos">Componentes Conexos em Grafos</a>
+          </li>
           
-            
-            
-              <li class="ah-toc-item">
-                <a href="#um-algoritmo-simples-para-componentes-conexas">Um algoritmo simples para componentes conexas</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#entrega">Entrega</a>
-              </li>
-            
+          <li class="ah-toc-item">
+            <a href="#um-algoritmo-simples-para-componentes-conexas">Um algoritmo simples para componentes conexas</a>
+          </li>
+          
+          <li class="ah-toc-item">
+            <a href="#entrega">Entrega</a>
+          </li>
+          
         
       </ul>
     </li>
@@ -272,6 +272,14 @@
   
 
       
+        
+  
+    <li>
+      <a href="../../4-arvores-intro/balance/">Balanceamento</a>
+    </li>
+  
+
+      
     </ul>
   </li>
 
@@ -297,13 +305,12 @@
                     <li>1 - Grafos e Componentes</li>
                   
                 
-                <li></li>
+                <li>Componentes Conexas</li>
             </ul>
             
             
           </div>
-          
-            <section class="progress-section show">
+          <section class="progress-section show">
 <h1 id="componentes-conexos-em-grafos">Componentes Conexos em Grafos</h1>
 <div class="admonition tip">
 <p class="admonition-title">Pesquisa dos Labs de C 1</p>
@@ -507,8 +514,8 @@ graph LR
 </form>
 </div>
 <p>Vamos exercitar nossa compreensão dessa definição com algumas questões teóricas.</p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_1" id="long_1_0">
-<p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="1-grafos-componentes/componentes/long_1" id="long_1_0">
+<p class="admonition-title">Exercise 4</p>
 <form class="exercise-form">
 <p>Dado um grafo $G = (V, A), |V| &gt; 0$, quais são os números mínimo e máximode componentes conexos?</p>
 <div class="form-elements">
@@ -518,8 +525,8 @@ graph LR
 </div>
 </form>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_2" id="long_2_0">
-<p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="1-grafos-componentes/componentes/long_2" id="long_2_0">
+<p class="admonition-title">Exercise 5</p>
 <form class="exercise-form">
 <p>O item 1 da definição só diz que o início e o fim do caminho tem que estar em $C$. É possível existir um caminho entre dois vértices em $C$ que contenha ao menos um vértice que não está em $C$?</p>
 <div class="form-elements">
@@ -532,8 +539,8 @@ graph LR
 <hr />
 <h2 id="um-algoritmo-simples-para-componentes-conexas">Um algoritmo simples para componentes conexas</h2>
 <p>Em IA e TecProg já vimos um algoritmo que lembra muito a definição de Componente Conexo: Busca em Profundidade (DFS)! Como sempre, vamos começar simulando essa ideia para entender como o algoritmo pode ajudar.</p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_3" id="long_3_0">
-<p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="1-grafos-componentes/componentes/long_3" id="long_3_0">
+<p class="admonition-title">Exercise 6</p>
 <form class="exercise-form">
 <p>Dado o grafo abaixo, comece uma DFS a partir do vértice <code>D</code> e numere os vértices de acordo com quando eles forem visitados. </p>
 <p>A ordem de visitação dos vizinhos de um vértice é alfabética.</p>
@@ -572,8 +579,8 @@ J --- F
 </ah-diagram></p>
 </div>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_4" id="long_4_0">
-<p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="1-grafos-componentes/componentes/long_4" id="long_4_0">
+<p class="admonition-title">Exercise 7</p>
 <form class="exercise-form">
 <p>Dado o grafo abaixo, comece uma DFS a partir do vértice <code>D</code> e numere os vértices de acordo com quando eles forem visitados. </p>
 <p>A ordem de visitação dos vizinhos de um vértice é alfabética.</p>
@@ -641,8 +648,8 @@ I --- F
 <li>todos algoritmos da ADT <a href="https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/array/">Array</a> que já usamos em TecProg. </li>
 </ol>
 <p>Com isso já temos o necessário para criar nosso algoritmo. Vamos tentar?</p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/componentes/long_5" id="long_5_0">
-<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="1-grafos-componentes/componentes/long_5" id="long_5_0">
+<p class="admonition-title">Exercise 8</p>
 <form class="exercise-form">
 <p>Escreva o algoritmo <code>IDENTIFICA-COMPONENTES(G)</code> abaixo. Você pode criar uma subrotina separada para a parte recursiva se achar conveniente. </p>
 <div class="form-elements">
@@ -661,7 +668,6 @@ I --- F
 
 
 </section>
-          
         
       </main>
       <footer class="ah-footer ah-typeset">

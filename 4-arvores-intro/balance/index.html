@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Index - Grafos e Árvores</title>
+        <title>Balanceamento - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -108,7 +108,7 @@
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -228,7 +228,7 @@
 
       
         
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">3 - Árvores</span>
     <ul>
       
@@ -256,6 +256,26 @@
   
 
       
+        
+  
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Balanceamento</span>
+      <ul>
+        
+          <li class="ah-toc-item">
+            <a href="#balanceamento-de-arvores">Balanceamento de árvores</a>
+          </li>
+          
+          <li class="ah-toc-item">
+            <a href="#entrega">Entrega</a>
+          </li>
+          
+        
+      </ul>
+    </li>
+  
+
+      
     </ul>
   </li>
 
@@ -273,22 +293,453 @@
             <ul class="ah-breadcrumbs">
               
                 
-                <li></li>
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>3 - Árvores</li>
+                  
+                
+                <li>Balanceamento</li>
             </ul>
             
             
           </div>
-          
-            <section class="progress-section show">
+          <section class="progress-section show">
+<script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
+
 <h1 id="balanceamento-de-arvores">Balanceamento de árvores</h1>
+<p><ah-external-content src="slides.html" /></p>
+<p>Vamos começar revisando conceitos básicos.</p>
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="2" data-slug="4-arvores-intro/balance/choice_1" id="choice_1_0">
+<p class="admonition-title">Exercise 1</p>
+<form class="exercise-form">
+<p>Qual a altura da árvore abaixo?</p>
+<p><graphviz-graph graph='
+    digraph G {
+        4 -> n1
+        4 -&gt; 15
+        15 -&gt; 6
+        15 -&gt; 25
+        6 -&gt; 5
+        6 -&gt; 10
+        n1 [shape=point]
+    }
+' /&gt;</p>
+<div class="form-elements">
+<div class="alternative-set">
+  
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    4
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    2
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    1
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    3
+  </div>
+</label>
+
+</div>
+<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+</div>
+</form>
+</div>
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="1" data-slug="4-arvores-intro/balance/choice_2" id="choice_2_0">
+<p class="admonition-title">Exercise 2</p>
+<form class="exercise-form">
+<p>Qual a altura da árvore abaixo?</p>
+<p><graphviz-graph graph='
+    digraph G {
+        15 -> 3
+        15 -&gt; 25
+        3 -&gt; 1
+        3 -&gt; n1
+        25 -&gt; 20
+        25 -&gt; n2
+        20 -&gt; n3
+        20 -&gt; 21
+        21 -&gt; n4
+        21 -&gt; 22
+        n1 [shape=point]
+        n2 [shape=point]
+        n3 [shape=point]
+        n4 [shape=point]
+    }
+' /&gt;</p>
+<div class="form-elements">
+<div class="alternative-set">
+  
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    2
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    1
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    3
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    4
+  </div>
+</label>
+
+</div>
+<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+</div>
+</form>
+</div>
+<p>Como vimos na expositiva, a ordem de inserção afeta diretamente a altura das ABBs. </p>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/balance/exercise_1" id="exercise_1_0">
+<p class="admonition-title">Exercise 3</p>
+<form class="exercise-form">
+<p>Insira os seguintes nós em uma ABB. </p>
+<p><code>5 7 11 33 3 15 2</code></p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Sua resposta deverá ser como a abaixo</p>
+<p><graphviz-graph graph='
+    digraph G {
+        5 -> 3
+        5 -&gt; 7
+        3 -&gt; 2
+        3 -&gt; n1
+        7 -&gt; n2
+        7 -&gt; 11
+        11 -&gt; n3
+        11 -&gt; 33
+        33 -&gt; 15
+        33 -&gt; n4
+        n1 [shape=point] 
+        n2 [shape=point] 
+        n3 [shape=point] 
+        n4 [shape=point] 
+    }
+' /&gt;</p>
+</div>
+</div>
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="2" data-slug="4-arvores-intro/balance/choice_3" id="choice_3_0">
+<p class="admonition-title">Exercise 4</p>
+<form class="exercise-form">
+<p>Qual das ordens de inserção abaixo resulta na árvore com menor altura?</p>
+<div class="form-elements">
+<div class="alternative-set">
+  
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    <code>60 10 20 40 30 50</code>
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    <code>50 60 40 20 30 10</code>
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    <code>10 50 60 30 20 40</code>
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    <code>30 20 10 50 40 60</code>
+  </div>
+</label>
+
+</div>
+<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Desenhe todas e veja :)</p>
+</div>
+</div>
+<p>Vamos relembrar o algoritmo visto na parte expositiva:</p>
+<ol>
+<li>passe por todos elementos em-ordem, guardando o valor em um array</li>
+<li>insira como raiz o elemento do meio do array</li>
+<li>faça o passo <em>2</em> recursivamente para cada lado do array</li>
+</ol>
+<p>Podemos interpretar esse algoritmo como um que encontra a melhor ordem de inserção. Vamos exercitar isso nos exercícios abaixo.</p>
+<hr />
+<p>Usaremos a seguinte árvore nos próximos exercícios. A ideia deles é executar os 3 passos acima para um exemplo completo de árvore.</p>
+<p><graphviz-graph graph='
+digraph G {
+73 -> 1
+73 -&gt; 91
+1 -&gt; n1
+1 -&gt; 10
+10 -&gt; n2
+10 -&gt; 30
+30 -&gt; 20
+30 -&gt; 35
+35 -&gt; n4
+35 -&gt; 55
+91 -&gt; 90
+91 -&gt; n5
+n1 [shape=point]
+n2 [shape=point]
+n4 [shape=point]
+n5 [shape=point]
+}' /&gt;</p>
+<div class="admonition exercise short tag-text-exercise tag-short-text" data-slug="4-arvores-intro/balance/short_1" id="short_1_0">
+<p class="admonition-title">Exercise 5</p>
+<form class="exercise-form">
+<p>Passe pelos nós da árvore em-ordem e coloque-os abaixo.</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>1 10 20 30 35 55 73 90 91</p>
+</div>
+</div>
+<p>Com este resultado na mão, vamos começar a determinar uma ordem de inserção para que a árvore fique balanceada. Se ficar em dúvida, reveja o passo 2 do algoritmo acima. </p>
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="4-arvores-intro/balance/choice_4" id="choice_4_0">
+<p class="admonition-title">Exercise 6</p>
+<form class="exercise-form">
+<p>Qual é o primeiro elemento a ser inserido?</p>
+<div class="form-elements">
+<div class="alternative-set">
+  
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    73
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    20
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="1" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    30
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="0" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    35
+  </div>
+</label>
+
+<label class="alternative">
+  <div class="content">
+    <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
+    55
+  </div>
+</label>
+
+</div>
+<input class="ah-button ah-button--primary" type="submit" name="sendButton" value="Submit" disabled />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>O elemento 35 está exatamente no meio do array ordenado, logo ele precisa ser o primeiro para que a árvore esteja balanceada!</p>
+</div>
+</div>
+<p>Vamos agora inserir todos valores menores que a raiz. Aqui temos um problema: com 4 valores no array, não tem um que esteja exatamente no meio. </p>
+<div class="admonition exercise short tag-text-exercise tag-short-text" data-slug="4-arvores-intro/balance/short_2" id="short_2_0">
+<p class="admonition-title">Exercise 7</p>
+<form class="exercise-form">
+<p>Vamos tentar então pegando o elemento à esquerda do meio: 10. Aplique a ideia recursivamente e liste abaixo a ordem ideal de inserção.</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p><code>10 1 20 30</code> </p>
+</div>
+</div>
+<div class="admonition exercise short tag-text-exercise tag-short-text" data-slug="4-arvores-intro/balance/short_3" id="short_3_0">
+<p class="admonition-title">Exercise 8</p>
+<form class="exercise-form">
+<p>Vamos tentar então pegando o elemento à direita do meio: 210. Aplique a ideia recursivamente e liste abaixo a ordem ideal de inserção.</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p><code>20 10 1 30</code></p>
+</div>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="4-arvores-intro/balance/long_4" id="long_4_0">
+<p class="admonition-title">Exercise 9</p>
+<form class="exercise-form">
+<p>Agora desenhe as duas árvores dox exercícios anteriores e responda: faz diferença qual das opções escolhemos, em termos de balanceamento da árvore?</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Vamos iniciar olhando os desenhos. Primeiro temos a ordem de inserção com a mediana esquerda:</p>
+<p><graphviz-graph graph=' 
+    digraph G {
+        10 -> 1
+        10 -&gt; 20
+        20 -&gt; n1
+        20 -&gt; 30
+        n1 [shape=point]
+    }
+' /&gt;</p>
+<p>Depois a ordem com a mediana direita:</p>
+<p><graphviz-graph graph=' 
+    digraph G {
+        20 -> 10
+        10 -&gt; 1
+        10 -&gt; n1
+        20 -&gt; 30
+        n1 [shape=point]
+    }
+' /&gt;</p>
+<p>Como ambas tem a mesma altura, então elas são equivalentes quando ao balanceamento da árvore da solução. Para padronizar, <strong>sempre usaremos a mediana esquerda</strong> em nosso algoritmo.</p>
+</div>
+</div>
+<p>O processo pode ser repetido para os elementos maiores que a raiz para obter a ordem de inserção completa. Escreva ela abaixo.</p>
+<div class="admonition exercise short tag-text-exercise tag-short-text" data-slug="4-arvores-intro/balance/short_5" id="short_5_0">
+<p class="admonition-title">Exercise 10</p>
+<form class="exercise-form">
+<p>A ordem de inserção completa para a árvore balanceada é:</p>
+<p><strong>Antes de submeter, desenhe a árvore com essa ordem de inserção e verifique se ela está com altura ótima.</strong></p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>A solução final é <code>35 10 1 20 30 73 55 90 91</code>. A árovre fica como abaixo:</p>
+<p><graphviz-graph graph='
+digraph G {
+    35 -> 10
+    10 -&gt; 1
+    10 -&gt; 20
+    20 -&gt; n1
+    20 -&gt; 30
+    35 -&gt; 73
+    73 -&gt; 55
+    73 -&gt; 90
+    90 -&gt; n2
+    90 -&gt; 91
+    n1 [shape=point]
+    n2 [shape=point]
+}' /&gt;</p>
+</div>
+</div>
+<hr />
+<p>Finalmente, escreva o algoritmo completo abaixo.</p>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="4-arvores-intro/balance/long_6" id="long_6_0">
+<p class="admonition-title">Exercise 11</p>
+<form class="exercise-form">
+<p>Escreva em pseudo-código um algoritmo <code>TREE-TO-ARRAY(R)</code> querecebe uma árvore <code>R</code> e devolve um array ordenado com os valores em <code>R</code></p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Lousa</p>
+</div>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text" data-slug="4-arvores-intro/balance/long_7" id="long_7_0">
+<p class="admonition-title">Exercise 12</p>
+<form class="exercise-form">
+<p>Escreva em pseudo-código um algoritmo <code>REBALANCEIA(R)</code> que recebe uma árovore enraizada em <code>R</code> e devolve uma nova árvore balanceada que tenha os mesmos valores que <code>R</code></p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Feito na lousa</p>
+</div>
+</div>
+<h2 id="entrega">Entrega</h2>
+<p>Exercícios de implementação no PrairieLearn</p>
 
 
 </section>
-          
         
       </main>
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
+          
+            <a href="../insert/"
+               class="ah-prev"
+               title="Inserção">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Inserção</span>
+            </a>
           
           
         </div>
