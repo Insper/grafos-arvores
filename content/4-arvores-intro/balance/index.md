@@ -157,7 +157,7 @@ Vamos agora inserir todos valores menores que a raiz. Aqui temos um problema: co
         `10 1 20 30` 
 
 !!! exercise short
-    Vamos tentar então pegando o elemento à direita do meio: 210. Aplique a ideia recursivamente e liste abaixo a ordem ideal de inserção.
+    Vamos tentar então pegando o elemento à direita do meio: 20. Aplique a ideia recursivamente e liste abaixo a ordem ideal de inserção.
 
     !!! answer
         `20 10 1 30`
