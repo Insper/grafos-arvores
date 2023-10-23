@@ -127,26 +127,26 @@
       
         
   
+
     <li class="active ah-togglable-item opened">
       <span class="ah-togglable-handle">Alocação de memória</span>
       <ul>
         
-          <li class="ah-toc-item">
-            <a href="#alocacao-dinamica-de-memoria">Alocação Dinâmica de Memória</a>
-          </li>
           
-          <li class="ah-toc-item">
-            <a href="#exercicios-basicos">Exercícios básicos</a>
-          </li>
-          
-          <li class="ah-toc-item">
-            <a href="#ferramentas-de-verificacao-de-memoria">Ferramentas de verificação de memória</a>
-          </li>
-          
-          <li class="ah-toc-item">
-            <a href="#para-entregar">Para entregar</a>
-          </li>
-          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#exercicios-basicos">Exercícios básicos</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#ferramentas-de-verificacao-de-memoria">Ferramentas de verificação de memória</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#para-entregar">Para entregar</a>
+              </li>
+            
         
       </ul>
     </li>
@@ -309,12 +309,13 @@
                     <li>0 - Linguagem C</li>
                   
                 
-                <li>Alocação de memória</li>
+                <li></li>
             </ul>
             
             
           </div>
-          <section class="progress-section show">
+          
+            <section class="progress-section show">
 <h1 id="alocacao-dinamica-de-memoria">Alocação Dinâmica de Memória</h1>
 <p><ah-external-content src="../slides-malloc.html"/></p>
 <h2 id="exercicios-basicos">Exercícios básicos</h2>
@@ -381,8 +382,8 @@
 <a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Vamos começar analisando o código do programa <strong>antes de rodá-lo</strong>. </p>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_1" id="short_1_0">
-<p class="admonition-title">Exercise 1</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_1" id="short_1_0">
+<p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Analisando seu código-fonte, o que este programa faz?</p>
 <div class="form-elements">
@@ -396,8 +397,8 @@
 <p>Aloca um vetor, preenche com $0,1,...,n$ e imprime!</p>
 </div>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_2" id="short_2_0">
-<p class="admonition-title">Exercise 2</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_2" id="short_2_0">
+<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Na execução deste programa, o que acontece se <code>malloc</code> falhar? </p>
 <p><strong>Dica</strong>: se não lembra como <code>malloc</code> funciona, volte nos slides.</p>
@@ -412,8 +413,8 @@
 <p>A função de alocação irá retornar <code>NULL</code>, mas nenhuma verificação está sendo feita.</p>
 </div>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_3" id="short_3_0">
-<p class="admonition-title">Exercise 3</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_3" id="short_3_0">
+<p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>O seu programa libera toda memória que aloca? Se não, aponte onde ele deveria fazer isto.</p>
 <p><strong>Dica</strong>: lembre-se que usamos a função <code>free</code> para indicar que não usaremos mais uma área de memória obtida com <code>malloc</code>. Se não lembra de como usar volta para os slides.</p>
@@ -437,8 +438,8 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 <p class="admonition-title">Tip 2</p>
 <p>O terminal do VSCode é muito bom e podemos usá-lo para rodar todos os comandos dessa atividade. </p>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_4" id="short_4_0">
-<p class="admonition-title">Exercise 4</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_4" id="short_4_0">
+<p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Execute o programa. Ocorreu algum problema durante a execução?</p>
 <div class="form-elements">
@@ -452,8 +453,8 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 <p>A resposta aqui é provavelmente não. Porém, isso não significa que o programa está correto, apenas que se ocorreu um erro ele não foi suficientemente grave para finalizar o programa.</p>
 </div>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_5" id="short_5_0">
-<p class="admonition-title">Exercise 5</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_5" id="short_5_0">
+<p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>O comportamento de seu programa muda conforme N muda? Começe com <code>N=10</code> e vá incrementando de um em um. Você consegue explicar por que? Discuta com seu grupo e valide sua resposta com o professor.</p>
 <div class="form-elements">
@@ -471,8 +472,8 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 <p class="admonition-title">Warning</p>
 <p>Em C é comum programas com problemas funcionarem "por sorte". Essencialmente, coisas erradas acontecem, mas elas podem não ser graves o suficiente para que o programa seja finalizado pelo sistema. Pequenas mudanças no código podem fazer um programa aparentemente OK quebrar. </p>
 </div>
-<div class="admonition exercise text medium tag-text-exercise tag-medium-text" data-slug="0-linguagem-C/malloc/medium_6" id="medium_6_0">
-<p class="admonition-title">Exercise 6</p>
+<div class="admonition exercise text medium tag-medium-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/medium_6" id="medium_6_0">
+<p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Existem três problemas no código. O primeiro (<code>vetor</code> não é desalocado) já identificamos no exercíco anterior. Você consegue identificar os outros dois?</p>
 <div class="form-elements">
@@ -517,8 +518,8 @@ $ sudo apt install valgrind
 $ gcc -Og -g -Wall -std=c99 ex1.c -o ex1
 $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 </ah-terminal></p>
-<div class="admonition exercise text medium tag-text-exercise tag-medium-text" data-slug="0-linguagem-C/malloc/medium_7" id="medium_7_0">
-<p class="admonition-title">Exercise 8</p>
+<div class="admonition exercise text medium tag-medium-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/medium_7" id="medium_7_0">
+<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Rode o Valgrind com <code>valgrind --leak-check=yes ./ex1</code>. Quantos erros foram encontrados? Quais são seus tipos (escrita ou leitura de dados)? O que eles significam?</p>
 <div class="form-elements">
@@ -543,8 +544,8 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>==24804==    by 0x401171: aloca_vetor (a.c:7)
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>==24804==    by 0x4011D1: main (a.c:18)
 </code></pre></div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_8" id="short_8_0">
-<p class="admonition-title">Exercise 9</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_8" id="short_8_0">
+<p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual linha o erro ocorre? O que a mensagem acima significa?</p>
 <div class="form-elements">
@@ -568,8 +569,8 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>==24804==    by 0x401171: aloca_vetor (a.c:7)
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>==24804==    by 0x4011D1: main (a.c:18)
 </code></pre></div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_9" id="short_9_0">
-<p class="admonition-title">Exercise 10</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_9" id="short_9_0">
+<p class="admonition-title">Exercise 10<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual linha o erro ocorre? O que a mensagem acima significa?</p>
 <div class="form-elements">
@@ -593,8 +594,8 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>==2179==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>==2179==    by 0x1086B9: main (ex1.c:7)
 </code></pre></div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text" data-slug="0-linguagem-C/malloc/short_10" id="short_10_0">
-<p class="admonition-title">Exercise 11</p>
+<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_10" id="short_10_0">
+<p class="admonition-title">Exercise 11<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Ela mostra algum problema? Se sim, qual linha de código é apontada? Qual é o problema diagnosticado por este aviso?</p>
 <div class="form-elements">
@@ -625,6 +626,7 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 
 
 </section>
+          
         
       </main>
       <footer class="ah-footer ah-typeset">
