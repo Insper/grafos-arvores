@@ -25,6 +25,7 @@ nav:
       - "Introdução": 4-arvores-intro/intro/index.md
       - "Inserção": 4-arvores-intro/insert/index.md
       - "Balanceamento": 4-arvores-intro/balance/index.md
+      - "Remoção": 4-arvores-intro/remove/index.md
 
 extra_javascript:
   - js/external.js
