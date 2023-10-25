@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+      
+        <title>Remoção - Grafos e Árvores</title>
+      
+    
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <script>
+      // SETUP GLOBAL CONSTANTS
+      var base_url = '../..';
+      
+      var telemetryEnabled = false;
+      var backendUrl = "";
+      var courseSlug = "";
+      
+      
+      var dashboardEnabled = false;
+      var tagTree = {};
+      
+
+      // SETUP PLUGIN
+      window.initialized = false;
+      if (!window.initializers) window.initializers = [];
+      window.registerInitializer = (initialize) => {
+        if (window.initialized) initialize();
+        else window.initializers.push(initialize);
+      };
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://unpkg.com/hyperscript.org"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    
+    
+  </head>
+  <body>
+    <div class="ah-main-container">
+      <header class="ah-header">
+        <button class="ah-menu-btn ah-button ah-button--borderless"
+                aria-label="toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+</svg>
+        </button>
+        <a href="../.."
+           title="Grafos e Árvores"
+           class="ah-logo"
+           aria-label="Grafos e Árvores">
+          Grafos e Árvores
+        </a>
+        <div class="ah-header--right">
+          
+          
+          
+          <button id="resetHandoutButton">
+            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg></span>
+          </button>
+          
+
+          
+        </div>
+      </header>
+      <nav class="ah-navigation preload">
+        <div class="ah-nav-container">
+          <button class="ah-menu-btn ah-button ah-button--borderless close-menu"
+                  aria-label="close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+  <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+</svg>
+          </button>
+          <ul class="ah-nav-body">
+            
+              
+  
+    <li>
+      <a href="../..">Home</a>
+    </li>
+  
+
+            
+              
+  
+    <li>
+      <a href="../../sobre/">Sobre</a>
+    </li>
+  
+
+            
+              
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">Módulos</span>
+    <ul>
+      
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">0 - Linguagem C</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/">Labs de C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/malloc/">Alocação de memória</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/adt-c/">ADT em C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../0-linguagem-C/debug/">Debug</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">1 - Grafos e Componentes</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/componentes/">Componentes Conexas</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../1-grafos-componentes/problema1/">Problema</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">2 - Grafos e Caminhos</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/bfs/">Busca em Largura</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../../2-grafos-caminhos/dijkstra/">Algoritmo de Dijkstra</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">3 - Árvores</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../insert/">Inserção</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../balance/">Balanceamento</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Remoção</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#casos-faceis-da-remocao">Casos fáceis da remoção</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#o-caso-complicado-no-tem-dois-filhos">O caso complicado: nó tem dois filhos</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#algoritmo-para-remocao">Algoritmo para remoção</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#o-algoritmo-remove">O algoritmo REMOVE</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#pratica">Prática</a>
+              </li>
+            
+        
+      </ul>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+    </ul>
+  </li>
+
+            
+          </ul>
+        </div>
+      </nav>
+      <main class="ah-content ah-typeset">
+        
+          <div class="ah-title-box">
+            <ul class="ah-breadcrumbs">
+              
+                
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>3 - Árvores</li>
+                  
+                
+                <li></li>
+            </ul>
+            
+            
+          </div>
+          
+            <section class="progress-section show">
+<script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
+
+<h1 id="remocao">Remoção</h1>
+<p>Remover elementos de árvores é uma operação mais complicada que inserção e busca. Esta aula será auto-guiada: os exemplos e exercícios devem levá-los à construção de um algoritmo para remoção de nós de uma árvore usando operações de rotação (que definiremos a seguir).</p>
+<p>Os algoritmos serão comentados em sala de aula no dia 30/10.</p>
+<h2 id="casos-faceis-da-remocao">Casos fáceis da remoção</h2>
+<p>O caso mais fácil é quando <strong>o elemento a ser removido é uma folha</strong>.</p>
+<p><graphviz-graph graph="digraph D {
+    label=&quot;Remoção do elemento 10 - folha&quot;
+    subgraph cluster1 {
+        label=&quot;Antes&quot;
+        5 -> 3
+        5 -&gt; 10
+    }
+    subgraph cluster2 {
+        label=&quot;Depois&quot;
+        a2[label=&quot;5&quot;]
+        a3[label=&quot;3&quot;]
+        n1[shape=point]
+        a2 -&gt; a3
+        a2 -&gt; n1
+        n1[shape=point]
+    }
+}"&gt; </graphviz-graph></p>
+<p>Outro caso fácil é quando <strong>o elemento a ser removido não tem um dos filhos</strong>. Veja abaixo os dois casos possíveis.</p>
+<p><graphviz-graph graph="
+digraph D {
+    label=&quot;Remoção do elemento 10 - sem filho esquerdo&quot;
+    subgraph cluster1 {
+        label=&quot;Antes&quot;
+        5 -> 3
+        5 -&gt; 10
+        10 -&gt; n11
+        10 -&gt; 15
+        15 -&gt; 13
+        15 -&gt; 25
+        n11[shape=point]
+    }
+    subgraph cluster2 {
+        label=&quot;Depois&quot;
+        a2[label=&quot;5&quot;]
+        a3[label=&quot;3&quot;]
+        a4[label=&quot;15&quot;]
+        a5[label=&quot;13&quot;]
+        a6[label=&quot;25&quot;]
+        invis[style=invis]
+        a2 -&gt; a3
+        a2 -&gt; a4
+        a4 -&gt; a5
+        a4 -&gt; a6
+        a6 -&gt; invis[style=invis]
+    }
+}" &gt; </graphviz-graph></p>
+<p><graphviz-graph graph="
+digraph D {
+    label=&quot;Remoção do elemento 10 - sem filho direito&quot;
+    subgraph cluster1 {
+        label=&quot;Antes&quot;
+        5 -> 3
+        5 -&gt; 10
+        10 -&gt; 7
+        7 -&gt; 6
+        7 -&gt; 9
+        10 -&gt; n11
+        n11[shape=point]
+    }
+    subgraph cluster2 {
+        label=&quot;Depois&quot;
+        a2[label=&quot;5&quot;]
+        a3[label=&quot;3&quot;]
+        a4[label=&quot;7&quot;]
+        a5[label=&quot;6&quot;]
+        a6[label=&quot;9&quot;]
+        invis[style=invis]
+        a2 -&gt; a3
+        a2 -&gt; a4
+        a4 -&gt; a5
+        a4 -&gt; a6
+        a6 -&gt; invis[style=invis]
+    }
+}" &gt; </graphviz-graph></p>
+<h2 id="o-caso-complicado-no-tem-dois-filhos">O caso complicado: nó tem dois filhos</h2>
+<p>Agora falta só descobrir o que fazer quando o nó a ser removido tem ambos os filhos. Apesar de isso parecer complicado. Veremos como aplicar operações na árvore de maneira que sempre chegaremos em um caso fácil!</p>
+<p>O caso mais simples com dois filhos é a árvore balanceada com 3 elementos e fazendo a remoção do elemento raiz (<code>10</code> no exemplo abaixo)</p>
+<p><graphviz-graph graph="
+digraph G {
+10 -> 5
+10 -&gt; 15
+}
+" /&gt;</p>
+<p>Para conseguirmos chegar em um caso fácil precisaríamos fazer o <code>10</code> virar</p>
+<ol>
+<li>ou um nó com filho direito e sem filho esquerdo</li>
+<li>ou um nó com filho esquerdo e sem filho direito</li>
+<li>ou uma folha</li>
+</ol>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/remove/exercise_1" id="exercise_1_0">
+<p class="admonition-title">Exercise 1</p>
+<form class="exercise-form">
+<p>Redesenhe a árvore acima fazendo com que o nó <code>10</code> esteja em cada uma das três posições acima. </p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<ol>
+<li>
+<p><code>10</code> tem filho esquerdo e não direito</p>
+<p><graphviz-graph graph="
+digraph G {
+    15 -> 10
+    15 -&gt; n1
+    10 -&gt; 5
+    10 -&gt; n2
+    n1 [shape=point]
+    n2 [shape=point]
+}" /&gt;</p>
+</li>
+<li>
+<p><code>10</code> tem filho direito e não esquerdo</p>
+<p><graphviz-graph graph="
+digraph G {
+    5 -> n1
+    5 -&gt; 10
+    10 -&gt; n2
+    10 -&gt; 15
+    n1 [shape=point]
+    n2 [shape=point]
+}" /&gt;</p>
+</li>
+<li>
+<p><code>10</code> é folha são dois casos possíveis</p>
+<p><graphviz-graph graph="
+digraph g {
+    15 -> 5
+    15 -&gt; n1
+    5 -&gt; n2
+    5 -&gt; 10
+    n1 [shape=point]
+    n2 [shape=point]
+}" /&gt; </p>
+<p><graphviz-graph graph="
+digraph G {
+    5 -> n1
+    5 -&gt; 15
+    15 -&gt; 10
+    15 -&gt; n2
+    n1 [shape=point]
+    n2 [shape=point]
+}" /&gt;</p>
+</li>
+</ol>
+</div>
+</div>
+<p>Note que nos 3 casos o nó <code>10</code> <em>desceu de nível na árvore.</em> Ele inicia na raiz (nível 0) e desce para o nível 1 (nos casos 1 e 2) e nível 2 (no caso 3). </p>
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="4-arvores-intro/remove/short_1" id="short_1_0">
+<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Em uma árvore com altura $h = 10$, qual é o número máximo de rotações necessárias para fazer um nó qualquer da árvore se tornar uma folha?</p>
+<div class="form-elements">
+<input type="text" value="" name="data"/>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Cada rotação aumenta o nível do nó em 1. Logo, precisamos de no máximo 10 rotações e isso ocorre quando desejamos tornar a raiz uma folha. Em geral, para um nó raiz (nível 0) chegar a ser folha (nível $h$) precisamos de $h$ rotações. </p>
+</div>
+</div>
+<p>Conseguimos descer um nó de nível fazendo uma <strong>rotação</strong> na árvore. A figura abaixo exemplifica rotações para ambos os lados. Note que em ambos os casos a subárvore muda de raiz.</p>
+<p><img alt="Animação feita por TarElessar" src="rotacoes.gif" />
+<strong>Fonte</strong>: <a href="https://commons.wikimedia.org/wiki/File:Tree_rotation_animation_250x250.gif">Feito por TarElessar</a></p>
+<ul>
+<li>Na <strong>rotação à esquerda</strong> desceremos de nível a raiz $A$. Chamamos o elemento $B$ à direita de $A$ de <strong>pivô</strong>, já que ele será a nova raiz. A subárvore $\beta$ muda da direita de $B$ para a esquerda de $A$.</li>
+<li>Na <strong>rotação à direita</strong> desceremos de nível a raiz $B$. Chamamos o elemento $A$ à esquerda de $B$ de <strong>pivô</strong>, já que ele será a nova raiz. A subárvore $\beta$ muda da esquerda de $A$ para a direita de $B$.</li>
+</ul>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/remove/long_2" id="long_2_0">
+<p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Escreva um algoritmo <code>ROTACAO-DIREITA(R)</code> que recebe um nó de uma <em>ABB</em> e devolve a nova raiz dessa subárvore depois de fazer uma rotação à direita. Simule seu algoritmo com o grafo abaixo e tentando rotacionar os elementos a seguir.</p>
+<p><graphviz-graph graph="
+digraph G {
+    20 -> 10
+    20 -&gt; 50
+    10 -&gt; 6 
+    10 -&gt; n1
+    6 -&gt; 3
+    6 -&gt; n2
+    3 -&gt; 1
+    3 -&gt; n3
+    50 -&gt; 30
+    50 -&gt; n4
+    30 -&gt; 25
+    30 -&gt; 40
+    25 -&gt; n5
+    25 -&gt; 29
+    n1 [shape=point]
+    n2 [shape=point]
+    n3 [shape=point]
+    n4 [shape=point]
+    n5 [shape=point]
+}" /&gt;</p>
+<ol>
+<li>Rotacionar elemento 1</li>
+<li>Rotacionar elemento 6</li>
+<li>Rotacionar elemento 50</li>
+<li>Rotacionar elemento 30</li>
+</ol>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Lousa</p>
+</div>
+</div>
+<h2 id="algoritmo-para-remocao">Algoritmo para remoção</h2>
+<p>Agora que conseguimos "descer" um elemento de nível, temos um algoritmo de remoção baseado em rotações que é bem simples:</p>
+<ol>
+<li>encontre o nó a ser removido</li>
+<li>rotacione a árvore para a direita  até que esse nó esteja em um dos 3 casos fáceis acima.</li>
+<li>remova o nó de acordo com as explicações dos 3 casos fáceis</li>
+<li>devolva a nova raiz da subárvore que iniciava no elemento removido</li>
+</ol>
+<p>Vamos simular essa ideia para o grafo abaixo. Todas as rotações serão feitas para a direita. </p>
+<p><graphviz-graph graph="digraph G {
+50 -> 30
+50 -&gt; 70
+30 -&gt; 10
+30 -&gt; 35
+10 -&gt; 5
+10 -&gt; n2
+70 -&gt; 65
+70 -&gt; 71
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+n2 [shape=point]
+}" /&gt;</p>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/remove/exercise_2" id="exercise_2_0">
+<p class="admonition-title">Exercise 4</p>
+<form class="exercise-form">
+<p>Simule a remoção do elemento 10</p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>A remoção do <code>10</code> é o caso fácil <strong>2</strong>. Para removê-lo basta fazer seu pai (<code>30</code>) apontar para a subárvore do nó <code>5</code>. O grafo ficaria como abaixo. </p>
+<p><graphviz-graph graph="digraph G {
+50 -> 30
+50 -&gt; 70
+30 -&gt; 5
+30 -&gt; 35
+70 -&gt; 65
+70 -&gt; 71
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+}" /&gt;</p>
+</div>
+</div>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/remove/exercise_3" id="exercise_3_0">
+<p class="admonition-title">Exercise 5</p>
+<form class="exercise-form">
+<p>Simula a remoção do elemento <code>70</code></p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>O nó <code>70</code> tem dois filhos, portanto será necessário fazer rotações para descê-lo na árvore até chegar em dos casos fáceis. </p>
+<p><strong>Passo 1</strong>: rotação à direita</p>
+<p><graphviz-graph graph="digraph G {
+50 -> 30
+50 -&gt; 65
+65 -&gt; n4
+65 -&gt; 70
+70 -&gt; n3
+70 -&gt; 71
+30 -&gt; 10
+30 -&gt; 35
+10 -&gt; 5
+10 -&gt; n2
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+n2 [shape=point]
+n3 [shape=point]
+n4 [shape=point]
+}" /&gt;</p>
+<p><strong>Passo 2</strong>: Agora o <code>70</code> está na posição do caso fácil <strong>1</strong>! Podemos então só apontar o nó direito de <code>65</code> para a subárvore <code>71</code></p>
+<p><graphviz-graph graph="digraph G {
+50 -> 30
+50 -&gt; 65
+65 -&gt; n4
+65 -&gt; 71
+30 -&gt; 10
+30 -&gt; 35
+10 -&gt; 5
+10 -&gt; n2
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+n2 [shape=point]
+n4 [shape=point]
+}" /&gt;</p>
+</div>
+</div>
+<div class="admonition exercise self-progress" data-slug="4-arvores-intro/remove/exercise_4" id="exercise_4_0">
+<p class="admonition-title">Exercise 6</p>
+<form class="exercise-form">
+<p>Simula a remoção do elemento <code>50</code></p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>O <code>50</code> tem ambos os filhos, então precisaremos rotacioná-lo algumas vezes até chegar em um caso fácil.</p>
+<p><strong>Passo 1</strong>: rotação</p>
+<p><graphviz-graph graph="digraph G {
+30 -> 10
+30 -&gt; 50
+10 -&gt; 5
+10 -&gt; n2
+50 -&gt; 35
+50 -&gt; 70
+70 -&gt; 65
+70 -&gt; 71
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+n2 [shape=point]
+}" /&gt;</p>
+<p><strong>Passo 2</strong>: ainda não é um caso fácil. Rotaciona de novo</p>
+<p><graphviz-graph graph="digraph G {
+30 -> 10
+30 -&gt; 35
+10 -&gt; 5
+10 -&gt; n2
+35 -&gt; n4
+35 -&gt; 50
+50 -&gt; n3
+50 -&gt; 70
+70 -&gt; 65
+70 -&gt; 71
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+n2 [shape=point]
+n3 [shape=point]
+n4 [shape=point]
+}" /&gt;</p>
+<p><strong>Passo 3</strong>: caso fácil <strong>1</strong> de novo! Basta tirar o <code>50</code> e fazer a raiz da subárvore se o elemento <code>70</code>. </p>
+<p><graphviz-graph graph="digraph G {
+30 -> 10
+30 -&gt; 35
+10 -&gt; 5
+10 -&gt; n2
+35 -&gt; n4
+35 -&gt; 70
+70 -&gt; 65
+70 -&gt; 71
+71 -&gt; n1
+71 -&gt; 75
+n1 [shape=point]
+n2 [shape=point]
+n4 [shape=point]
+}" /&gt;</p>
+</div>
+</div>
+<p>Notem que em alguns casos a remoção de um elemento fez a altura da árvore aumentar! Esse é uma das principais dificuldades em criar árvores balanceadas: quanto mais mexemos na árvore maior a chance de criarmos árvores altas. O vídeo abaixo exemplifica o algoritmo da <a href="https://en.wikipedia.org/wiki/AVL_tree">AVL</a>, uma árvore balanceada relativamente simples.</p>
+<details class="tip">
+<summary>Vídeo explicativo</summary>
+<div>
+<iframe height="500" src="https://www.youtube.com/embed/zP2xbKerIds?autoplay=0" type="text/html" width="100%"></iframe>
+</div>
+</details>
+<h2 id="o-algoritmo-remove">O algoritmo <code>REMOVE</code></h2>
+<p>Agora que já simulou o algoritmo algumas vezes está na hora de formalizá-lo. </p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/remove/long_3" id="long_3_0">
+<p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Escreva um algoritmo <code>REMOVE(R, K)</code> que remove o nó <code>K</code> da árvore <code>R</code>, devolvendo uma nova raiz da árvore se necessário. Você pode supor que as seguintes funções existem:</p>
+<ul>
+<li><code>REMOVE-RAIZ(R)</code> remove a raiz de uma árvore, devolvendo a nova raiz. </li>
+</ul>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>REMOVE(R, K)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>SE R.key == K ENTÃO
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    DEVOLVE REMOVE-RAIZ(R)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>SENÃO SE K &lt; R.key ENTÃO
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    R.left = REMOVE(R.left, K)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>SENÃO SE K &gt; R.key ENTÃO
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    R.right = REMOVE(R.right, K)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>FIM
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>DEVOLVE R
+</code></pre></div>
+</div>
+</div>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/remove/long_4" id="long_4_0">
+<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Escreva um algoritmo recursivo <code>REMOVE-RAIZ(R)</code> que remove a raiz <code>R</code> da árvore e devolve a nova raiz. Use rotações para a direita como foi feito no exercício anterior.</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+<div class="admonition answer no-indent">
+<p class="admonition-title">Answer</p>
+<p>Lousa</p>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Desafio</p>
+<p>É possível fazer a remoção usando só o caso do nó escolhido ser folha. Você consegue?</p>
+</div>
+<h2 id="pratica">Prática</h2>
+<p>Implemente o algoritmo deste handout no PrairieLearn.</p>
+
+
+</section>
+          
+        
+      </main>
+      <footer class="ah-footer ah-typeset">
+        <div class="ah-footer-nav">
+          
+            <a href="../balance/"
+               class="ah-prev"
+               title="Balanceamento">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Balanceamento</span>
+            </a>
+          
+          
+        </div>
+      </footer>
+    </div>
+    
+      <script src="../../js/external.js"></script>
+    
+  </body>
+</html>
