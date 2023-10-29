@@ -20,6 +20,7 @@ nav:
       - "Índice": 2-grafos-caminhos/index.md
       - "Busca em Largura": 2-grafos-caminhos/bfs.md
       - "Algoritmo de Dijkstra": 2-grafos-caminhos/dijkstra.md
+    - "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
     - "3 - Árvores": 
       - "Índice": 4-arvores-intro/index.md
       - "Introdução": 4-arvores-intro/intro/index.md
