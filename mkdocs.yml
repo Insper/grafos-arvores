@@ -8,25 +8,25 @@ nav:
   - "Módulos":
     - "0 - Linguagem C": 
       - "Labs de C": 0-linguagem-C/index.md
-      - "Alocação de memória": 0-linguagem-C/malloc.md
-      - "ADT em C": 0-linguagem-C/adt-c.md
+      #- "Alocação de memória": 0-linguagem-C/malloc.md
+      #- "ADT em C": 0-linguagem-C/adt-c.md
       - "Debug": 0-linguagem-C/debug.md
-    - "1 - Grafos e Componentes": 
-      - "Índice": 1-grafos-componentes/index.md
-      - "Introdução": 1-grafos-componentes/intro.md
-      - "Componentes Conexas": 1-grafos-componentes/componentes.md
-      - "Problema": 1-grafos-componentes/problema1.md
-    - "2 - Grafos e Caminhos": 
-      - "Índice": 2-grafos-caminhos/index.md
-      - "Busca em Largura": 2-grafos-caminhos/bfs.md
-      - "Algoritmo de Dijkstra": 2-grafos-caminhos/dijkstra.md
-    - "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
-    - "3 - Árvores": 
-      - "Índice": 4-arvores-intro/index.md
-      - "Introdução": 4-arvores-intro/intro/index.md
-      - "Inserção": 4-arvores-intro/insert/index.md
-      - "Balanceamento": 4-arvores-intro/balance/index.md
-      - "Remoção": 4-arvores-intro/remove/index.md
+    #- "1 - Grafos e Componentes": 
+    #  - "Índice": 1-grafos-componentes/index.md
+    #  - "Introdução": 1-grafos-componentes/intro.md
+    #  - "Componentes Conexas": 1-grafos-componentes/componentes.md
+    #  - "Problema": 1-grafos-componentes/problema1.md
+    #- "2 - Grafos e Caminhos": 
+    #  - "Índice": 2-grafos-caminhos/index.md
+    #  - "Busca em Largura": 2-grafos-caminhos/bfs.md
+    #  - "Algoritmo de Dijkstra": 2-grafos-caminhos/dijkstra.md
+    #- "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
+    #- "3 - Árvores": 
+    #  - "Índice": 4-arvores-intro/index.md
+    #  - "Introdução": 4-arvores-intro/intro/index.md
+    #  - "Inserção": 4-arvores-intro/insert/index.md
+    #  - "Balanceamento": 4-arvores-intro/balance/index.md
+    #  - "Remoção": 4-arvores-intro/remove/index.md
 
 extra_javascript:
   - js/external.js
