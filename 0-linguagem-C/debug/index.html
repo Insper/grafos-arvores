@@ -127,22 +127,6 @@
       
         
   
-    <li>
-      <a href="../malloc/">Alocação de memória</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../adt-c/">ADT em C</a>
-    </li>
-  
-
-      
-        
-  
 
     <li class="active ah-togglable-item opened">
       <span class="ah-togglable-handle">Debug</span>
@@ -153,137 +137,6 @@
             
         
       </ul>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">1 - Grafos e Componentes</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../../1-grafos-componentes/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-grafos-componentes/intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-grafos-componentes/componentes/">Componentes Conexas</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-grafos-componentes/problema1/">Problema</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">2 - Grafos e Caminhos</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../../2-grafos-caminhos/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../2-grafos-caminhos/bfs/">Busca em Largura</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../2-grafos-caminhos/dijkstra/">Algoritmo de Dijkstra</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  
-    <li>
-      <a href="../../3-grafos-problemas/">2,5 - Problemas em Grafos</a>
-    </li>
-  
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">3 - Árvores</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/insert/">Inserção</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/balance/">Balanceamento</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../4-arvores-intro/remove/">Remoção</a>
     </li>
   
 
@@ -321,11 +174,13 @@
           
             <section class="progress-section show">
 <h1 id="debug-c-no-vscode">Debug C no VSCode</h1>
-<p>Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão <a href="https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode">Eclipse CDT</a> instalada a partir de 12/09 e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestre. </p>
+<p>Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão <a href="https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode">Eclipse CDT</a> já instalada e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestre. Ela não é tão eficiente quanto os debuggers Python e Java, mas já ajuda muito.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Para que as confiruações feitas nesse guia sejam salvas com os seus arquivos, é recomendado que vocês abram a pasta <code>mygraph</code> usando o comando abaixo.</p>
-<p><img alt="" src="../open-folder.png" /></p>
+<p>Não se esqueçam de compilar o programa com as flags <code>-O0 -g</code> para ter acesso a todas as variáveis ao debugar. A linha de comando completa ficaria assim:</p>
+<p><ah-terminal>
+gcc -Wall -O0 -g lista de arquivos.c  `pkg-config --cflags --libs check`
+</ah-terminal></p>
 </div>
 <p>A configuração dessa extensão é via um arquivo <code>launch.json</code> dentro da pasta <code>.vscode</code> do projeto de vocês. Um arquivo deste tipo é criado ao selecionar a opção abaixo.</p>
 <p><img alt="" src="../debug-step1.png" /></p>
@@ -341,20 +196,14 @@
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">&quot;initCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                </span><span class="s2">&quot;set environment CK_FORK no&quot;</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="p">],</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt; in1.txt&quot;</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p">]</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="c1">// descomente abaixo se precisar usar entrada padrão</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="c1">// , &quot;arguments&quot;: &quot;&lt; in1.txt&quot;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
 </code></pre></div>
 <p>Agora você deve ter o debug ativado e pode usá-lo para encontrar erros nos programas de vocês :)</p>
 <p><img alt="" src="../debug-ativado.png" /></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Não se esqueçam de compilar o programa com as flags <code>-O0 -g</code> para ter acesso a todas as variáveis ao debugar. A linha de comando completa ficaria assim:</p>
-<p><ah-terminal>
-gcc -Wall -O0 -g lista de arquivos.c  `pkg-config --cflags --libs check`
-</ah-terminal></p>
-</div>
 
 
 </section>
@@ -364,20 +213,13 @@ gcc -Wall -O0 -g lista de arquivos.c  `pkg-config --cflags --libs check`
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
-            <a href="../adt-c/"
+            <a href="../"
                class="ah-prev"
-               title="ADT em C">
+               title="Labs de C">
               <span class="nav-label">Previous</span>
-              <span class="nav-title">ADT em C</span>
+              <span class="nav-title">Labs de C</span>
             </a>
           
-          
-            <a href="../../1-grafos-componentes/"
-               class="ah-next"
-               title="Índice">
-              <span class="nav-label">Next</span>
-              <span class="nav-title">Índice</span>
-            </a>
           
         </div>
       </footer>
