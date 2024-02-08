@@ -24,4 +24,4 @@ A implementação de um ADT é dividida em dois arquivos:
 
 Vamos implementar o *Vetor Dinâmico* que já fizemos em TecProg, mas agora em *C*.
 
-<ah-button href="https://us.prairielearn.com/pl/course_instance/137302/assessment/2352818">Ir para a prática</ah-button>
+<ah-button href="{{ PL_malloc_hw }}">Ir para a prática</ah-button>

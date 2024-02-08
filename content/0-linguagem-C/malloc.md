@@ -7,9 +7,10 @@
 ## Exercícios básicos
 
 !!! tip
-    Execute os programas dessa atividade no *Playground* da matéria no PL. 
+    <!-- Execute os programas dessa atividade no *Playground* da matéria no PL.  -->
+    Execute os programas dessa atividade na área do Mutirão. 
 
-    <ah-button href="https://us.prairielearn.com/pl/course_instance/137302/assessment/2352640">Abrir Playground</ah-button>
+    <ah-button href="{{ PL_mutirao_hw }}">Abrir Playground</ah-button>
 
 Leia com atenção o seguinte programa.
 
@@ -74,7 +75,7 @@ Agora que entendemos um pouco melhor o programa e percebemos que ele tem vários
 
 
 <ah-terminal>
-$ gcc -Wall -std=c99 -Og ex1.c -o ex1
+$ gcc -Wall -std=c99 -Og ex1.c -o ex1 
 </ah-terminal>
 
 !!! tip 
@@ -107,31 +108,20 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 
 ## Ferramentas de verificação de memória
 
-Para poder identificar mais facilmente problemas relativos a memória, iremos utilizar uma ferramenta chamada **Valgrind**.
-
-O Valgrind é um detector de má gestão de memória. Ele roda seu programa em cima de um ambiente modificado e aponta os seguintes erros:
+Para poder identificar mais facilmente problemas relativos a memória, iremos utilizar uma ferramenta chamada **Address Sanitizer**. Ele é um detector de mau uso de memória que roda seu programa em cima de um ambiente modificado e aponta os seguintes erros:
 
 1. memória alocada e não liberada
 1. acessos (leituras e escritas) a posições de memória não alocada ou inválidas
 
-
-!!! tip
-    O valgrind já está incluso nos workspaces da disciplina, mas se quiser instalá-lo em também em sua instalação Linux (Debian, Ubuntu ou derivados), basta usar os seguintes comandos.
-
-    <ah-terminal>
-    $ sudo apt update
-    $ sudo apt install valgrind
-    </ah-terminal>
-
-Para que os problemas encontrados pelo Valgrind sejam mais facilmente identificados, iremos passar a compilar utilizando a flag `-g`.
+Para que os problemas encontrados sejam mais facilmente identificados, iremos passar a compilar utilizando a flag `-g` e a incluir o **Address Sanitizer** no nosso programa usando `-fsanitize=address`.
 
 <ah-terminal>
-$ gcc -Og -g -Wall -std=c99 ex1.c -o ex1
-$ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
+$ gcc -Og -g -Wall -std=c99 ex1.c -o ex1 -fsanitize=address
+$ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo -fsanitize=address
 </ah-terminal>
 
 !!! exercise text medium
-    Rode o Valgrind com `valgrind --leak-check=yes ./ex1`. Quantos erros foram encontrados? Quais são seus tipos (escrita ou leitura de dados)? O que eles significam?
+    Rode o seu programa com `./ex1`. Você consegue identificar o significado dos erros encontrados? 
 
     !!! answer
         Cada erro encontrado será analisado no resto da atividade.
@@ -141,14 +131,13 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo
 O primeiro erro encontrado é
 
 ```
-==24804== Invalid write of size 4
-==24804==    at 0x4011A7: atribui (a.c:13)
-==24804==    by 0x4011E6: main (a.c:21)
-==24804==  Address 0x4a65070 is 0 bytes after a block of size 48 alloc'd
-==24804==    at 0x4843794: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-lin
-ux.so)
-==24804==    by 0x401171: aloca_vetor (a.c:7)
-==24804==    by 0x4011D1: main (a.c:18)
+==1290==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x606000000058 at pc 0x5645bfb73203 bp 0x7ffc8f16cab0 sp 0x7ffc8f16caa8
+WRITE of size 4 at 0x606000000058 thread T0
+    #0 0x5645bfb73202 in atribui /home/coder/project/ex1.c:13
+    #1 0x5645bfb73223 in main /home/coder/project/ex1.c:21
+    #2 0x7f1f461bd1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #3 0x7f1f461bd284 in __libc_start_main_impl ../csu/libc-start.c:360
+    #4 0x5645bfb730e0 in _start (/home/coder/project/ex1+0x10e0)
 ```
 
 !!! exercise text short
@@ -157,18 +146,20 @@ ux.so)
     !!! answer
         O erro ocorre na linha 13, ao escrever em vetor[i] quando `i == N`
 
+!!! exercise 
+    Corrija o erro e rode novamente o programa. Verifique que o erro acima não ocorre mais e que o primeiro erro mostrado mudou antes de prosseguir.
+
 ---------
 
 O segundo erro está mostrado abaixo e ocorre logo antes de lermos da linha "Elemento 13" na saída.
 
 ```
-==24804== Invalid read of size 4
-==24804==    at 0x401204: main (a.c:24)
-==24804==  Address 0x4a65070 is 0 bytes after a block of size 48 alloc'd
-==24804==    at 0x4843794: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-lin
-ux.so)
-==24804==    by 0x401171: aloca_vetor (a.c:7)
-==24804==    by 0x4011D1: main (a.c:18)
+==1746==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x606000000058 at pc 0x559e63a32274 bp 0x7ffe05b47e20 sp 0x7ffe05b47e18
+READ of size 4 at 0x606000000058 thread T0
+    #0 0x559e63a32273 in main /home/coder/project/ex1.c:24
+    #1 0x7f4a8df131c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #2 0x7f4a8df13284 in __libc_start_main_impl ../csu/libc-start.c:360
+    #3 0x559e63a320e0 in _start (/home/coder/project/ex1+0x10e0)
 ```
 
 !!! exercise text short
@@ -177,29 +168,33 @@ ux.so)
     !!! answer
         O erro ocorre na linha 24, ao ler vetor[i] quando `i == N`.
 
+
+!!! exercise 
+    Corrija o erro e rode novamente o programa. Verifique que o erro acima não ocorre mais e que o primeiro erro mostrado mudou antes de prosseguir.
+
 ---------
 
-A seção *HEAP SUMMARY* faz um resumo dos dados alocados/desalocados no seu programa. A saída abaixo foi obtida ao rodar o valgrind para o exercício 1 original:
+Agora temos somente o erro abaixo na saída:
 
 ```
-==2179== HEAP SUMMARY:
-==2179==     in use at exit: 56 bytes in 1 blocks
-==2179==   total heap usage: 2 allocs, 1 frees, 1,080 bytes allocated
-==2179==
-==2179== 56 bytes in 1 blocks are definitely lost in loss record 1 of 1
-==2179==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==2179==    by 0x1086B9: main (ex1.c:7)
+==1999==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 56 byte(s) in 1 object(s) allocated from:
+    #0 0x7fdb357999cf in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x55a3fef721b8 in aloca_vetor /home/coder/project/ex1.c:7
+
+SUMMARY: AddressSanitizer: 56 byte(s) leaked in 1 allocation(s). 
 ```
 
 !!! exercise text short
     Ela mostra algum problema? Se sim, qual linha de código é apontada? Qual é o problema diagnosticado por este aviso?
 
     !!! answer
-        Ela indica que houveram 2 `mallocs' e somente 1 `free`. Ou seja, alguma alocação de memória deixou de liberar dados. Abaixo, são indicadas em quais linhas os `malloc` sem `free` ocorreram (linha 7 na função `main` no arquivo `ex1.c`)
+        Ele indica que 1 objeto foi alocado e não liberado. Além disso, aponta para a linha `7`, indicando que o `malloc` feito nessa linha não teve um `free` correspondente.
 
+!!! exercise
+    Conserte o programa novamente e verifique que agora ele roda sem erros.
 
-!!! warning
-    Verifique que seu programa corrigido *ex1-certo.c* roda sem erros no valgrind. Se não, corrija os problema e rode novamente até que rode sem erros.
 
 ## Para entregar
 
@@ -208,8 +203,8 @@ A prática mais completa dessa aula está disponível no PrairieLearn e envolver
 - revisar uso de strings e sua codificação na memória
 - criar funções que aloquem novos objetos na memória e os retorne
 - determinar o tamanho correto a ser alocado para cada operação
-- usar o valgrind para checar se são feitos acessos indevidos à memória
-- usar o valgrind para checar se todo malloc tem um free correspondente
+- usar o AddressSanitizer para checar se são feitos acessos indevidos à memória
+- usar o AddressSanitizer para checar se todo malloc tem um free correspondente
 
-<ah-button href="https://us.prairielearn.com/pl/course_instance/137302/assessment/2352818">Ir para a prática</ah-button>
+<ah-button href="{{ PL_malloc_hw }}">Ir para a prática</ah-button>
 

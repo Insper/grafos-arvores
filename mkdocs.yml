@@ -2,14 +2,19 @@ INHERIT: "active-handout.yml"
 
 site_name: "Grafos e Árvores"
 
+extra:
+  custom_variables:
+    PL_mutirao_hw: https://us.prairielearn.com/pl/course_instance/149608/assessment/2393606
+    PL_malloc_hw: https://us.prairielearn.com/pl/course_instance/149608/assessment/2397269
+
 nav:
   - index.md
   - sobre.md
   - "Módulos":
     - "0 - Linguagem C": 
       - "Labs de C": 0-linguagem-C/index.md
-      #- "Alocação de memória": 0-linguagem-C/malloc.md
-      #- "ADT em C": 0-linguagem-C/adt-c.md
+      - "Alocação de memória": 0-linguagem-C/malloc.md
+      - "ADT em C": 0-linguagem-C/adt-c.md
       - "Debug": 0-linguagem-C/debug.md
     #- "1 - Grafos e Componentes": 
     #  - "Índice": 1-grafos-componentes/index.md
