@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Slides - Grafos e Árvores</title>
+        <title>Índice - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
-    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <script>
       // SETUP GLOBAL CONSTANTS
-      var base_url = '../../..';
+      var base_url = '..';
       
       var telemetryEnabled = false;
       var backendUrl = "";
@@ -46,7 +46,7 @@
     <script src="https://unpkg.com/htmx.org@1.8.4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <script src="../../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
     
     
   </head>
@@ -60,7 +60,7 @@
   <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
 </svg>
         </button>
-        <a href="../../.."
+        <a href=".."
            title="Grafos e Árvores"
            class="ah-logo"
            aria-label="Grafos e Árvores">
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="../../..">Home</a>
+      <a href="..">Home</a>
     </li>
   
 
@@ -102,13 +102,13 @@
               
   
     <li>
-      <a href="../../../sobre/">Sobre</a>
+      <a href="../sobre/">Sobre</a>
     </li>
   
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -120,7 +120,7 @@
         
   
     <li>
-      <a href="../../../0-linguagem-C/">Labs de C</a>
+      <a href="../0-linguagem-C/">Labs de C</a>
     </li>
   
 
@@ -128,7 +128,7 @@
         
   
     <li>
-      <a href="../../../0-linguagem-C/malloc/">Alocação de memória</a>
+      <a href="../0-linguagem-C/malloc/">Alocação de memória</a>
     </li>
   
 
@@ -136,7 +136,7 @@
         
   
     <li>
-      <a href="../../../0-linguagem-C/adt-c/">ADT em C</a>
+      <a href="../0-linguagem-C/adt-c/">ADT em C</a>
     </li>
   
 
@@ -144,7 +144,40 @@
         
   
     <li>
-      <a href="../../../0-linguagem-C/debug/">Debug</a>
+      <a href="../0-linguagem-C/debug/">Debug</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">1 - Árvores (iteração e inserção)</span>
+    <ul>
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Índice</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#atividades">Atividades</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#para-entregar">Para entregar</a>
+              </li>
+            
+        
+      </ul>
     </li>
   
 
@@ -166,6 +199,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>1 - Árvores (iteração e inserção)</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -173,93 +214,30 @@
           </div>
           
             <section class="progress-section show">
-<script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
-
-<h1 id="grafos-e-arvores">Grafos e Árvores</h1>
-<h2 id="balanceamento-de-abbs">Balanceamento de ABBs</h2>
-<hr />
-<p>A ordem de inserção afeta diretamente a altura de nossas árvores!</p>
-<p><graphviz-graph graph='
-digraph G {
-1 -> n1
-1 -&gt; 2
-2 -&gt; n2
-2 -&gt; 3
-3 -&gt; n3
-3 -&gt; 4
-4 -&gt; n4
-4 -&gt; 5
-5 -&gt; n5
-5 -&gt; 6
-n1 [shape=point]
-n2 [shape=point]
-n3 [shape=point]
-n4 [shape=point]
-n5 [shape=point]
-}
-' /&gt;</p>
-<hr />
-<p>A ordem de inserção afeta diretamente a altura de nossas árvores!</p>
-<p><graphviz-graph graph='
-digraph G {
-3 -> 2
-3 -&gt; 5
-2 -&gt; 1
-2 -&gt; n1
-5 -&gt; 4
-5 -&gt; 6
-n1 [shape=point]
-}
-' /&gt;</p>
-<hr />
+<h1 id="3-arvores-binarias-de-busca">3 - Árvores Binárias de Busca</h1>
+<p>Este módulo será focado na implementação e aplicação de <em>Árvores de Busca Binária</em>. </p>
+<h2 id="atividades">Atividades</h2>
 <ul>
-<li>A altura $h$, portanto, pode no pior caso ser $\mathcal{O}(N)$. </li>
-<li>O desempenho médio não é ruim: $E(h) = \mathcal{O}\log N$</li>
-<li>Seria uma boa conseguir "consertar" uma árvore ruim!</li>
+<li><a href="intro/">Introdução e busca</a></li>
 </ul>
-<hr />
-<h1 id="balanceamento">Balanceamento</h1>
-<p><strong>Definição</strong>: uma (sub)árvore com $N$ elementos está balanceada se $h = \log N$.</p>
-<!--está desbalanceada se a altura de sua subárvore esquerda difere da altura da subárvore direita por mais de um.
+<!-- - [Inserção](insert/index.md)
+- [Balanceamento](balance/index.md)
+- Remoção -->
 
-$|h_L - h_R| > 1$
+<h2 id="para-entregar">Para entregar</h2>
+<ul>
+<li>Atividades do módulo no PrairieLearn.</li>
+</ul>
+<!--
+## Estudo extra
 
-- $h_L$ é a altura da subárvore esquerda
-- $h_R$ é a altura da subárvore direita 
+Os seguintes exercícios do LeetCode são interessantes e tem um pouquinho mais de contexto que o usual.
+
+1. [Nós infectados](https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/)
+2. [Valor do nó avô](https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/)
+
 -->
-<hr />
-<h1 id="alguma-primeira-ideia-de-como-balancear-uma-arvore">Alguma primeira ideia de como balancear uma árvore?</h1>
-<hr />
-<h1 id="dica-1-pode-usar-array-auxiliar">Dica 1: pode usar array auxiliar</h1>
-<hr />
-<h1 id="dica-2-pode-criar-uma-nova-arvore">Dica 2: pode criar uma nova árvore</h1>
-<hr />
-<h1 id="balanceamento-i">Balanceamento (I)</h1>
-<ol>
-<li>passa por todos elementos em-ordem, guardando o valor em um array</li>
-<li>insere como raiz o elemento do meio do array</li>
-<li>faz o passo <em>2</em> recursivamente para cada lado do array</li>
-</ol>
-<hr />
-<h1 id="balanceamento-i_1">Balanceamento (I)</h1>
-<ul>
-<li>Qual a complexidade computacional disso?</li>
-<li>Qual o consumo de espaço disso?</li>
-</ul>
-<hr />
-<h1 id="balanceamento-i_2">Balanceamento (I)</h1>
-<h3 id="isso-e-bom">Isso é bom?</h3>
-<hr />
-<h1 id="balanceamento-ii">Balanceamento (II)</h1>
-<h3 id="extra-procure-pelo-algoritmo-day-stout-warren">Extra: procure pelo algoritmo Day-Stout-Warren</h3>
-<hr />
-<h1 id="arvores-balanceadas">Árvores balanceadas</h1>
-<p>Algoritmos de inserção/remoção que mantém $h = \log N$</p>
-<ul>
-<li>AVL </li>
-<li>Red-Black Tree</li>
-</ul>
-<p><strong>Não veremos nesta disciplina</strong></p>
+
 
 
 </section>
@@ -269,12 +247,19 @@ $|h_L - h_R| > 1$
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
+            <a href="../0-linguagem-C/debug/"
+               class="ah-prev"
+               title="Debug">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Debug</span>
+            </a>
+          
           
         </div>
       </footer>
     </div>
     
-      <script src="../../../js/external.js"></script>
+      <script src="../js/external.js"></script>
     
   </body>
 </html>

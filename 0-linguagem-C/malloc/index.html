@@ -173,6 +173,23 @@
   </li>
 
       
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">1 - Árvores (iteração e inserção)</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../../1-arvores-intro/">Índice</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
     </ul>
   </li>
 
@@ -268,7 +285,7 @@ Execute os programas dessa atividade na área do Mutirão. </p>
 <a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Vamos começar analisando o código do programa <strong>antes de rodá-lo</strong>. </p>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_1" id="short_1_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_1" id="short_1_0">
 <p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Analisando seu código-fonte, o que este programa faz?</p>
@@ -283,7 +300,7 @@ Execute os programas dessa atividade na área do Mutirão. </p>
 <p>Aloca um vetor, preenche com $0,1,...,n$ e imprime!</p>
 </div>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_2" id="short_2_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_2" id="short_2_0">
 <p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Na execução deste programa, o que acontece se <code>malloc</code> falhar? </p>
@@ -299,7 +316,7 @@ Execute os programas dessa atividade na área do Mutirão. </p>
 <p>A função de alocação irá retornar <code>NULL</code>, mas nenhuma verificação está sendo feita.</p>
 </div>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_3" id="short_3_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_3" id="short_3_0">
 <p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>O seu programa libera toda memória que aloca? Se não, aponte onde ele deveria fazer isto.</p>
@@ -324,7 +341,7 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 <p class="admonition-title">Tip 2</p>
 <p>O terminal do VSCode é muito bom e podemos usá-lo para rodar todos os comandos dessa atividade. </p>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_4" id="short_4_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_4" id="short_4_0">
 <p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Execute o programa. Ocorreu algum problema durante a execução?</p>
@@ -339,7 +356,7 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 <p>A resposta aqui é provavelmente não. Porém, isso não significa que o programa está correto, apenas que se ocorreu um erro ele não foi suficientemente grave para finalizar o programa.</p>
 </div>
 </div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_5" id="short_5_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_5" id="short_5_0">
 <p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>O comportamento de seu programa muda conforme N muda? Começe com <code>N=10</code> e vá incrementando de um em um. Você consegue explicar por que? Discuta com seu grupo e valide sua resposta com o professor.</p>
@@ -358,7 +375,7 @@ $ gcc -Wall -std=c99 -Og ex1.c -o ex1
 <p class="admonition-title">Warning</p>
 <p>Em C é comum programas com problemas funcionarem "por sorte". Essencialmente, coisas erradas acontecem, mas elas podem não ser graves o suficiente para que o programa seja finalizado pelo sistema. Pequenas mudanças no código podem fazer um programa aparentemente OK quebrar. </p>
 </div>
-<div class="admonition exercise text medium tag-text-exercise tag-medium-text editable" data-slug="0-linguagem-C/malloc/medium_6" id="medium_6_0">
+<div class="admonition exercise text medium tag-medium-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/medium_6" id="medium_6_0">
 <p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Existem três problemas no código. O primeiro (<code>vetor</code> não é desalocado) já identificamos no exercíco anterior. Você consegue identificar os outros dois?</p>
@@ -395,7 +412,7 @@ O mesmo erro é realizado na função <code>atribui</code>, que faz um acesso in
 $ gcc -Og -g -Wall -std=c99 ex1.c -o ex1 -fsanitize=address
 $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo -fsanitize=address
 </ah-terminal></p>
-<div class="admonition exercise text medium tag-text-exercise tag-medium-text editable" data-slug="0-linguagem-C/malloc/medium_7" id="medium_7_0">
+<div class="admonition exercise text medium tag-medium-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/medium_7" id="medium_7_0">
 <p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Rode o seu programa com <code>./ex1</code>. Você consegue identificar o significado dos erros encontrados? </p>
@@ -420,7 +437,7 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo -fsanitize=address
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    #3 0x7f1f461bd284 in __libc_start_main_impl ../csu/libc-start.c:360
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    #4 0x5645bfb730e0 in _start (/home/coder/project/ex1+0x10e0)
 </code></pre></div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_8" id="short_8_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_8" id="short_8_0">
 <p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual linha o erro ocorre? O que a mensagem acima significa?</p>
@@ -454,7 +471,7 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo -fsanitize=address
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    #2 0x7f4a8df13284 in __libc_start_main_impl ../csu/libc-start.c:360
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    #3 0x559e63a320e0 in _start (/home/coder/project/ex1+0x10e0)
 </code></pre></div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_9" id="short_9_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_9" id="short_9_0">
 <p class="admonition-title">Exercise 11<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual linha o erro ocorre? O que a mensagem acima significa?</p>
@@ -489,7 +506,7 @@ $ gcc -Og -g -Wall -std=c99 ex1-certo.c -o ex1-certo -fsanitize=address
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>SUMMARY: AddressSanitizer: 56 byte(s) leaked in 1 allocation(s). 
 </code></pre></div>
-<div class="admonition exercise text short tag-text-exercise tag-short-text editable" data-slug="0-linguagem-C/malloc/short_10" id="short_10_0">
+<div class="admonition exercise text short tag-short-text tag-text-exercise editable" data-slug="0-linguagem-C/malloc/short_10" id="short_10_0">
 <p class="admonition-title">Exercise 13<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Ela mostra algum problema? Se sim, qual linha de código é apontada? Qual é o problema diagnosticado por este aviso?</p>

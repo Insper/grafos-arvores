@@ -153,6 +153,23 @@
   </li>
 
       
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">1 - Árvores (iteração e inserção)</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
     </ul>
   </li>
 
@@ -204,20 +221,25 @@
 <h2 id="buscando-por-elementos">Buscando por elementos</h2>
 <p>A busca (<em>query</em>) é a operação mais básica de uma ABB e envolve dizer se existe um elemento com chave <em>k</em> na árvore. É também um ótimo lugar para começarmos a entender </p>
 <p>Já fizemos uma simulação na parte expositiva. Vamos agora praticar antes de implementarmos esse algoritmo nós mesmos.</p>
-<p><ah-diagram>
-graph TD
-A(15) --- B(5)
-A --- C(20)
-B --- D(1)
-B --- E(10)
-E --- H(7)
-E --- NULL3( )
-C --- NULL2( )
-C --- F(25)
-F --- NULL1( )
-F --- G(30)
-</ah-diagram></p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_1" id="long_1_0">
+<p><graphviz-graph graph='
+digraph G {
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  15 -> 5
+  15 -&gt; 20
+  5 -&gt; 1
+  5 -&gt; 10
+  10 -&gt; 7
+  10 -&gt; null1 
+  20 -&gt; null2
+  20 -&gt; 25
+  25 -&gt; null3
+  25 -&gt; 30
+  null1 [shape=point]
+  null2 [shape=point]
+  null3 [shape=point]
+}
+'&gt;</graphviz-graph></p>
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/intro/long_1" id="long_1_0">
 <p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Busque na árvore acima pelo valor $7$. Escreva abaixo a decisão tomada em cada nó.</p>
@@ -235,7 +257,7 @@ Nó 10 -&gt; esquerda
 Nó 7 -&gt; encontrou!</p>
 </div>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_2" id="long_2_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/intro/long_2" id="long_2_0">
 <p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Busque na árvore acima pelo valor $3$. Escreva abaixo a decisão tomada em cada nó.</p>
@@ -253,7 +275,7 @@ Nó 1 -&gt; direita
 Fim da árvore! -&gt; não encontrou</p>
 </div>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_3" id="long_3_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/intro/long_3" id="long_3_0">
 <p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Busque na árvore acima pelo valor $23$. Escreva abaixo a decisão tomada em cada nó.</p>
@@ -271,7 +293,7 @@ Nó 25 -&gt; esquerdaa
 Fim da árvore! -&gt; não encontrou</p>
 </div>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_4" id="long_4_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/intro/long_4" id="long_4_0">
 <p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Escreva abaixo um algoritmo iterativo <code>query(r, k)</code> que busca pela chave $k$ na ABB enraizada em $r$. Se encontrar devolve <code>VERDADEIRO</code>.</p>
@@ -287,7 +309,7 @@ Fim da árvore! -&gt; não encontrou</p>
 </div>
 </div>
 <p>Antes de prosseguir, volte nos exercícios acima e simule o seu algoritmo. </p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_5" id="long_5_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/intro/long_5" id="long_5_0">
 <p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Faça agora uma versão recursiva. Veja que ela é muito mais sucinta que a anterior.</p>
@@ -302,12 +324,12 @@ Fim da árvore! -&gt; não encontrou</p>
 <p class="admonition-title">Tip 2</p>
 <p>Usaremos a seguinte <code>struct</code>em todos os exercícios deste módulo.</p>
 <div class="language-c highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_TreeNode</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">_TreeNode</span><span class="w"> </span><span class="o">*</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">_TreeNode</span><span class="w"> </span><span class="o">*</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">right</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">;</span>
 </code></pre></div>
 </div>
-<div class="admonition exercise self-progress" data-slug="4-arvores-intro/intro/exercise_1" id="exercise_1_0">
+<div class="admonition exercise self-progress" data-slug="1-arvores-intro/intro/exercise_1" id="exercise_1_0">
 <p class="admonition-title">Exercise 6</p>
 <form class="exercise-form">
 <p>Implemente o algoritmo de busca no PrairieLearn.</p>
@@ -323,33 +345,39 @@ Fim da árvore! -&gt; não encontrou</p>
 </div>
 <h2 id="validar-uma-abb">Validar uma <em>ABB</em></h2>
 <p>Vamos começar vendo alguns exemplos de árvores que não são <em>ABB</em>.</p>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="4-arvores-intro/intro/choice_1" id="choice_1_0">
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="1-arvores-intro/intro/choice_1" id="choice_1_0">
 <p class="admonition-title">Exercise 7</p>
 <form class="exercise-form">
 <p>Para qual nó da árvore abaixo a propriedade básica da ABB não vale?</p>
-<p><ah-diagram>
-graph TD
-A(15) --- B(14)
-A --- C(21)
-B --- F(10)
-B --- E(16)
-C --- G(17)
-C --- NULL( )
-</ah-diagram></p>
+<p><graphviz-graph graph='
+digraph G {
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  15 -> 14
+  15 -&gt; 21
+  14 -&gt; 10
+  14 -&gt; 16
+  21 -&gt; 17
+  21 -&gt; null1
+  # sdlfk
+  null1 [shape=point]
+  null2 [shape=point]
+  null3 [shape=point]
+}
+'&gt;</graphviz-graph></p>
 <div class="form-elements">
 <div class="alternative-set">
   
 <label class="alternative">
   <div class="content">
     <input type="radio" name="data" value="5" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    21
+    17
   </div>
 </label>
 
 <label class="alternative">
   <div class="content">
     <input type="radio" name="data" value="3" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    10
+    16
   </div>
 </label>
 
@@ -369,22 +397,15 @@ C --- NULL( )
 
 <label class="alternative">
   <div class="content">
-    <input type="radio" name="data" value="6" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    17
-  </div>
-</label>
-
-<label class="alternative">
-  <div class="content">
     <input type="radio" name="data" value="2" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    21 
+    10
   </div>
 </label>
 
 <label class="alternative">
   <div class="content">
     <input type="radio" name="data" value="4" _="   on click    set alternative to closest .alternative    if alternative matches <:not(.selected)/> then     set selected to false    else     set selected to true    end    remove .selected from .alternative in closest .alternative-set    if selected then     remove .selected from alternative     add @disabled to <input[type='submit']/> in closest .form-elements    else     add .selected to alternative     remove @disabled from <input[type='submit']/> in closest .form-elements    end   end   ">
-    16
+    21
   </div>
 </label>
 
@@ -393,21 +414,25 @@ C --- NULL( )
 </div>
 </form>
 </div>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="2" data-slug="4-arvores-intro/intro/choice_2" id="choice_2_0">
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="2" data-slug="1-arvores-intro/intro/choice_2" id="choice_2_0">
 <p class="admonition-title">Exercise 8</p>
 <form class="exercise-form">
 <p>Para qual nó da árvore abaixo a propriedade básica da ABB não vale?</p>
-<p><ah-diagram>
-graph TD
-A(17) --- B(14)
-A --- C(22)
-B --- F(10)
-B --- E(16)
-C --- G(21)
-C --- NULL( )
-G --- A2(18)
-G --- A3(23)
-</ah-diagram></p>
+<p><graphviz-graph graph='
+digraph G {
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  17 -> 14
+  17 -&gt; 22
+  14 -&gt; 10
+  14 -&gt; 16
+  22 -&gt; 21
+  22 -&gt; null1
+  21 -&gt; 18
+  21 -&gt; 23
+  # sdlfk
+  null1 [shape=point]
+}
+'&gt;</graphviz-graph></p>
 <div class="form-elements">
 <div class="alternative-set">
   
@@ -478,7 +503,7 @@ G --- A3(23)
 <li>para checar a propriedade precisamos percorrer toda a subárvore esquerda e toda a subárvore direita.</li>
 </ol>
 <p>Esses dois passos tem algo em comum: eles envolvem visitar todos os nós da árvore. </p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="4-arvores-intro/intro/long_6" id="long_6_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/intro/long_6" id="long_6_0">
 <p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Escreva abaixo um rascunho de um algoritmo para visitar todos os nós de uma árvore.</p>
@@ -490,7 +515,7 @@ G --- A3(23)
 </form>
 <div class="admonition answer no-indent">
 <p class="admonition-title">Answer</p>
-<p>Será discutido em <strong>02/10</strong>.</p>
+<p>Será discutido na próxima aula.</p>
 </div>
 </div>
 <p>Com base nesse algoritmo, faça a implementação no PrairieLearn do algoritmo para checar se uma árvore é válida.</p>
