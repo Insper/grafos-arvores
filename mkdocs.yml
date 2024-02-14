@@ -16,6 +16,8 @@ nav:
       - "Alocação de memória": 0-linguagem-C/malloc.md
       - "ADT em C": 0-linguagem-C/adt-c.md
       - "Debug": 0-linguagem-C/debug.md
+    - "1 - Árvores (iteração e inserção)":
+          - "Índice": 1-arvores-intro/index.md
     #- "1 - Grafos e Componentes": 
     #  - "Índice": 1-grafos-componentes/index.md
     #  - "Introdução": 1-grafos-componentes/intro.md

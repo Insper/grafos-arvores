@@ -37,19 +37,27 @@ A busca (*query*) é a operação mais básica de uma ABB e envolve dizer se exi
 
 Já fizemos uma simulação na parte expositiva. Vamos agora praticar antes de implementarmos esse algoritmo nós mesmos.
 
-<ah-diagram>
-graph TD
-A(15) --- B(5)
-A --- C(20)
-B --- D(1)
-B --- E(10)
-E --- H(7)
-E --- NULL3( )
-C --- NULL2( )
-C --- F(25)
-F --- NULL1( )
-F --- G(30)
-</ah-diagram>
+
+{% set graph %}
+digraph G {
+  node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+  15 -> 5
+  15 -> 20
+  5 -> 1
+  5 -> 10
+  10 -> 7
+  10 -> null1 
+  20 -> null2
+  20 -> 25
+  25 -> null3
+  25 -> 30
+  null1 [shape=point]
+  null2 [shape=point]
+  null3 [shape=point]
+}
+{% endset %}
+<graphviz-graph graph='{{ graph }}'></graphviz-graph>
+
 
 !!! exercise long 
     Busque na árvore acima pelo valor $7$. Escreva abaixo a decisão tomada em cada nó.
@@ -94,7 +102,7 @@ Antes de prosseguir, volte nos exercícios acima e simule o seu algoritmo.
 
     ```c
     typedef struct _TreeNode {
-        struct _TreeNode *left, *right, *parent;
+        struct _TreeNode *left, *right;
         int key;
     } TreeNode;
     ```
@@ -113,19 +121,25 @@ Vamos começar vendo alguns exemplos de árvores que não são *ABB*.
 
     Para qual nó da árvore abaixo a propriedade básica da ABB não vale?
     
-    <ah-diagram>
-    graph TD
-    A(15) --- B(14)
-    A --- C(21)
-    B --- F(10)
-    B --- E(16)
-    C --- G(17)
-    C --- NULL( )
-    </ah-diagram>
+    {% set graph %}
+    digraph G {
+      node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+      15 -> 14
+      15 -> 21
+      14 -> 10
+      14 -> 16
+      21 -> 17
+      21 -> null1
+      # sdlfk
+      null1 [shape=point]
+      null2 [shape=point]
+      null3 [shape=point]
+    }
+    {% endset %}
+    <graphviz-graph graph='{{ graph }}'></graphviz-graph>
 
     - [x] 15
     - [ ] 14
-    - [ ] 21 
     - [ ] 10
     - [ ] 16
     - [ ] 21
@@ -134,17 +148,22 @@ Vamos começar vendo alguns exemplos de árvores que não são *ABB*.
 !!! exercise choice
     Para qual nó da árvore abaixo a propriedade básica da ABB não vale?
     
-    <ah-diagram>
-    graph TD
-    A(17) --- B(14)
-    A --- C(22)
-    B --- F(10)
-    B --- E(16)
-    C --- G(21)
-    C --- NULL( )
-    G --- A2(18)
-    G --- A3(23)
-    </ah-diagram>
+    {% set graph %}
+    digraph G {
+      node [fillcolor="#d9dfff" color="#d9dfff" style="filled"]
+      17 -> 14
+      17 -> 22
+      14 -> 10
+      14 -> 16
+      22 -> 21
+      22 -> null1
+      21 -> 18
+      21 -> 23
+      # sdlfk
+      null1 [shape=point]
+    }
+    {% endset %}
+    <graphviz-graph graph='{{ graph }}'></graphviz-graph>
 
     - [ ] 17
     - [ ] 14
@@ -166,7 +185,7 @@ Esses dois passos tem algo em comum: eles envolvem visitar todos os nós da árv
     Escreva abaixo um rascunho de um algoritmo para visitar todos os nós de uma árvore.
 
     !!! answer
-        Será discutido em **02/10**.
+        Será discutido na próxima aula.
 
 Com base nesse algoritmo, faça a implementação no PrairieLearn do algoritmo para checar se uma árvore é válida.
 
