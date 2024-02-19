@@ -1,5 +1,3 @@
-<script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
-
 # Inserção
 
 Na última aula já discutimos ideias sobre a buscas em *ABB*s e vimos o que acontece quando o elemento buscado não está na árvore. Agora iremos inserir o valor $K$ na árvore. Ainda não sabemos fazer isto, então vamos começar pensando em como fazer a inserção. 

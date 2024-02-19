@@ -16,8 +16,10 @@ nav:
       - "Alocação de memória": 0-linguagem-C/malloc.md
       - "ADT em C": 0-linguagem-C/adt-c.md
       - "Debug": 0-linguagem-C/debug.md
-    - "1 - Árvores (iteração e inserção)":
+    - "1 - Árvores":
           - "Índice": 1-arvores-intro/index.md
+          - "Introdução": 1-arvores-intro/intro/index.md
+          - "Inserção": 1-arvores-intro/insert/index.md
     #- "1 - Grafos e Componentes": 
     #  - "Índice": 1-grafos-componentes/index.md
     #  - "Introdução": 1-grafos-componentes/intro.md
@@ -30,8 +32,6 @@ nav:
     #- "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
     #- "3 - Árvores": 
     #  - "Índice": 4-arvores-intro/index.md
-    #  - "Introdução": 4-arvores-intro/intro/index.md
-    #  - "Inserção": 4-arvores-intro/insert/index.md
     #  - "Balanceamento": 4-arvores-intro/balance/index.md
     #  - "Remoção": 4-arvores-intro/remove/index.md
 
