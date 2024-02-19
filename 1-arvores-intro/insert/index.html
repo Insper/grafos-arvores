@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Index - Grafos e Árvores</title>
+        <title>Inserção - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -108,7 +108,7 @@
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -154,14 +154,50 @@
 
       
         
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">1 - Árvores (iteração e inserção)</span>
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">1 - Árvores</span>
     <ul>
       
         
   
     <li>
       <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Inserção</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#exercitando-e-formalizando-esse-algoritmo">Exercitando e formalizando esse algoritmo</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#entregas">Entregas</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#estudos-extras">Estudos extras</a>
+              </li>
+            
+        
+      </ul>
     </li>
   
 
@@ -183,6 +219,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>1 - Árvores</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -190,8 +234,6 @@
           </div>
           
             <section class="progress-section show">
-<script src=https://unpkg.com/graphviz-webcomponent@2.0.0/dist/graph-bundled.min.js></script>
-
 <h1 id="insercao">Inserção</h1>
 <p>Na última aula já discutimos ideias sobre a buscas em *ABB*s e vimos o que acontece quando o elemento buscado não está na árvore. Agora iremos inserir o valor $K$ na árvore. Ainda não sabemos fazer isto, então vamos começar pensando em como fazer a inserção. </p>
 <p>Comecemos por organizar nosso raciocínio pela altura da árvore. Alguns casos são bem fáceis:</p>
@@ -285,7 +327,7 @@ A1 --- A2
 <p><strong>Árvores com altura $h &gt; 2$</strong>: Usar o argumento acima nos permite inserir em árvores de qualquer tamanho! Ou a inserção ocorreria em um espaço vazio (ou seja, um dos lados tem uma subárvore de altura 0) ou inserimos na subárvore correspondente (que tem altura $h-1$).</p>
 <h2 id="exercitando-e-formalizando-esse-algoritmo">Exercitando e formalizando esse algoritmo</h2>
 <p>Vejamos alguns exemplos abaixo. </p>
-<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/short_1" id="short_1_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-arvores-intro/insert/short_1" id="short_1_0">
 <p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual lugar o valor $27$ seria inserido na árvore abaixo?</p>
@@ -310,7 +352,7 @@ digraph G{
 <p>Na subárvore esquerda de $30$</p>
 </div>
 </div>
-<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/short_2" id="short_2_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-arvores-intro/insert/short_2" id="short_2_0">
 <p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual lugar o valor $15$ seria inserido na árvore abaixo?</p>
@@ -337,7 +379,7 @@ digraph G{
 <p>Na subárvore direita de $13$</p>
 </div>
 </div>
-<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/short_3" id="short_3_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-arvores-intro/insert/short_3" id="short_3_0">
 <p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em qual lugar o valor $7$ seria inserido na árvore abaixo?</p>
@@ -366,7 +408,7 @@ digraph G{
 <p>Na subárvore direita de $5$</p>
 </div>
 </div>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/long_4" id="long_4_0">
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/insert/long_4" id="long_4_0">
 <p class="admonition-title">Exercise 4<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Agora formalize o algoritmo <code>insere(r, K)</code> que aplicamos nos exemplos acima. Escreva um algoritmo iterativo nesta questão.</p>
@@ -381,7 +423,7 @@ digraph G{
 <p>Discutido no fim da aula</p>
 </div>
 </div>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/long_5" id="long_5_0">
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/insert/long_5" id="long_5_0">
 <p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Agora formalize o algoritmo <code>insere(r, K)</code> que aplicamos nos exemplos acima. Escreva um algoritmo recursivo nesta questão.</p>
@@ -412,7 +454,7 @@ digraph G{
 </div>
 </form>
 </div>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/long_6" id="long_6_0">
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/insert/long_6" id="long_6_0">
 <p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Qual ordem de inserção nos permitiria reconstruir a árvore abaixo?</p>
@@ -441,7 +483,7 @@ digraph G{
 <p>Discutido em sala.</p>
 </div>
 </div>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/insert/long_7" id="long_7_0">
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/insert/long_7" id="long_7_0">
 <p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Para a árvore acima, tente encontrar uma ordem de inserção que diminui a altura da árvore. </p>
@@ -472,6 +514,13 @@ digraph G{
       </main>
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
+          
+            <a href="../intro/"
+               class="ah-prev"
+               title="Introdução">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Introdução</span>
+            </a>
           
           
         </div>
