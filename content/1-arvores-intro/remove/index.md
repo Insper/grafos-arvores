@@ -4,7 +4,7 @@
 
 Remover elementos de árvores é uma operação mais complicada que inserção e busca. Esta aula será auto-guiada: os exemplos e exercícios devem levá-los à construção de um algoritmo para remoção de nós de uma árvore usando operações de rotação (que definiremos a seguir).
 
-Os algoritmos serão comentados em sala de aula no dia 30/10.
+Os algoritmos serão comentados na próxima aula.
 
 ## Casos fáceis da remoção
 

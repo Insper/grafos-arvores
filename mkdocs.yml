@@ -20,6 +20,8 @@ nav:
           - "Índice": 1-arvores-intro/index.md
           - "Introdução": 1-arvores-intro/intro/index.md
           - "Inserção": 1-arvores-intro/insert/index.md
+          - "Balanceamento": 1-arvores-intro/balance/index.md
+          - "Remoção": 1-arvores-intro/remove/index.md
     #- "1 - Grafos e Componentes": 
     #  - "Índice": 1-grafos-componentes/index.md
     #  - "Introdução": 1-grafos-componentes/intro.md
