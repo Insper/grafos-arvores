@@ -12,6 +12,13 @@ Este módulo será focado na implementação e aplicação de *Árvores de Busca
 
 - Atividades do módulo no PrairieLearn.
 
+## Estudo extra
+
+- [minimum-distance-between-bst-nodes](https://leetcode.com/problems/minimum-distance-between-bst-nodes/description/)
+- [sum-of-left-leaves](https://leetcode.com/problems/sum-of-left-leaves/description/)
+- [binary-tree-right-side-view](https://leetcode.com/problems/binary-tree-right-side-view/description/)
+- [diameter-of-binary-tree](https://leetcode.com/problems/diameter-of-binary-tree/description/)
+
 <!--
 ## Estudo extra
 
