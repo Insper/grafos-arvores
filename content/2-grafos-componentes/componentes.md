@@ -1,10 +1,5 @@
 # Componentes Conexos em Grafos
 
-!!! tip "Pesquisa dos Labs de C"
-    Estamos fazendo uma pesquisa para entender melhor os Labs de C. Por favor, respondam o form linkado abaixo. 
-
-    <ah-button href="https://docs.google.com/forms/d/e/1FAIpQLSdzSeUM1iFQpDIMELZKmQLC24noiWwkfSSv-8V3JFAgjFqlGA/viewform">Responder pesquisa</ah-button>
-
 <ah-external-content src="../slides-componentes.html" />
 
 Seja $G = (V, A)$ um grafo não direcionado sem pesos. Um subconjunto $C \subseteq V$  de vértices é um *componente conexo* se e somente se

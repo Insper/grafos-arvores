@@ -22,10 +22,10 @@ nav:
           - "Inserção": 1-arvores-intro/insert/index.md
           - "Balanceamento": 1-arvores-intro/balance/index.md
           - "Remoção": 1-arvores-intro/remove/index.md
-    #- "1 - Grafos e Componentes": 
-    #  - "Índice": 1-grafos-componentes/index.md
-    #  - "Introdução": 1-grafos-componentes/intro.md
-    #  - "Componentes Conexas": 1-grafos-componentes/componentes.md
+    - "2 - Grafos e Componentes": 
+      - "Índice": 2-grafos-componentes/index.md
+      - "Introdução": 2-grafos-componentes/intro.md
+      - "Componentes Conexas": 2-grafos-componentes/componentes.md
     #  - "Problema": 1-grafos-componentes/problema1.md
     #- "2 - Grafos e Caminhos": 
     #  - "Índice": 2-grafos-caminhos/index.md
