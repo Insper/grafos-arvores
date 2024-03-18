@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Introdução a Grafos - Grafos e Árvores</title>
+        <title>Introdução - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="../..">Grafos e Árvores</a>
+      <a href="../..">Home</a>
     </li>
   
 
@@ -102,13 +102,13 @@
               
   
     <li>
-      <a href="../../sobre/">Sobre a disciplina</a>
+      <a href="../../sobre/">Sobre</a>
     </li>
   
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -202,6 +202,63 @@
   </li>
 
       
+        
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">2 - Grafos e Componentes</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Introdução</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#atividades-basicas">Atividades básicas</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#problema-1-redes-sociais">Problema 1 - redes sociais</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#representacao-computacional">Representação computacional</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#entrega">Entrega</a>
+              </li>
+            
+        
+      </ul>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../componentes/">Componentes Conexas</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
     </ul>
   </li>
 
@@ -215,6 +272,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>2 - Grafos e Componentes</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -226,7 +291,7 @@
 <p><ah-external-content src="../slides-intro.html" /></p>
 <h2 id="atividades-basicas">Atividades básicas</h2>
 <p>Nessas primeiras atividades iremos praticar as definições básicas de grafos e sua utilização. Esse material é importante para conseguirmos um vocabulário básico a ser usado na disciplina. </p>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="1-grafos-componentes/intro/choice_1" id="choice_1_0">
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="2-grafos-componentes/intro/choice_1" id="choice_1_0">
 <p class="admonition-title">Exercise 1</p>
 <form class="exercise-form">
 <p><ah-diagram>
@@ -283,7 +348,7 @@ graph LR
 <p>Em um grafo direcionado o número de arestas é o número de setas. Portanto, contamos 9 setas no diagrama acima.</p>
 </div>
 </div>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="1-grafos-componentes/intro/choice_2" id="choice_2_0">
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="2-grafos-componentes/intro/choice_2" id="choice_2_0">
 <p class="admonition-title">Exercise 2</p>
 <form class="exercise-form">
 <p><ah-diagram>
@@ -340,7 +405,7 @@ graph TD
 <li>O <strong>grau de entrada</strong> de um vértice é o número de arestas que <strong>chegam</strong> nele</li>
 <li>O <strong>grau de saída</strong> de um vértice é o número de arestas que <strong>saem</strong> dele</li>
 </ul>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="1" data-slug="1-grafos-componentes/intro/choice_3" id="choice_3_0">
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="1" data-slug="2-grafos-componentes/intro/choice_3" id="choice_3_0">
 <p class="admonition-title">Exercise 3</p>
 <form class="exercise-form">
 <p>No grafo abaixo, qual é o vértice de <strong>menor grau de entrada</strong>?</p>
@@ -399,7 +464,7 @@ graph TD
 </div>
 </form>
 </div>
-<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="1-grafos-componentes/intro/choice_4" id="choice_4_0">
+<div class="admonition exercise choice tag-choice-exercise" data-answer-idx="0" data-slug="2-grafos-componentes/intro/choice_4" id="choice_4_0">
 <p class="admonition-title">Exercise 4</p>
 <form class="exercise-form">
 <p>No grafo abaixo, qual é o vértice de <strong>maior grau de saída</strong>?</p>
@@ -474,7 +539,7 @@ graph TD
 <li>toda vez que um usuário curte um post</li>
 </ul>
 <p>Vamos usar grafos para resolver este problema.</p>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-grafos-componentes/intro/short_1" id="short_1_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_1" id="short_1_0">
 <p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em nosso grafo, o que seriam os vértices?</p>
@@ -485,7 +550,7 @@ graph TD
 </div>
 </form>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-grafos-componentes/intro/short_2" id="short_2_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_2" id="short_2_0">
 <p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em nosso grafo, qual relação arestas entre dois vértices representa?</p>
@@ -496,7 +561,7 @@ graph TD
 </div>
 </form>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-grafos-componentes/intro/short_3" id="short_3_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_3" id="short_3_0">
 <p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>O grafo é direcionado? As arestas tem peso?</p>
@@ -544,7 +609,7 @@ graph TD
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>Usuário 9 gostou do post #6
 <a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>Usuário 8 gostou do post #6
 </code></pre></div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-grafos-componentes/intro/long_4" id="long_4_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/long_4" id="long_4_0">
 <p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Com base nas perguntas da seção anterior, escreva abaixo a matriz de adjacências que representa a situação acima</p>
@@ -570,7 +635,7 @@ graph TD
 </div>
 </div>
 <p>Conseguimos tirar diversas informações interessantes diretamente da matriz de adjacências. Responda às questões abaixo:</p>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-grafos-componentes/intro/short_5" id="short_5_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_5" id="short_5_0">
 <p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Como saber quais usuários postaram algo que foi curtido?</p>
@@ -585,7 +650,7 @@ graph TD
 <p>É só procurar na sua coluna correspondente. Como arestas saem da linha <code>i</code> e chegam na coluna <code>j</code>, se tiver algum elemento na coluna <code>j</code> diferente de 0 então aquele usuário postou algo que foi curtido. </p>
 </div>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-grafos-componentes/intro/short_6" id="short_6_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_6" id="short_6_0">
 <p class="admonition-title">Exercise 10<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Como encontrar o usuário com maior número de posts curtidos?</p>
@@ -600,7 +665,7 @@ graph TD
 <p>Será o usuário com a coluna de maior soma = vértice de maior grau de entrada</p>
 </div>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="1-grafos-componentes/intro/short_7" id="short_7_0">
+<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_7" id="short_7_0">
 <p class="admonition-title">Exercise 11<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Como encontrar o usuário que mais curtiu posts?</p>
@@ -632,6 +697,20 @@ graph TD
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
+            <a href="../"
+               class="ah-prev"
+               title="Índice">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Índice</span>
+            </a>
+          
+          
+            <a href="../componentes/"
+               class="ah-next"
+               title="Componentes Conexas">
+              <span class="nav-label">Next</span>
+              <span class="nav-title">Componentes Conexas</span>
+            </a>
           
         </div>
       </footer>

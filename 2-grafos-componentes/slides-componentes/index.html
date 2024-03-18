@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Compilação de Código *C* - Grafos e Árvores</title>
+        <title>Slides componentes - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="../..">Grafos e Árvores</a>
+      <a href="../..">Home</a>
     </li>
   
 
@@ -102,7 +102,7 @@
               
   
     <li>
-      <a href="../../sobre/">Sobre a disciplina</a>
+      <a href="../../sobre/">Sobre</a>
     </li>
   
 
@@ -202,6 +202,39 @@
   </li>
 
       
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">2 - Grafos e Componentes</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../componentes/">Componentes Conexas</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
     </ul>
   </li>
 
@@ -222,47 +255,97 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="compilacao-de-codigo-c">Compilação de Código <em>C</em></h1>
-<p>Ao implementarmos o tipo de dados <code>graph_t</code> começamos a criar programas que usam vários arquivos diferentes. Com projetos pequenos como os que fazemos nesta disciplina não é um problema compilar tudo em um mesmo comando:</p>
-<p><ah-terminal>
-$ gcc arq1.c arq2.c ... -o app
-</ah-terminal></p>
-<p>Isto começa a complicar quando temos <strong>centenas</strong> de arquivos em um projeto, pois o tempo de compilação cresce conforme o número de arquivos aumenta, indo de alguns segundos ou menos para <strong>horas</strong>. Por isso um tema importante em qualquer sistema de <strong>build</strong> é a <em>compilação incremental</em> (ou <em>parcial</em>). </p>
-<p>Neste contexto, se um arquivo foi modificado ele deve ser recompilado. Note que mudanças em um arquivo podem impactar outros, então deve ser recompilada toda a sequência de <strong>dependências</strong> dos arquivos modificados. Um arquivo <code>A</code> <em>depende</em> de outro arquivo <code>B</code> se recompilar <code>B</code> torna necessário recompilar <code>A</code> também. Ou seja, se mexermos em um arquivo <code>X</code> precisaremos recompilar o próprio <code>X</code> mais todos os arquivos que dependem de <code>X</code>. Note, porém, que não acaba por aí! Agora precisamos recompilar todas os arquivos que tem como dependências as dependências de <code>X</code>! E por aí vai até recompilarmos todos arquivos afetados pela mudança em <code>X</code>.</p>
-<p>Neste mini-projeto você lerá a descrição das dependências de um projeto e terá três objetivos:</p>
-<ol>
-<li>verificar se o projeto possui dependências circulares. Ou seja, se <code>A</code> depende de <code>B</code>, que depende de <code>C</code>, que depende de <code>A</code> de novo! Em geral não é possível compilar <strong>dependências circulares</strong> como esta e existir esse tipo de dependência no código é um sinal de uma arquitetura ruim</li>
-<li>dado um arquivo modificado, devolver quais outros arquivos precisarão ser recompilados</li>
-<li>determinar uma ordem possível para compilar o projeto do zero de maneira que um arquivo só seja compilado se todas suas dependências já foram compiladas também.</li>
-</ol>
-<p>Este trabalho terá créditos parciais por cada tarefa feita corretamente, sendo que só é possível completar 100% se forem feitas as 3 tarefas.</p>
-<h2 id="entrada">Entrada</h2>
-<p>O arquivo se inicia com dois inteiros <code>N</code> (número de arquivos) e <code>M</code> (número de arquivos com dependências). Em seguida vem <code>N</code> linhas com os nomes dos arquivos e <code>M</code> linhas descrevendo as dependências. Cada linha de dependência se inicia com o nome do arquivo seguido de <code>:</code> e de uma lista de arquivos separada por espaço. A última linha contém um inteiro <code>OP</code>.</p>
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>N M
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>arq1
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>....
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>arqN
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>arqI: arqD1 ... arqDK # dependencia 1
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>....
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>arqII: arqD11 ... arqDKK # dependencia M
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>OP
-</code></pre></div>
-<p>Você pode supor que</p>
-<ol>
-<li><code>M &lt;= N</code></li>
-<li>os arquivos antes de <code>:</code> em cada uma das <code>M</code> linhas estão na mesma ordem da entrada</li>
-<li>os arquivos após <code>:</code> em cada uma das <code>M</code> linhas também estão na mesma ordem da entrada</li>
-</ol>
-<h2 id="saida">Saída</h2>
-<p>Se</p>
+<style>
+.mermaid {
+    font-size: 10pt;
+}
+</style>
+
+<h1 id="grafos-e-arvores">Grafos e Árvores</h1>
+<h2 id="componentes-conexas">Componentes conexas</h2>
+<hr />
+<h1 id="identificacao-de-regioes-isoladas">Identificação de regiões isoladas</h1>
+<p>No carnaval de 2023 tivemos regiões fortes em diversas partes do litoral do Estado de São Paulo. Isso provocou deslizamentos de terras e muitas estradas foram danificadas ou fechadas por risco de desabamentos. Gostaríamos de saber se regiões do estado ficaram isoladas devido a esse acontecimento. Vamos modelar esse problema com grafos:</p>
 <ul>
-<li><code>OP == 1</code>: devolva a string "tem ciclo" se houver dependência circular e "sem ciclo" se não houver</li>
-<li><code>OP == 2</code>: para cada arquivo, mostre quais outros arquivos precisam ser recompilados. A saída deve estar no seguinte formato
-<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>arq1 -&gt; ....
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>arq2 -&gt; ...
-</code></pre></div></li>
-<li><code>OP == 3</code>:  escreva, em uma só linha, uma ordem em que é possível compilar o projeto do zero respeitando as dependências entre arquivos</li>
+<li>O que são os vértices nesse problema?</li>
+<li>E as arestas?</li>
 </ul>
+<hr />
+<h1 id="identificacao-de-regioes-isoladas_1">Identificação de regiões isoladas</h1>
+<p>No carnaval de 2023 tivemos regiões fortes em diversas partes do litoral do Estado de São Paulo. Isso provocou deslizamentos de terras e muitas estradas foram danificadas ou fechadas por risco de desabamentos. Gostaríamos de saber se regiões do estado ficaram isoladas devido a esse acontecimento. Vamos modelar esse problema com grafos:</p>
+<ul>
+<li>Vértices = cidades do estado</li>
+<li>Arestas = estradas ligando cidades</li>
+<li>Como representar essa pergunta usando vocabulário de grafos?</li>
+</ul>
+<hr />
+<h1 id="definicao-caminho">Definição - Caminho</h1>
+<p>Um <em>caminho</em> $\pi$ de tamanho $n$ em um grafo $G = (V, A)$ é uma sequência de vértices $v_1, \dots, v_n \in V$ tal que a aresta $v_i\textemdash v_{i+1}$ está em $A$</p>
+<h4 id="dizemos-que-pi-comeca-em-v_1-e-termina-em-v_n">Dizemos que $pi$ começa em $v_1$ e termina em $v_n$</h4>
+<hr />
+<h1 id="definicao-componente-conexo">Definição - Componente Conexo</h1>
+<p>Seja $G = (V, A)$ um grafo não direcionado, um subconjunto $C \subseteq V$  de vértices é um <em>componente conexo</em> se e somente se</p>
+<ol>
+<li>para todos par de vértices $v, w \in C$ existe um caminho que começa em $v$ e termina em $w$</li>
+<li>para todo $v \in C$ e $w \in V - C$, não existe caminho entre $v$ e $w$.</li>
+</ol>
+<hr />
+<h1 id="existem-regioes-do-estado-que-ficaram-isoladas">Existem regiões do estado que ficaram isoladas?</h1>
+<h2 id="pergunta-formulada-usando-vocabulario-de-grafos-agora">Pergunta formulada usando vocabulário de grafos agora</h2>
+<hr />
+<h1 id="existem-regioes-do-estado-que-ficaram-isoladas_1">Existem regiões do estado que ficaram isoladas?</h1>
+<h2 id="existe-mais-de-um-componente-conexo-no-grafo">Existe mais de um componente conexo no grafo?</h2>
+<hr />
+<h1 id="interpretacao">Interpretação</h1>
+<ul>
+<li>Componentes conexas são conjuntos de vértices isolados uns dos outros</li>
+<li><strong>Não há</strong> caminho entre <strong>grupos</strong> de vértices de componentes diferentes</li>
+<li><strong>Há caminho</strong> entre <strong>grupos</strong> de vértices do mesmo componente</li>
+<li>Todo grafo tem no mínimo 1 e no máximo $V$ componentes</li>
+</ul>
+<hr />
+<h1 id="problemas-relacionados">Problemas relacionados</h1>
+<ol>
+<li>Segmentação de Imagens<ul>
+<li>área enorme de processamento de imagens baseada em grafos</li>
+</ul>
+</li>
+<li>Dependências em projetos </li>
+<li>Agrupamentos (clustering)</li>
+</ol>
+<hr />
+<h1 id="como-contar-componentes-conexos">Como contar Componentes Conexos?</h1>
+<!--
+graph LR
+    A --- B
+    B --- D
+    D --- A 
+    D --- F
+
+    G --- T
+    T --- I
+    I --- G
+    J --- I
+    J --- G
+
+    Z --- W
+    Z --- Y
+-->
+
+<p><a href="https://mermaid.live/edit#pako:eNpNz8EKgzAMBuBXKTnrC_SmdBNlp00YG70EG6dgq3TtYYjvvq6dYE75-P9DskI3KwIOL4vLwC5XaViYguV5zsqEMkIkiIiCHXWWJrGKbBPaiDqhjqgSmmPS7EniM_J-xAMy0GQ1jiocuv4iCW4gTRJ4WBX16CcnQZotVP2i0NFJjW62wHuc3pQBejffPqYD7qynvSRGDH_rf2v7AhlISCw"><img alt="" src="https://mermaid.ink/img/pako:eNpNz8EKgzAMBuBXKTnrC_SmdBNlp00YG70EG6dgq3TtYYjvvq6dYE75-P9DskI3KwIOL4vLwC5XaViYguV5zsqEMkIkiIiCHXWWJrGKbBPaiDqhjqgSmmPS7EniM_J-xAMy0GQ1jiocuv4iCW4gTRJ4WBX16CcnQZotVP2i0NFJjW62wHuc3pQBejffPqYD7qynvSRGDH_rf2v7AhlISCw?type=png" /></a></p>
+<hr />
+<h1 id="busca-em-profundidade-dfs">Busca em Profundidade (DFS)</h1>
+<ul>
+<li>Visita todos os vértices acessíveis a partir da raiz</li>
+<li>Precisa chamar mais de uma vez</li>
+<li>Pode ser usada para identificar componentes além de somente contá-los</li>
+</ul>
+<hr />
+<h1 id="atividades">Atividades</h1>
+<ol>
+<li>seguir handout do dia com mais detalhes sobre Componentes Conexas</li>
+<li>implementar DFS para identificar componentes em grafos (PrairieLearn)</li>
+</ol>
 
 
 </section>

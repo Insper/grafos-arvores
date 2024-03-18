@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Slides intro - Grafos e Árvores</title>
+        <title>Problema1 - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="../..">Grafos e Árvores</a>
+      <a href="../..">Home</a>
     </li>
   
 
@@ -102,7 +102,7 @@
               
   
     <li>
-      <a href="../../sobre/">Sobre a disciplina</a>
+      <a href="../../sobre/">Sobre</a>
     </li>
   
 
@@ -202,6 +202,39 @@
   </li>
 
       
+        
+  <li class="ah-togglable-item">
+    <span class="ah-togglable-handle">2 - Grafos e Componentes</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../componentes/">Componentes Conexas</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
     </ul>
   </li>
 
@@ -222,102 +255,47 @@
           </div>
           
             <section class="progress-section show">
-<style>
-.mermaid {
-    font-size: 10pt;
-}
-</style>
-
-<h1 id="grafos-e-arvores">Grafos e Árvores</h1>
-<h2 id="introducao-a-grafos">Introdução a grafos</h2>
-<hr />
-<p><img alt="" src="../mapa.png" /></p>
-<hr />
-<h1 id="enchentes-em-heliopolis">Enchentes em Heliópolis</h1>
-<ul>
-<li>Alguma área está isolada do resto da comunidade?</li>
-<li>Como sair de sua casa até um destino?</li>
-<li>Qual o mínimo de intervenções necessárias para que todos pontos isolados sejam restaurados?</li>
-</ul>
-<hr />
-<h1 id="como-representar-esse-mapa">Como representar esse mapa?</h1>
-<hr />
-<p><img alt="" src="../grafo.png" /></p>
-<hr />
-<h1 id="grafo">Grafo</h1>
-<ul>
-<li>$V = {1 \dots N}$ - conjunto de vértices</li>
-<li>$E = { (x, y) | x, y \in V; x \neq y}$ <ul>
-<li>conjunto de arestas (<em>edges</em>)</li>
-<li>sai de $x$ e chega em $y$</li>
-</ul>
-</li>
-</ul>
-<hr />
-<h1 id="e-o-mapa">E o mapa?</h1>
-<h2 id="alguma-area-esta-isolada-do-resto-da-comunidade">Alguma área está isolada do resto da comunidade?</h2>
+<h1 id="compilacao-de-codigo-c">Compilação de Código <em>C</em></h1>
+<p>Ao implementarmos o tipo de dados <code>graph_t</code> começamos a criar programas que usam vários arquivos diferentes. Com projetos pequenos como os que fazemos nesta disciplina não é um problema compilar tudo em um mesmo comando:</p>
+<p><ah-terminal>
+$ gcc arq1.c arq2.c ... -o app
+</ah-terminal></p>
+<p>Isto começa a complicar quando temos <strong>centenas</strong> de arquivos em um projeto, pois o tempo de compilação cresce conforme o número de arquivos aumenta, indo de alguns segundos ou menos para <strong>horas</strong>. Por isso um tema importante em qualquer sistema de <strong>build</strong> é a <em>compilação incremental</em> (ou <em>parcial</em>). </p>
+<p>Neste contexto, se um arquivo foi modificado ele deve ser recompilado. Note que mudanças em um arquivo podem impactar outros, então deve ser recompilada toda a sequência de <strong>dependências</strong> dos arquivos modificados. Um arquivo <code>A</code> <em>depende</em> de outro arquivo <code>B</code> se recompilar <code>B</code> torna necessário recompilar <code>A</code> também. Ou seja, se mexermos em um arquivo <code>X</code> precisaremos recompilar o próprio <code>X</code> mais todos os arquivos que dependem de <code>X</code>. Note, porém, que não acaba por aí! Agora precisamos recompilar todas os arquivos que tem como dependências as dependências de <code>X</code>! E por aí vai até recompilarmos todos arquivos afetados pela mudança em <code>X</code>.</p>
+<p>Neste mini-projeto você lerá a descrição das dependências de um projeto e terá três objetivos:</p>
 <ol>
-<li>o que cada vértice do grafo representa?</li>
-<li>qual relação  entre vértices uma aresta representa?</li>
-<li>essa relação tem direção ou é sempre simétrica?</li>
-<li>essa relação tem pesos/preferências ou todas arestas são equivalentes?</li>
+<li>verificar se o projeto possui dependências circulares. Ou seja, se <code>A</code> depende de <code>B</code>, que depende de <code>C</code>, que depende de <code>A</code> de novo! Em geral não é possível compilar <strong>dependências circulares</strong> como esta e existir esse tipo de dependência no código é um sinal de uma arquitetura ruim</li>
+<li>dado um arquivo modificado, devolver quais outros arquivos precisarão ser recompilados</li>
+<li>determinar uma ordem possível para compilar o projeto do zero de maneira que um arquivo só seja compilado se todas suas dependências já foram compiladas também.</li>
 </ol>
-<hr />
-<h1 id="tipos-de-grafos">Tipos de grafos</h1>
+<p>Este trabalho terá créditos parciais por cada tarefa feita corretamente, sendo que só é possível completar 100% se forem feitas as 3 tarefas.</p>
+<h2 id="entrada">Entrada</h2>
+<p>O arquivo se inicia com dois inteiros <code>N</code> (número de arquivos) e <code>M</code> (número de arquivos com dependências). Em seguida vem <code>N</code> linhas com os nomes dos arquivos e <code>M</code> linhas descrevendo as dependências. Cada linha de dependência se inicia com o nome do arquivo seguido de <code>:</code> e de uma lista de arquivos separada por espaço. A última linha contém um inteiro <code>OP</code>.</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>N M
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>arq1
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>....
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>arqN
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>arqI: arqD1 ... arqDK # dependencia 1
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>....
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>arqII: arqD11 ... arqDKK # dependencia M
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>OP
+</code></pre></div>
+<p>Você pode supor que</p>
 <ol>
-<li>simetria:<ul>
-<li>não direcionado: associações são sempre bi-direcionais (${i,j} \in E \Leftrightarrow {j,i} \in E$)</li>
-<li>direcionado: associações podem ou não ser bi-direcionais</li>
-</ul>
-</li>
-<li>pesos:<ul>
-<li>arestas são todas equivalente</li>
-<li>cada aresta tem um número real associado a ela</li>
-</ul>
-</li>
+<li><code>M &lt;= N</code></li>
+<li>os arquivos antes de <code>:</code> em cada uma das <code>M</code> linhas estão na mesma ordem da entrada</li>
+<li>os arquivos após <code>:</code> em cada uma das <code>M</code> linhas também estão na mesma ordem da entrada</li>
 </ol>
-<p>Em alguns problema específicos podem ser permitidos loops (${i, i} \in E$) ou mais de uma aresta por par de vértices. Isso <strong>não deve ocorrer nos problemas desta disciplina</strong>.</p>
-<hr />
-<h1 id="outros-exemplos">Outros exemplos</h1>
+<h2 id="saida">Saída</h2>
+<p>Se</p>
 <ul>
-<li>dependência entre partes de produção</li>
-<li>traçar caminhos em um mapa</li>
-<li>conectar cidades com mínimo de ligações</li>
-<li>criação de agrupamentos ou equipes</li>
+<li><code>OP == 1</code>: devolva a string "tem ciclo" se houver dependência circular e "sem ciclo" se não houver</li>
+<li><code>OP == 2</code>: para cada arquivo, mostre quais outros arquivos precisam ser recompilados. A saída deve estar no seguinte formato
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>arq1 -&gt; ....
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>arq2 -&gt; ...
+</code></pre></div></li>
+<li><code>OP == 3</code>:  escreva, em uma só linha, uma ordem em que é possível compilar o projeto do zero respeitando as dependências entre arquivos</li>
 </ul>
-<hr />
-<h1 id="representacao-computacional">Representação computacional</h1>
-<p><strong>Representação formal</strong>:
-- $V = {1 \dots N}$
-- $E = { (x, y) | x, y \in V; x \neq y}$ </p>
-<p>Como transformar em uma representação <strong>computacional</strong> eficiente?</p>
-<hr />
-<h1 id="representacao-computacional_1">Representação computacional</h1>
-<ul>
-<li>$V$ pode ser representado só pelos números mesmo. Só preciso guardar $|V| = N_v$</li>
-<li>$E$ pode ser representado como uma matriz $A$ quadrada com $N_v$ linhas e colunas</li>
-</ul>
-<p>$$
-A_{i,j} = \begin{cases}
-1 \text{ se } {i,j} \in E \
-0 \text{ caso contrário }
-\end{cases}
-$$</p>
-<hr />
-<h1 id="representacao-computacional_2">Representação computacional</h1>
-<ul>
-<li>quantas arestas <strong>chegam</strong> no vértice $i$?</li>
-<li>quantas arestas <strong>saem</strong> no vértice $i$?</li>
-<li>como é a matriz se o grafo for <strong>não direcionado</strong>?</li>
-<li>e se tiver pesos?</li>
-</ul>
-<script type="module">
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.0/dist/mermaid.esm.min.mjs';
-setTimeout(300, function () {
-    mermaid.initialize({ startOnLoad: true })
-});
-</script>
-
 
 
 </section>
