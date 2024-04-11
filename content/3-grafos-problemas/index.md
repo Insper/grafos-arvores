@@ -5,5 +5,6 @@ Esta página lista problemas interessantes no LeetCode e afins que tratam de gra
 - [Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)
 - [Star Graphs](https://leetcode.com/problems/find-center-of-star-graph/)
 - [Town Judge](https://leetcode.com/problems/find-the-town-judge/)
+- [Course Schedule](https://leetcode.com/problems/course-schedule/description/)
 
 

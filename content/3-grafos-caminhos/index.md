@@ -6,7 +6,7 @@ Neste módulo iremos ver os principais algoritmos para encontrar caminhos mínim
 
 - [Caminhos mais curtos (sem pesos)](bfs.md)
 - [Caminhos mais curtos (com pesos)](dijkstra.md)
-- [Grafos esparsos](lista-adjacencia.md)
+<!-- - [Grafos esparsos](lista-adjacencia.md) -->
 
 ## Para entregar
 
