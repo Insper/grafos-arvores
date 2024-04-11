@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Index - Grafos e Árvores</title>
+        <title>Busca em Largura - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:700|Oxygen+Mono|Source+Sans+Pro:700|Source+Serif+Pro&amp;display=swap">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
     <script>
       // SETUP GLOBAL CONSTANTS
-      var base_url = '..';
+      var base_url = '../..';
       
       var telemetryEnabled = false;
       var backendUrl = "";
@@ -46,7 +46,7 @@
     <script src="https://unpkg.com/htmx.org@1.8.4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
     
     
   </head>
@@ -60,7 +60,7 @@
   <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
 </svg>
         </button>
-        <a href=".."
+        <a href="../.."
            title="Grafos e Árvores"
            class="ah-logo"
            aria-label="Grafos e Árvores">
@@ -94,7 +94,7 @@
               
   
     <li>
-      <a href="..">Home</a>
+      <a href="../..">Grafos e Árvores</a>
     </li>
   
 
@@ -102,13 +102,13 @@
               
   
     <li>
-      <a href="../sobre/">Sobre</a>
+      <a href="../../sobre/">Sobre a disciplina</a>
     </li>
   
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -120,7 +120,7 @@
         
   
     <li>
-      <a href="../0-linguagem-C/">Labs de C</a>
+      <a href="../../0-linguagem-C/">Labs de C</a>
     </li>
   
 
@@ -128,7 +128,7 @@
         
   
     <li>
-      <a href="../0-linguagem-C/malloc/">Alocação de memória</a>
+      <a href="../../0-linguagem-C/malloc/">Alocação de memória</a>
     </li>
   
 
@@ -136,7 +136,7 @@
         
   
     <li>
-      <a href="../0-linguagem-C/adt-c/">ADT em C</a>
+      <a href="../../0-linguagem-C/adt-c/">ADT em C</a>
     </li>
   
 
@@ -144,7 +144,7 @@
         
   
     <li>
-      <a href="../0-linguagem-C/debug/">Debug</a>
+      <a href="../../0-linguagem-C/debug/">Debug</a>
     </li>
   
 
@@ -161,7 +161,7 @@
         
   
     <li>
-      <a href="../1-arvores-intro/">Índice</a>
+      <a href="../../1-arvores-intro/">Índice</a>
     </li>
   
 
@@ -169,7 +169,7 @@
         
   
     <li>
-      <a href="../1-arvores-intro/intro/">Introdução</a>
+      <a href="../../1-arvores-intro/intro/">Introdução</a>
     </li>
   
 
@@ -177,7 +177,7 @@
         
   
     <li>
-      <a href="../1-arvores-intro/insert/">Inserção</a>
+      <a href="../../1-arvores-intro/insert/">Inserção</a>
     </li>
   
 
@@ -185,7 +185,7 @@
         
   
     <li>
-      <a href="../1-arvores-intro/balance/">Balanceamento</a>
+      <a href="../../1-arvores-intro/balance/">Balanceamento</a>
     </li>
   
 
@@ -193,7 +193,7 @@
         
   
     <li>
-      <a href="../1-arvores-intro/remove/">Remoção</a>
+      <a href="../../1-arvores-intro/remove/">Remoção</a>
     </li>
   
 
@@ -210,7 +210,7 @@
         
   
     <li>
-      <a href="../2-grafos-componentes/">Índice</a>
+      <a href="../../2-grafos-componentes/">Índice</a>
     </li>
   
 
@@ -218,7 +218,7 @@
         
   
     <li>
-      <a href="../2-grafos-componentes/intro/">Introdução</a>
+      <a href="../../2-grafos-componentes/intro/">Introdução</a>
     </li>
   
 
@@ -226,13 +226,74 @@
         
   
     <li>
-      <a href="../2-grafos-componentes/componentes/">Componentes Conexas</a>
+      <a href="../../2-grafos-componentes/componentes/">Componentes Conexas</a>
     </li>
   
 
       
     </ul>
   </li>
+
+      
+        
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">3 - Grafos e Caminhos</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Busca em Largura</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#grafo-1">Grafo 1</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#grafo-2">Grafo 2</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#entrega">Entrega</a>
+              </li>
+            
+        
+      </ul>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../dijkstra/">Algoritmo de Dijkstra</a>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
+        
+  
+    <li>
+      <a href="../../3-grafos-problemas/">2,5 - Problemas em Grafos</a>
+    </li>
+  
 
       
     </ul>
@@ -248,6 +309,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>3 - Grafos e Caminhos</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -255,17 +324,68 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="2-caminhos-em-grafos">2 - Caminhos em Grafos</h1>
-<p>Neste módulo iremos ver os principais algoritmos para encontrar caminhos mínimos em grafos. Também veremos algumas aplicações simples desses algoritmos.</p>
-<h2 id="atividades">Atividades</h2>
+<h1 id="busca-em-largura">Busca em Largura</h1>
+<div class="admonition tip">
+<p class="admonition-title">Pesquisa sobre Sprint Session 1</p>
+<p>Como parte da Sprint Session do semestre passado estamos coletando . Por favor, respondam o form linkado abaixo. </p>
+<p><ah-button href="https://forms.office.com/r/Ww8P1HLB5c">Responder pesquisa</ah-button></p>
+</div>
+<p><ah-external-content src="../bfs-slides.html" /></p>
+<p>Nesta aula iremos simular a busca em largura (BFS) em três grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.</p>
+<h2 id="grafo-1">Grafo 1</h2>
+<p>Queremos encontrar o menor caminho entre <strong>A</strong> e <strong>F</strong></p>
+<p><ah-diagram>
+graph LR
+    A --- B
+    A --- C
+    A --- E
+    B --- D
+    B --- C
+    D --- E
+    E --- F
+</ah-diagram></p>
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/bfs/long_1" id="long_1_0">
+<p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Use o campo abaixo para anotações sobre esta simulação.</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+</div>
+<h2 id="grafo-2">Grafo 2</h2>
+<p>Vamos encontrar o menor caminho entre <strong>A</strong> e <strong>G</strong></p>
+<p><ah-diagram>
+graph LR
+    A --- G
+    A --- B
+    B --- C
+    C --- G
+    C --- D
+    C --- E
+    D --- E
+    E --- G
+    E --- F
+    F --- G
+</ah-diagram></p>
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/bfs/long_2" id="long_2_0">
+<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
+<form class="exercise-form">
+<p>Use o campo abaixo para anotações sobre esta simulação.</p>
+<div class="form-elements">
+<div class="grow-wrap"><textarea name="data"></textarea></div>
+
+<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
+</div>
+</form>
+</div>
+<h2 id="entrega">Entrega</h2>
+<p>Teremos 2 entregas nessa aula:</p>
 <ul>
-<li><a href="bfs/">Caminhos mais curtos (sem pesos)</a></li>
-<li><a href="dijkstra/">Caminhos mais curtos (com pesos)</a></li>
-<li><a href="lista-adjacencia.md">Grafos esparsos</a></li>
-</ul>
-<h2 id="para-entregar">Para entregar</h2>
-<ul>
-<li>Atividades do módulo no PrairieLearn.</li>
+<li>implementação de um tipo de dados <code>queue_t</code> seguindo a estrutura do arquivo <code>queue.h</code></li>
+<li>implementação da busca em largura usando essa ED</li>
 </ul>
 
 
@@ -276,12 +396,26 @@
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
+            <a href="../"
+               class="ah-prev"
+               title="Índice">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Índice</span>
+            </a>
+          
+          
+            <a href="../dijkstra/"
+               class="ah-next"
+               title="Algoritmo de Dijkstra">
+              <span class="nav-label">Next</span>
+              <span class="nav-title">Algoritmo de Dijkstra</span>
+            </a>
           
         </div>
       </footer>
     </div>
     
-      <script src="../js/external.js"></script>
+      <script src="../../js/external.js"></script>
     
   </body>
 </html>
