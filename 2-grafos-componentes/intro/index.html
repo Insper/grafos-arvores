@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Introdução - Grafos e Árvores</title>
+        <title>Intro - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -48,7 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="../../assets/js/main.js"></script>
     
-    
+    <link rel="stylesheet" href="../../css/components.css">
   </head>
   <body>
     <div class="ah-main-container">
@@ -108,7 +108,7 @@
 
             
               
-  <li class="ah-togglable-item opened">
+  <li class="ah-togglable-item">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -125,179 +125,8 @@
   
 
       
-        
-  
-    <li>
-      <a href="../../0-linguagem-C/malloc/">Alocação de memória</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../0-linguagem-C/adt-c/">ADT em C</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../0-linguagem-C/debug/">Debug</a>
-    </li>
-  
-
-      
     </ul>
   </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">1 - Árvores</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../../1-arvores-intro/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-arvores-intro/intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-arvores-intro/insert/">Inserção</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-arvores-intro/balance/">Balanceamento</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../1-arvores-intro/remove/">Remoção</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item opened">
-    <span class="ah-togglable-handle">2 - Grafos e Componentes</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../">Índice</a>
-    </li>
-  
-
-      
-        
-  
-
-    <li class="active ah-togglable-item opened">
-      <span class="ah-togglable-handle">Introdução</span>
-      <ul>
-        
-          
-            
-            
-              <li class="ah-toc-item">
-                <a href="#atividades-basicas">Atividades básicas</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#problema-1-redes-sociais">Problema 1 - redes sociais</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#representacao-computacional">Representação computacional</a>
-              </li>
-            
-              <li class="ah-toc-item">
-                <a href="#entrega">Entrega</a>
-              </li>
-            
-        
-      </ul>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../componentes/">Componentes Conexas</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">3 - Grafos e Caminhos</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="../../3-grafos-caminhos/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../3-grafos-caminhos/bfs/">Busca em Largura</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="../../3-grafos-caminhos/dijkstra/">Algoritmo de Dijkstra</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  
-    <li>
-      <a href="../../3-grafos-problemas/">2,5 - Problemas em Grafos</a>
-    </li>
-  
 
       
     </ul>
@@ -312,14 +141,6 @@
           <div class="ah-title-box">
             <ul class="ah-breadcrumbs">
               
-                
-                  
-                    <li>Módulos</li>
-                  
-                
-                  
-                    <li>2 - Grafos e Componentes</li>
-                  
                 
                 <li></li>
             </ul>
@@ -580,7 +401,7 @@ graph TD
 <li>toda vez que um usuário curte um post</li>
 </ul>
 <p>Vamos usar grafos para resolver este problema.</p>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_1" id="short_1_0">
+<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/short_1" id="short_1_0">
 <p class="admonition-title">Exercise 5<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em nosso grafo, o que seriam os vértices?</p>
@@ -591,7 +412,7 @@ graph TD
 </div>
 </form>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_2" id="short_2_0">
+<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/short_2" id="short_2_0">
 <p class="admonition-title">Exercise 6<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Em nosso grafo, qual relação arestas entre dois vértices representa?</p>
@@ -602,7 +423,7 @@ graph TD
 </div>
 </form>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_3" id="short_3_0">
+<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/short_3" id="short_3_0">
 <p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>O grafo é direcionado? As arestas tem peso?</p>
@@ -676,7 +497,7 @@ graph TD
 </div>
 </div>
 <p>Conseguimos tirar diversas informações interessantes diretamente da matriz de adjacências. Responda às questões abaixo:</p>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_5" id="short_5_0">
+<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/short_5" id="short_5_0">
 <p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Como saber quais usuários postaram algo que foi curtido?</p>
@@ -691,7 +512,7 @@ graph TD
 <p>É só procurar na sua coluna correspondente. Como arestas saem da linha <code>i</code> e chegam na coluna <code>j</code>, se tiver algum elemento na coluna <code>j</code> diferente de 0 então aquele usuário postou algo que foi curtido. </p>
 </div>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_6" id="short_6_0">
+<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/short_6" id="short_6_0">
 <p class="admonition-title">Exercise 10<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Como encontrar o usuário com maior número de posts curtidos?</p>
@@ -706,7 +527,7 @@ graph TD
 <p>Será o usuário com a coluna de maior soma = vértice de maior grau de entrada</p>
 </div>
 </div>
-<div class="admonition exercise short tag-text-exercise tag-short-text editable" data-slug="2-grafos-componentes/intro/short_7" id="short_7_0">
+<div class="admonition exercise short tag-short-text tag-text-exercise editable" data-slug="2-grafos-componentes/intro/short_7" id="short_7_0">
 <p class="admonition-title">Exercise 11<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Como encontrar o usuário que mais curtiu posts?</p>
@@ -738,20 +559,6 @@ graph TD
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
-            <a href="../"
-               class="ah-prev"
-               title="Índice">
-              <span class="nav-label">Previous</span>
-              <span class="nav-title">Índice</span>
-            </a>
-          
-          
-            <a href="../componentes/"
-               class="ah-next"
-               title="Componentes Conexas">
-              <span class="nav-label">Next</span>
-              <span class="nav-title">Componentes Conexas</span>
-            </a>
           
         </div>
       </footer>

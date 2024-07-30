@@ -48,7 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
     
-    
+    <link rel="stylesheet" href="css/components.css">
   </head>
   <body>
     <div class="ah-main-container">
@@ -137,155 +137,8 @@
   
 
       
-        
-  
-    <li>
-      <a href="0-linguagem-C/malloc/">Alocação de memória</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="0-linguagem-C/adt-c/">ADT em C</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="0-linguagem-C/debug/">Debug</a>
-    </li>
-  
-
-      
     </ul>
   </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">1 - Árvores</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="1-arvores-intro/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="1-arvores-intro/intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="1-arvores-intro/insert/">Inserção</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="1-arvores-intro/balance/">Balanceamento</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="1-arvores-intro/remove/">Remoção</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">2 - Grafos e Componentes</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="2-grafos-componentes/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="2-grafos-componentes/intro/">Introdução</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="2-grafos-componentes/componentes/">Componentes Conexas</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  <li class="ah-togglable-item">
-    <span class="ah-togglable-handle">3 - Grafos e Caminhos</span>
-    <ul>
-      
-        
-  
-    <li>
-      <a href="3-grafos-caminhos/">Índice</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="3-grafos-caminhos/bfs/">Busca em Largura</a>
-    </li>
-  
-
-      
-        
-  
-    <li>
-      <a href="3-grafos-caminhos/dijkstra/">Algoritmo de Dijkstra</a>
-    </li>
-  
-
-      
-    </ul>
-  </li>
-
-      
-        
-  
-    <li>
-      <a href="3-grafos-problemas/">2,5 - Problemas em Grafos</a>
-    </li>
-  
 
       
     </ul>
@@ -309,23 +162,30 @@
           
             <section class="progress-section show">
 <h1 id="grafos-e-arvores">Grafos e Árvores</h1>
-<p>Bem vindos à disciplina <strong>Grafos e Árvores</strong> do 4<sup>o</sup> semestre do BCC - Insper Aqui estão todos os materiais importantes para a disciplina. .</p>
-<p><ah-diagram>
-graph TB
-A --- B
-A --- C
-B --- D
-B --- E
-D --- F
-D --- H( ) 
-C --- J( )
-C --- I
-</ah-diagram></p>
+<p>Bem vindos à disciplina <strong>Grafos e Árvores</strong> do 4<sup>o</sup> semestre do BCC - Insper. Aqui estão todos os materiais importantes para a disciplina. .</p>
+<p><graphviz-graph graph="
+    digraph G {
+    4 -> n1
+    4 -&gt; 15
+    15 -&gt; 6
+    15 -&gt; 25
+    6 -&gt; 5
+    6 -&gt; 10
+    n1 [shape=point]
+}"&gt; </graphviz-graph></p>
+<div class="admonition people">
+<p class="admonition-title">Equipe 2024/2</p>
+<ul>
+<li><img alt="Igor" src="css/igor.png" /> <strong>Igor Montagner</strong> <em>Professor</em></li>
+<li><img alt="Livia" src="css/livia.jpg" /> <strong>Lívia Tanaka</strong> <em>Ninja</em></li>
+<li><img alt="Vaz" src="css/vaz.jpg" /> <strong>Eduardo Vaz</strong> <em>Ninja</em></li>
+</ul>
+</div>
 <h2 id="links-importantes">Links importantes</h2>
 <ul>
-<li><a href="https://us.prairielearn.com/pl/course_instance/149608">Área da disciplina no PrairieLearn</a>: todas entregas de trabalhos e avaliações</li>
+<li><a href="https://us.prairielearn.com/pl/course_instance/158420">Área da disciplina no PrairieLearn</a>: todas entregas de trabalhos e avaliações</li>
 <li><a href="sobre/">Regras da disciplina</a>: toda a parte de horários, aprovação e calendário da disciplina está aqui. Não deixe de ler com atenção.</li>
-<li><a href="https://www.insper.edu.br/portaldoprofessor/wp-content/uploads/2021/01/CALEND%C3%81RIO-ACAD%C3%8AMICO-PROFESSOR-CI%C3%8ANCIA-DA-COMPUTA%C3%87%C3%83O-S%C3%89RIE-123-e-4-2.pdf">Calendário acadêmico</a>: Calendário de atividades do Insper.</li>
+<li><a href="http://portaldoprofessor.insper.edu.br/wp-content/uploads/2022/03/CALEND%C3%81RIO-ACAD%C3%8AMICO-2024-_CIECOMP-234..-1.pdf">Calendário acadêmico</a>: Calendário de atividades do Insper.</li>
 </ul>
 
 
