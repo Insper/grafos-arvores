@@ -9,17 +9,15 @@ Leia atentamente esta página. Ela contém todas as informações importantes da
 
 ## Atividades
 
-Todas as atividades serão entregues no espaço do curso no PrairieLearn (PL). Usaremos um tipo especial de exercício chamado **Workspace**, em que abriremos um ambiente do VSCode já configurado para programar. A princípio será um ambiente quase idêntico ao que seria instalado no PC de vocês, porém acessível via Browser e pré-configurado. 
+Usaremos o PrairieLearn para organizar todas nossas entregas. Acesse com o link abaixo. 
 
-<ah-button primary href="https://us.prairielearn.com/pl/course_instance/149608">Entrar no PrairieLearn</ah-button>
-
-Uma segunda vantagem é que todo o gerenciamento de prazos é feito direto no PL, então neste semestre seremos mais estritos com datas de entrega. 
+<ah-button primary href="https://us.prairielearn.com/pl/course_instance/158420">Entrar no PrairieLearn</ah-button>
 
 ## Horários
 
-- **SEG** 15:45 - 17:45
+- **TER** 07:30 - 09:30
 - **SEX** 09:45 - 11:45
-- Atendimento **SEX** 08:00 - 09:30 (*sala TI-12 P1*)
+- Atendimento **SEX** 08:00 - 09:30 
 
 ## Aprovação
 
@@ -31,12 +29,7 @@ A nota final é calculada com a seguinte expressão
     - precisa ser maior ou igual a 5
     - `MP = (PI + 3PF)/4`
 - **APS** - atividades de sala e problemas para casa
-    - serão feitas no PrairieLearn. 
-    - é possível entregar atrasado, mas haverá desconto na nota. As datas estão especificadas no PrairieLearn.
 
-## Calendário e plano de aulas
+## Plano de aulas
 
-O plano de aulas está disponível [neste link](plano-de-aulas.xlsx). Também tem o plano de aula em [formato ICS](/calendario.ics), que pode ser adicionado ao Google Calendar, Outlook ou Thunderbird.
-
-
-<script type="module" src="/js/ah-button.js"></script>
+O plano de aulas está disponível [neste link](plano-de-aulas.xlsx). 

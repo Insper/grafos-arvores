@@ -13,25 +13,28 @@ nav:
   - "Módulos":
     - "0 - Linguagem C": 
       - "Labs de C": 0-linguagem-C/index.md
-      - "Alocação de memória": 0-linguagem-C/malloc.md
-      - "ADT em C": 0-linguagem-C/adt-c.md
-      - "Debug": 0-linguagem-C/debug.md
-    - "1 - Árvores":
-      - "Índice": 1-arvores-intro/index.md
-      - "Introdução": 1-arvores-intro/intro/index.md
-      - "Inserção": 1-arvores-intro/insert/index.md
-      - "Balanceamento": 1-arvores-intro/balance/index.md
-      - "Remoção": 1-arvores-intro/remove/index.md
-    - "2 - Grafos e Componentes": 
-      - "Índice": 2-grafos-componentes/index.md
-      - "Introdução": 2-grafos-componentes/intro.md
-      - "Componentes Conexas": 2-grafos-componentes/componentes.md
-    - "3 - Grafos e Caminhos": 
-      - "Índice": 3-grafos-caminhos/index.md
-      - "Busca em Largura": 3-grafos-caminhos/bfs.md
-      - "Algoritmo de Dijkstra": 3-grafos-caminhos/dijkstra.md
-    - "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
+      # - "Alocação de memória": 0-linguagem-C/malloc.md
+      # - "ADT em C": 0-linguagem-C/adt-c.md
+      # - "Debug": 0-linguagem-C/debug.md
+    # - "1 - Árvores":
+    #   - "Índice": 1-arvores-intro/index.md
+    #   - "Introdução": 1-arvores-intro/intro/index.md
+    #   - "Inserção": 1-arvores-intro/insert/index.md
+    #   - "Balanceamento": 1-arvores-intro/balance/index.md
+    #   - "Remoção": 1-arvores-intro/remove/index.md
+    # - "2 - Grafos e Componentes": 
+    #   - "Índice": 2-grafos-componentes/index.md
+    #   - "Introdução": 2-grafos-componentes/intro.md
+    #   - "Componentes Conexas": 2-grafos-componentes/componentes.md
+    # - "3 - Grafos e Caminhos": 
+    #   - "Índice": 3-grafos-caminhos/index.md
+    #   - "Busca em Largura": 3-grafos-caminhos/bfs.md
+    #   - "Algoritmo de Dijkstra": 3-grafos-caminhos/dijkstra.md
+    # - "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
 
 
 extra_javascript:
   - js/external.js
+
+extra_css:
+  - css/components.css

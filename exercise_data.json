@@ -1,0 +1,546 @@
+{
+  "course": "",
+  "exercises": {
+    "0-linguagem-C/malloc/": {
+      "short_1": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_1"
+      },
+      "short_2": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_2"
+      },
+      "short_3": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_3"
+      },
+      "short_4": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_4"
+      },
+      "short_5": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_5"
+      },
+      "medium_6": {
+        "tags": [
+          "text-exercise",
+          "medium-text"
+        ],
+        "slug": "0-linguagem-C/malloc/medium_6"
+      },
+      "exercise_1": {
+        "tags": [],
+        "slug": "0-linguagem-C/malloc/exercise_1"
+      },
+      "medium_7": {
+        "tags": [
+          "text-exercise",
+          "medium-text"
+        ],
+        "slug": "0-linguagem-C/malloc/medium_7"
+      },
+      "short_8": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_8"
+      },
+      "exercise_2": {
+        "tags": [],
+        "slug": "0-linguagem-C/malloc/exercise_2"
+      },
+      "short_9": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_9"
+      },
+      "exercise_3": {
+        "tags": [],
+        "slug": "0-linguagem-C/malloc/exercise_3"
+      },
+      "short_10": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "0-linguagem-C/malloc/short_10"
+      },
+      "exercise_4": {
+        "tags": [],
+        "slug": "0-linguagem-C/malloc/exercise_4"
+      }
+    },
+    "1-arvores-intro/balance/": {
+      "choice_1": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "1-arvores-intro/balance/choice_1",
+        "answer_idx": 2
+      },
+      "choice_2": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "1-arvores-intro/balance/choice_2",
+        "answer_idx": 1
+      },
+      "exercise_1": {
+        "tags": [],
+        "slug": "1-arvores-intro/balance/exercise_1"
+      },
+      "choice_3": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "1-arvores-intro/balance/choice_3",
+        "answer_idx": 2
+      },
+      "short_1": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/balance/short_1"
+      },
+      "choice_4": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "1-arvores-intro/balance/choice_4",
+        "answer_idx": 0
+      },
+      "short_2": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/balance/short_2"
+      },
+      "short_3": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/balance/short_3"
+      },
+      "long_4": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/balance/long_4"
+      },
+      "short_5": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/balance/short_5"
+      },
+      "long_6": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/balance/long_6"
+      },
+      "long_7": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/balance/long_7"
+      }
+    },
+    "1-arvores-intro/insert/": {
+      "short_1": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/insert/short_1"
+      },
+      "short_2": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/insert/short_2"
+      },
+      "short_3": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/insert/short_3"
+      },
+      "long_4": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/insert/long_4"
+      },
+      "long_5": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/insert/long_5"
+      },
+      "exercise_1": {
+        "tags": [],
+        "slug": "1-arvores-intro/insert/exercise_1"
+      },
+      "long_6": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/insert/long_6"
+      },
+      "long_7": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/insert/long_7"
+      }
+    },
+    "1-arvores-intro/intro/": {
+      "long_1": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/intro/long_1"
+      },
+      "long_2": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/intro/long_2"
+      },
+      "long_3": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/intro/long_3"
+      },
+      "long_4": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/intro/long_4"
+      },
+      "long_5": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/intro/long_5"
+      },
+      "exercise_1": {
+        "tags": [],
+        "slug": "1-arvores-intro/intro/exercise_1"
+      },
+      "choice_1": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "1-arvores-intro/intro/choice_1",
+        "answer_idx": 0
+      },
+      "choice_2": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "1-arvores-intro/intro/choice_2",
+        "answer_idx": 2
+      },
+      "long_6": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/intro/long_6"
+      }
+    },
+    "1-arvores-intro/remove/": {
+      "exercise_1": {
+        "tags": [],
+        "slug": "1-arvores-intro/remove/exercise_1"
+      },
+      "short_1": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "1-arvores-intro/remove/short_1"
+      },
+      "long_2": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/remove/long_2"
+      },
+      "exercise_2": {
+        "tags": [],
+        "slug": "1-arvores-intro/remove/exercise_2"
+      },
+      "exercise_3": {
+        "tags": [],
+        "slug": "1-arvores-intro/remove/exercise_3"
+      },
+      "exercise_4": {
+        "tags": [],
+        "slug": "1-arvores-intro/remove/exercise_4"
+      },
+      "long_3": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/remove/long_3"
+      },
+      "long_4": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "1-arvores-intro/remove/long_4"
+      }
+    },
+    "2-grafos-componentes/componentes/": {
+      "choice_1": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/componentes/choice_1",
+        "answer_idx": 2
+      },
+      "choice_2": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/componentes/choice_2",
+        "answer_idx": 1
+      },
+      "choice_3": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/componentes/choice_3",
+        "answer_idx": 3
+      },
+      "long_1": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "2-grafos-componentes/componentes/long_1"
+      },
+      "long_2": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "2-grafos-componentes/componentes/long_2"
+      },
+      "long_3": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "2-grafos-componentes/componentes/long_3"
+      },
+      "long_4": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "2-grafos-componentes/componentes/long_4"
+      },
+      "long_5": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "2-grafos-componentes/componentes/long_5"
+      }
+    },
+    "2-grafos-componentes/intro/": {
+      "choice_1": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/intro/choice_1",
+        "answer_idx": 0
+      },
+      "choice_2": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/intro/choice_2",
+        "answer_idx": 0
+      },
+      "choice_3": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/intro/choice_3",
+        "answer_idx": 1
+      },
+      "choice_4": {
+        "tags": [
+          "choice-exercise"
+        ],
+        "slug": "2-grafos-componentes/intro/choice_4",
+        "answer_idx": 0
+      },
+      "short_1": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "2-grafos-componentes/intro/short_1"
+      },
+      "short_2": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "2-grafos-componentes/intro/short_2"
+      },
+      "short_3": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "2-grafos-componentes/intro/short_3"
+      },
+      "long_4": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "2-grafos-componentes/intro/long_4"
+      },
+      "short_5": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "2-grafos-componentes/intro/short_5"
+      },
+      "short_6": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "2-grafos-componentes/intro/short_6"
+      },
+      "short_7": {
+        "tags": [
+          "text-exercise",
+          "short-text"
+        ],
+        "slug": "2-grafos-componentes/intro/short_7"
+      }
+    },
+    "3-grafos-caminhos/bfs/": {
+      "long_1": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "3-grafos-caminhos/bfs/long_1"
+      },
+      "long_2": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "3-grafos-caminhos/bfs/long_2"
+      }
+    },
+    "3-grafos-caminhos/dijkstra/": {
+      "exercise_1": {
+        "tags": [],
+        "slug": "3-grafos-caminhos/dijkstra/exercise_1"
+      },
+      "exercise_2": {
+        "tags": [],
+        "slug": "3-grafos-caminhos/dijkstra/exercise_2"
+      },
+      "exercise_3": {
+        "tags": [],
+        "slug": "3-grafos-caminhos/dijkstra/exercise_3"
+      },
+      "exercise_4": {
+        "tags": [],
+        "slug": "3-grafos-caminhos/dijkstra/exercise_4"
+      },
+      "exercise_5": {
+        "tags": [],
+        "slug": "3-grafos-caminhos/dijkstra/exercise_5"
+      },
+      "exercise_6": {
+        "tags": [],
+        "slug": "3-grafos-caminhos/dijkstra/exercise_6"
+      },
+      "long_1": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "3-grafos-caminhos/dijkstra/long_1"
+      },
+      "long_2": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "3-grafos-caminhos/dijkstra/long_2"
+      },
+      "long_3": {
+        "tags": [
+          "text-exercise",
+          "long-text"
+        ],
+        "slug": "3-grafos-caminhos/dijkstra/long_3"
+      }
+    }
+  },
+  "tags": {
+    "short-text": "short-text",
+    "long-text": "long-text",
+    "text-exercise": "text-exercise",
+    "choice-exercise": "choice-exercise",
+    "medium-text": "medium-text"
+  }
+}

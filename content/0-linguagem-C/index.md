@@ -1,18 +1,9 @@
 # 0 - Introdução a C
 
-Usaremos a linguagem *C* nesta disciplina.
+Usaremos a linguagem *C* nesta disciplina. O primeiro módulo é para familiarização com essa linguagem nova e os conceitos diferentes que ela traz. 
 
 ## Atividades
-<!--
-- [Mutirão C](https://insper.github.io/Labs-de-C-BCC): atividade integrada com *Sistemas Hardware Software* para aprendizado da sintaxe e uso básico de C. 
--->
 
-- [Atividade 06 do Mutirão C](https://insper.github.io/Labs-de-C-BCC/Lab6/) - arquivos no PrairieLearn
-- [Alocação de memória](malloc.md): o equivalente ao `new` de Java e à criação de listas/dicts/instâncias de Classes em Python
-- [Estruturas de Dados em C](adt-c.md): criação de um vetor dinâmico em *C*
-
-## Para entregar
-
-- Façam as atividades do módulo [Linguagem C](https://us.prairielearn.com/pl/course_instance/149608/assessments) na área do curso no PrairieLearn
-
-
+- [:desktop: :book: Atividade 01 - Mutirão C](https://insper.github.io/Labs-de-C-BCC): atividade integrada com Sistemas Hardware Software para aprendizado da sintaxe e uso básico de C. 
+<!-- - [:desktop: Atividade 02 - Alocação de memória](malloc.md): o equivalente ao `new` de Java e à criação de listas/dicts/instâncias de Classes em Python
+- [:desktop: Atividade 03 - Estruturas de Dados em C](adt-c.md): criação de um vetor dinâmico em *C* -->
