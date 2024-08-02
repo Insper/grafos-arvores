@@ -26,8 +26,8 @@ A nota final é calculada com a seguinte expressão
 `NF = 0,7 MP + 0,3 APS`
 
 - **MP** - média de provas
-    - precisa ser maior ou igual a 5
-    - `MP = (PI + 3PF)/4`
+    - precisa ser maior ou igual a 4,75
+    - `MP = (2*PI + 5*PF)/7`
 - **APS** - atividades de sala e problemas para casa
 
 ## Plano de aulas
