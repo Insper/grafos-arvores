@@ -108,12 +108,12 @@
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
         
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">0 - Linguagem C</span>
     <ul>
       
@@ -121,6 +121,38 @@
   
     <li>
       <a href="../">Labs de C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../malloc/">Alocação de memória</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../adt-c/">ADT em C</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Debug</span>
+      <ul>
+        
+          
+            
+            
+        
+      </ul>
     </li>
   
 
@@ -142,6 +174,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>0 - Linguagem C</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -150,7 +190,7 @@
           
             <section class="progress-section show">
 <h1 id="debug-c-no-vscode">Debug C no VSCode</h1>
-<p>Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão <a href="https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode">Eclipse CDT</a> já instalada e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestre. Ela não é tão eficiente quanto os debuggers Python e Java, mas já ajuda muito.</p>
+<p>Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão <a href="https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode">Eclipse CDT</a> já instalada e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestres. Ela não é tão eficiente quanto os debuggers Python e Java, mas já ajuda muito.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Não se esqueçam de compilar o programa com as flags <code>-O0 -g</code> para ter acesso a todas as variáveis ao debugar. A linha de comando completa ficaria assim:</p>
@@ -188,6 +228,13 @@ gcc -Wall -O0 -g lista de arquivos.c  `pkg-config --cflags --libs check`
       </main>
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
+          
+            <a href="../adt-c/"
+               class="ah-prev"
+               title="ADT em C">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">ADT em C</span>
+            </a>
           
           
         </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Adt c - Grafos e Árvores</title>
+        <title>ADT em C - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -108,12 +108,12 @@
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
         
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">0 - Linguagem C</span>
     <ul>
       
@@ -121,6 +121,38 @@
   
     <li>
       <a href="../">Labs de C</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../malloc/">Alocação de memória</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">ADT em C</span>
+      <ul>
+        
+          
+            
+            
+        
+      </ul>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../debug/">Debug</a>
     </li>
   
 
@@ -142,6 +174,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>0 - Linguagem C</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -150,7 +190,7 @@
           
             <section class="progress-section show">
 <h1 id="tipos-de-dados-em-c">Tipos de Dados em C</h1>
-<p>Em Técnicas de Programação já vimos como definir um <a href="https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/">Tipo Abstrato de Dados</a>. Neste roteiro iremos mostrar como realizar a <strong>implementação</strong> de um ADT em <em>C</em>. Vamos exemplificar a estrutura necessária para implementar o tipo <a href="https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/list/">List</a> que usamos muito no semestre passado.</p>
+<p>Em Técnicas de Programação já vimos como definir um Tipo Abstrato de Dados. Neste roteiro iremos mostrar como realizar a <strong>implementação</strong> de um ADT em <em>C</em>. Vamos exemplificar a estrutura necessária para implementar o tipo List que vimos no semestre passado.</p>
 <p>Uma primeira grande (e óbvia) diferença é que não existem classes em <em>C</em>. O recurso que temos para guardar vários dados agrupados é o <code>struct</code>, porém ele serve somente para guardar os dados e não faz nenhuma referência a métodos ou nada do tipo. </p>
 <p>Por esta razão toda implementação de estrutura de dados em <em>C</em> segue o seguinte padrão:</p>
 <ul>
@@ -174,7 +214,7 @@
 <li><code>list.c</code> contém a <em>implementação</em> de todas as funções e se inicia com <code>#include "list.h"</code> </li>
 </ul>
 <p>Vamos implementar o <em>Vetor Dinâmico</em> que já fizemos em TecProg, mas agora em <em>C</em>.</p>
-<p><ah-button href="https://us.prairielearn.com/pl/course_instance/149608/assessment/2397269">Ir para a prática</ah-button></p>
+<p><ah-button href="https://us.prairielearn.com/pl/course_instance/158420/assessment/2436407">Ir para a prática</ah-button></p>
 
 
 </section>
@@ -184,6 +224,20 @@
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
           
+            <a href="../malloc/"
+               class="ah-prev"
+               title="Alocação de memória">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Alocação de memória</span>
+            </a>
+          
+          
+            <a href="../debug/"
+               class="ah-next"
+               title="Debug">
+              <span class="nav-label">Next</span>
+              <span class="nav-title">Debug</span>
+            </a>
           
         </div>
       </footer>
