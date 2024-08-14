@@ -1,6 +1,6 @@
 # Debug C no VSCode
 
-Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão [Eclipse CDT](https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode) já instalada e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestre. Ela não é tão eficiente quanto os debuggers Python e Java, mas já ajuda muito.
+Assim como em Python e Java, precisamos de uma extensão para debugar código C no VSCode. Workspaces do PrairieLearn tem a extensão [Eclipse CDT](https://open-vsx.org/extension/eclipse-cdt/cdt-gdb-vscode) já instalada e podemos usá-la para debugar programas em C linha a linha como já fizemos nos últimos semestres. Ela não é tão eficiente quanto os debuggers Python e Java, mas já ajuda muito.
 
 !!! warning
     Não se esqueçam de compilar o programa com as flags `-O0 -g` para ter acesso a todas as variáveis ao debugar. A linha de comando completa ficaria assim:

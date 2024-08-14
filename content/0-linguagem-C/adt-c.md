@@ -1,6 +1,6 @@
 # Tipos de Dados em C
 
-Em Técnicas de Programação já vimos como definir um [Tipo Abstrato de Dados](https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/). Neste roteiro iremos mostrar como realizar a **implementação** de um ADT em *C*. Vamos exemplificar a estrutura necessária para implementar o tipo [List](https://insper.github.io/tecnicas-de-programacao/modulos/01-ADT/list/) que usamos muito no semestre passado.
+Em Técnicas de Programação já vimos como definir um Tipo Abstrato de Dados. Neste roteiro iremos mostrar como realizar a **implementação** de um ADT em *C*. Vamos exemplificar a estrutura necessária para implementar o tipo List que vimos no semestre passado.
 
 Uma primeira grande (e óbvia) diferença é que não existem classes em *C*. O recurso que temos para guardar vários dados agrupados é o `struct`, porém ele serve somente para guardar os dados e não faz nenhuma referência a métodos ou nada do tipo. 
 

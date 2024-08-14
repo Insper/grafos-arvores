@@ -10,7 +10,7 @@
     <!-- Execute os programas dessa atividade no *Playground* da matéria no PL.  -->
     Execute os programas dessa atividade na área do Mutirão. 
 
-    <ah-button href="{{ PL_mutirao_hw }}">Abrir Playground</ah-button>
+    <ah-button href="{{ PL_malloc_hw }}">Abrir Playground</ah-button>
 
 Leia com atenção o seguinte programa.
 
@@ -75,7 +75,7 @@ Agora que entendemos um pouco melhor o programa e percebemos que ele tem vários
 
 
 <ah-terminal>
-$ gcc -Wall -std=c99 -Og ex1.c -o ex1 
+$ gcc -Wall -std=c99 -pedantic -Og ex1.c -o ex1 
 </ah-terminal>
 
 !!! tip 
