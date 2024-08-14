@@ -1,5 +1,10 @@
 #  Alocação Dinâmica de Memória
 
+!!! warning
+    Pessoal, estamos fazendo uma pesquisa para conhecer mais a experiência de vocês no mutirão. Podem responder à pesquisa abaixo? Isso ajuda a melhorar para os próximos semestres.
+
+    <ah-button href="https://docs.google.com/forms/d/e/1FAIpQLSdzSeUM1iFQpDIMELZKmQLC24noiWwkfSSv-8V3JFAgjFqlGA/viewform?usp=sf_link"> Responder pesquisa</ah-button>
+
 
 <ah-external-content src="../slides-malloc.html"/>
 
