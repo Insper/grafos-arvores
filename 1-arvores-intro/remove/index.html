@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Index - Grafos e Árvores</title>
+        <title>Remoção - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -108,7 +108,7 @@
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -153,6 +153,83 @@
   </li>
 
       
+        
+  <li class="ah-togglable-item opened">
+    <span class="ah-togglable-handle">1 - Árvores</span>
+    <ul>
+      
+        
+  
+    <li>
+      <a href="../">Índice</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../intro/">Introdução</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../insert/">Inserção</a>
+    </li>
+  
+
+      
+        
+  
+    <li>
+      <a href="../balance/">Balanceamento</a>
+    </li>
+  
+
+      
+        
+  
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Remoção</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#casos-faceis-da-remocao">Casos fáceis da remoção</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#o-caso-complicado-no-tem-dois-filhos">O caso complicado: nó tem dois filhos</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#algoritmo-para-remocao">Algoritmo para remoção</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#o-algoritmo-remove">O algoritmo REMOVE</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#pratica">Prática</a>
+              </li>
+            
+        
+      </ul>
+    </li>
+  
+
+      
+    </ul>
+  </li>
+
+      
     </ul>
   </li>
 
@@ -165,6 +242,14 @@
           <div class="ah-title-box">
             <ul class="ah-breadcrumbs">
               
+                
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>1 - Árvores</li>
+                  
                 
                 <li></li>
             </ul>
@@ -352,7 +437,7 @@ digraph G {
 <li>Na <strong>rotação à esquerda</strong> desceremos de nível a raiz $A$. Chamamos o elemento $B$ à direita de $A$ de <strong>pivô</strong>, já que ele será a nova raiz. A subárvore $\beta$ muda da direita de $B$ para a esquerda de $A$.</li>
 <li>Na <strong>rotação à direita</strong> desceremos de nível a raiz $B$. Chamamos o elemento $A$ à esquerda de $B$ de <strong>pivô</strong>, já que ele será a nova raiz. A subárvore $\beta$ muda da esquerda de $A$ para a direita de $B$.</li>
 </ul>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/remove/long_2" id="long_2_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/remove/long_2" id="long_2_0">
 <p class="admonition-title">Exercise 3<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Escreva um algoritmo <code>ROTACAO-DIREITA(R)</code> que recebe um nó de uma <em>ABB</em> e devolve a nova raiz dessa subárvore depois de fazer uma rotação à direita. Simule seu algoritmo com o grafo abaixo e tentando rotacionar os elementos a seguir.</p>
@@ -565,7 +650,7 @@ n4 [shape=point]
 </details>
 <h2 id="o-algoritmo-remove">O algoritmo <code>REMOVE</code></h2>
 <p>Agora que já simulou o algoritmo algumas vezes está na hora de formalizá-lo. </p>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/remove/long_3" id="long_3_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/remove/long_3" id="long_3_0">
 <p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Escreva um algoritmo <code>REMOVE(R, K)</code> que remove o nó <code>K</code> da árvore <code>R</code>, devolvendo uma nova raiz da árvore se necessário. Você pode supor que as seguintes funções existem:</p>
@@ -594,7 +679,7 @@ n4 [shape=point]
 </code></pre></div>
 </div>
 </div>
-<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="1-arvores-intro/remove/long_4" id="long_4_0">
+<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="1-arvores-intro/remove/long_4" id="long_4_0">
 <p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Escreva um algoritmo recursivo <code>REMOVE-RAIZ(R)</code> que remove a raiz <code>R</code> da árvore e devolve a nova raiz. Use rotações para a direita como foi feito no exercício anterior.</p>
@@ -623,6 +708,13 @@ n4 [shape=point]
       </main>
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
+          
+            <a href="../balance/"
+               class="ah-prev"
+               title="Balanceamento">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Balanceamento</span>
+            </a>
           
           
         </div>
