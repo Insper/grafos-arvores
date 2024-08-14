@@ -5,8 +5,8 @@ Este módulo será focado na implementação e aplicação de *Árvores de Busca
 
 - [Introdução e busca](intro/index.md)
 - [Inserção](insert/index.md)
-<!-- - [Balanceamento](balance/index.md)
-- Remoção -->
+- [Balanceamento](balance/index.md)
+- [Remoção](remove/index.md)
 
 ## Para entregar
 
