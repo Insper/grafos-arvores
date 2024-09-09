@@ -11,7 +11,7 @@ Neste módulo iremos
 ## Atividades
 
 - [O que são grafos? Como usá-los?](intro.md)
-- [Componentes Conexos e Busca em Profundidade](componentes.md)
+<!-- - [Componentes Conexos e Busca em Profundidade](componentes.md) -->
 
 ## Para entregar
 

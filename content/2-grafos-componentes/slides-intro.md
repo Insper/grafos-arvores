@@ -1,9 +1,3 @@
-<style>
-.mermaid {
-    font-size: 10pt;
-}
-</style>
-
 # Grafos e Árvores
 
 ## Introdução a grafos
@@ -104,11 +98,3 @@ $$
 - como é a matriz se o grafo for **não direcionado**?
 - e se tiver pesos?
 
-
-
-<script type="module">
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.0.0/dist/mermaid.esm.min.mjs';
-setTimeout(300, function () {
-    mermaid.initialize({ startOnLoad: true })
-});
-</script>

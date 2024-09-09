@@ -211,7 +211,8 @@ Conseguimos tirar diversas informações interessantes diretamente da matriz de 
 
     !!! answer
         Será o usuário com a linha de maior soma = vértice de maior grau de saída 
-
+        
+<!-- 
 ## Entrega
 
 Agora que já estamos mais familiarizados com grafos iremos implementar a estrutura de dados que será usada em todos os trabalhos com grafos no semestre. É recomendado fazer antes a atividade de [Tipos de Dados em C](../0-linguagem-C/adt-c.md).
@@ -221,4 +222,4 @@ Os objetivos desta atividade são:
 1. gerenciar memória corretamente, alocando e liberando conforme necessário
 2. representar grafos como matrizes e entender a relação de cada elemento da matriz com a representação visual do grafo
 3. encontrar problems em uma implementação em *C* usando como auxílio testes de unidade
-
+ -->
