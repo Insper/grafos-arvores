@@ -11,6 +11,7 @@ Neste módulo iremos
 ## Atividades
 
 - [O que são grafos? Como usá-los?](intro.md)
+- [Representação Computacional de grafos](repr-computacional.md)
 <!-- - [Componentes Conexos e Busca em Profundidade](componentes.md) -->
 
 ## Para entregar

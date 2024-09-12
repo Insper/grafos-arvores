@@ -25,6 +25,7 @@ nav:
     - "2 - Grafos e Componentes": 
       - "Índice": 2-grafos-componentes/index.md
       - "Introdução": 2-grafos-componentes/intro.md
+      - "Representação Computacional": 2-grafos-componentes/repr-computacional.md
     #   - "Componentes Conexas": 2-grafos-componentes/componentes.md
     # - "3 - Grafos e Caminhos": 
     #   - "Índice": 3-grafos-caminhos/index.md
