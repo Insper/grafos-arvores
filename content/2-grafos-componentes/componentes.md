@@ -10,14 +10,15 @@ Seja $G = (V, A)$ um grafo não direcionado sem pesos. Um subconjunto $C \subset
 Vamos praticar um pouco a identificação de componentes conexas?
 
 !!! exercise choice
-    <ah-diagram>
-    graph LR
-    0 --- 1
-    0 --- 2
-    1 --- 2
-    3 --- 4
-    4 --- 5
-    </ah-diagram>
+    
+    <graphviz-graph graph="
+        graph G {
+        0 -- 1
+        0 -- 2
+        1 -- 2
+        3 -- 4
+        4 -- 5
+    }"> </graphviz-graph>
 
     Quantos componentes conexos tem o grafo acima?
 
@@ -29,16 +30,16 @@ Vamos praticar um pouco a identificação de componentes conexas?
     - [ ] 5
 
 !!! exercise choice
-    <ah-diagram>
-    graph LR
-    0 --- 1
-    0 --- 2
-    1 --- 2
-    3 --- 4
-    4 --- 5
-    0 --- 5
-    </ah-diagram>
-
+    <graphviz-graph graph="
+        graph G {
+        0 -- 1
+        0 -- 2
+        1 -- 2
+        3 -- 4
+        4 -- 5
+        0 -- 5
+    }"> </graphviz-graph>
+    
     Quantos componentes conexos tem o grafo acima?
 
     - [ ] 0
@@ -50,16 +51,16 @@ Vamos praticar um pouco a identificação de componentes conexas?
 
 
 !!! exercise choice
-    <ah-diagram>
-    graph LR
-    0 --- 1
-    1 --- 2
-    3 --- 4
-    6 --- 3
-    6 --- 4
-    7 --- 4
-    5[5]
-    </ah-diagram>
+    <graphviz-graph graph="
+        graph G {
+    0 -- 1
+    1 -- 2
+    3 -- 4
+    6 -- 3
+    6 -- 4
+    7 -- 4
+    5
+    }"> </graphviz-graph>
 
     Quantos componentes conexos tem o grafo acima?
 
@@ -90,34 +91,34 @@ Em IA e TecProg já vimos um algoritmo que lembra muito a definição de Compone
 
     A ordem de visitação dos vizinhos de um vértice é alfabética.
 
-    <ah-diagram>
-    graph LR
-    A --- B
-    C --- A
-    D --- B
-    C --- D
-    D --- F
-    F --- G
-    G --- I
-    J --- G
-    J --- F
-    </ah-diagram>
+    <graphviz-graph graph="
+    graph {
+    A -- B
+    C -- A
+    D -- B
+    C -- D
+    D -- F
+    F -- G
+    G -- I
+    J -- G
+    J -- F
+    }"><graphviz-graph>
 
     !!! answer
         O diagrama numerado pela ordem da DFS ficaria como abaixo. Ele é único pois fixamos a ordem de visitação dos vizinhos. Com outra ordem teria outra numeração igualmente válida.
 
-        <ah-diagram>
-        graph LR
-        A --- B
-        C(4) --- A(3)
-        D(1) --- B(2)
-        C --- D
-        D --- F(5)
-        F --- G(6)
-        G --- I(7)
-        J(8) --- G
-        J --- F
-        </ah-diagram>
+        <graphviz-graph graph="
+        graph {
+        3 -- 2
+        4 -- 3
+        1 -- 2
+        4 -- 1
+        1 -- 5
+        5 -- 6
+        6 -- 7
+        8 -- 6
+        8 -- 5
+        }"><graphviz-graph>
 
 
 !!! exercise long
@@ -125,17 +126,17 @@ Em IA e TecProg já vimos um algoritmo que lembra muito a definição de Compone
 
     A ordem de visitação dos vizinhos de um vértice é alfabética.
 
-    <ah-diagram>
-    graph LR
-    A --- B
-    C --- A
-    D --- B
-    C --- D
-    F --- G
-    G --- J
-    I --- G
-    I --- F
-    </ah-diagram>
+    <graphviz-graph graph="
+    graph {
+    A -- B
+    C -- A
+    D -- B
+    C -- D
+    F -- G
+    G -- J
+    I -- G
+    I -- F
+    }"><graphviz-graph>
 
     !!! answer
         Na lousa hoje.
@@ -153,30 +154,42 @@ Várias coisas relevantes acontecem nos exemplos acima:
 Vamos agora formalizar nosso algoritmo `IDENTIFICA-COMPONENTES(G)`. A saída do algoritmo será um array em que cada vértice contém um número identificador de seu componente (começando em 1). Dois vértices estão no mesmo componente se eles possuem o mesmo identificador. Vejamos um exemplo.
 
 **Entrada**:
-<ah-diagram>
-graph LR
-A --- B
-C --- A
-D --- B
-C --- D
-F --- G
-G --- J
-I --- G
-I --- F
-</ah-diagram>
+
+<graphviz-graph graph="
+graph {
+A -- B
+C -- A
+D -- B
+C -- D
+F -- G
+G -- J
+I -- G
+I -- F
+}"><graphviz-graph>
+
 
 **Saída**: Duas saídas são possíveis: `[ 1, 1, 1, 1, 2, 2, 2, 2 ]` (se começamos em `A, B, C` ou `D`) ou `[ 2, 2, 2, 2, 1, 1, 1, 1 ]` (se começamos em `F, G, I` ou `J`). Visualmente isso seria equivalente a:
-<ah-diagram>
-graph LR
-A(1) --- B(1)
-C(1) --- A
-D(1) --- B
-C --- D
-F(2) --- G(2)
-G --- J(2)
-I(2) --- G
-I --- F
-</ah-diagram>
+
+<graphviz-graph graph="
+graph G {
+A[label=&quot;1&quot;] 
+B[label=&quot;1&quot;] 
+C[label=&quot;1&quot;] 
+D[label=&quot;1&quot;] 
+F[label=&quot;2&quot;] 
+G[label=&quot;2&quot;] 
+I[label=&quot;2&quot;] 
+J[label=&quot;2&quot;] 
+A -- B
+C -- A
+D -- B
+C -- D
+F -- G
+G -- J
+I -- G
+I -- F
+}"><graphviz-graph>
+
 
 Já sabemos que o `IDENTIFICA-COMPONENTES` será baseado em DFS e que esse algoritmo depende de algumas outras subrotinas. Você pode supor que os seguintes algoritmos estão disponíveis para usar como subrotinas.
 
