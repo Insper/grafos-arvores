@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       
-        <title>Bfs - Grafos e Árvores</title>
+        <title>Prática - Grafos e Árvores</title>
       
     
     <link rel="stylesheet"
@@ -108,7 +108,7 @@
 
             
               
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">Módulos</span>
     <ul>
       
@@ -203,14 +203,14 @@
 
       
         
-  <li class="ah-togglable-item">
+  <li class="ah-togglable-item opened">
     <span class="ah-togglable-handle">2 - Grafos e Componentes</span>
     <ul>
       
         
   
     <li>
-      <a href="../../2-grafos-componentes/">Índice</a>
+      <a href="../">Índice</a>
     </li>
   
 
@@ -218,7 +218,7 @@
         
   
     <li>
-      <a href="../../2-grafos-componentes/intro/">Introdução</a>
+      <a href="../intro/">Introdução</a>
     </li>
   
 
@@ -226,7 +226,7 @@
         
   
     <li>
-      <a href="../../2-grafos-componentes/repr-computacional/">Representação Computacional</a>
+      <a href="../repr-computacional/">Representação Computacional</a>
     </li>
   
 
@@ -234,15 +234,31 @@
         
   
     <li>
-      <a href="../../2-grafos-componentes/componentes/">Componentes Conexas</a>
+      <a href="../componentes/">Componentes Conexas</a>
     </li>
   
 
       
         
   
-    <li>
-      <a href="../../2-grafos-componentes/pratica/">Prática</a>
+
+    <li class="active ah-togglable-item opened">
+      <span class="ah-togglable-handle">Prática</span>
+      <ul>
+        
+          
+            
+            
+              <li class="ah-toc-item">
+                <a href="#basicos">Básicos</a>
+              </li>
+            
+              <li class="ah-toc-item">
+                <a href="#busca-em-profundidade">Busca em Profundidade</a>
+              </li>
+            
+        
+      </ul>
     </li>
   
 
@@ -264,6 +280,14 @@
             <ul class="ah-breadcrumbs">
               
                 
+                  
+                    <li>Módulos</li>
+                  
+                
+                  
+                    <li>2 - Grafos e Componentes</li>
+                  
+                
                 <li></li>
             </ul>
             
@@ -271,63 +295,19 @@
           </div>
           
             <section class="progress-section show">
-<h1 id="busca-em-largura">Busca em Largura</h1>
-<p><ah-external-content src="../bfs-slides.html" /></p>
-<p>Nesta aula iremos simular a busca em largura (BFS) em três grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.</p>
-<h2 id="grafo-1">Grafo 1</h2>
-<p>Queremos encontrar o menor caminho entre <strong>A</strong> e <strong>F</strong></p>
-<p><ah-diagram>
-graph LR
-    A --- B
-    A --- C
-    A --- E
-    B --- D
-    B --- C
-    D --- E
-    E --- F
-</ah-diagram></p>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/bfs/long_1" id="long_1_0">
-<p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
-<form class="exercise-form">
-<p>Use o campo abaixo para anotações sobre esta simulação.</p>
-<div class="form-elements">
-<div class="grow-wrap"><textarea name="data"></textarea></div>
-
-<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
-</div>
-</form>
-</div>
-<h2 id="grafo-2">Grafo 2</h2>
-<p>Vamos encontrar o menor caminho entre <strong>A</strong> e <strong>G</strong></p>
-<p><ah-diagram>
-graph LR
-    A --- G
-    A --- B
-    B --- C
-    C --- G
-    C --- D
-    C --- E
-    D --- E
-    E --- G
-    E --- F
-    F --- G
-</ah-diagram></p>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/bfs/long_2" id="long_2_0">
-<p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
-<form class="exercise-form">
-<p>Use o campo abaixo para anotações sobre esta simulação.</p>
-<div class="form-elements">
-<div class="grow-wrap"><textarea name="data"></textarea></div>
-
-<input class="ah-button ah-button--primary" type="submit" value="Submit"/>
-</div>
-</form>
-</div>
-<h2 id="entrega">Entrega</h2>
-<p>Teremos 2 entregas nessa aula:</p>
+<h1 id="exercicios-para-pratica">Exercícios para Prática</h1>
+<p>O leetcode é uma plataforma usada por muitas empresas para contratação e os problemas usandos lembram muito que fazemos em algoritmos. Usaremos esse site para praticar os conceitos vistos em aula e implementados no PrairieLearn. </p>
+<h2 id="basicos">Básicos</h2>
 <ul>
-<li>implementação de um tipo de dados <code>queue_t</code> seguindo a estrutura do arquivo <code>queue.h</code></li>
-<li>implementação da busca em largura usando essa ED</li>
+<li><a href="https://leetcode.com/problems/keys-and-rooms/">Keys and Rooms</a></li>
+<li><a href="https://leetcode.com/problems/find-center-of-star-graph/">Star Graphs</a></li>
+<li><a href="https://leetcode.com/problems/find-the-town-judge/">Town Judge</a></li>
+</ul>
+<h2 id="busca-em-profundidade">Busca em Profundidade</h2>
+<ul>
+<li><a href="https://leetcode.com/problems/course-schedule/description/">Course Schedule</a></li>
+<li><a href="https://leetcode.com/problems/number-of-islands/description/">Number of Islands</a></li>
+<li><a href="https://leetcode.com/problems/is-graph-bipartite/description/">Is graph bipartite</a></li>
 </ul>
 
 
@@ -337,6 +317,13 @@ graph LR
       </main>
       <footer class="ah-footer ah-typeset">
         <div class="ah-footer-nav">
+          
+            <a href="../componentes/"
+               class="ah-prev"
+               title="Componentes Conexas">
+              <span class="nav-label">Previous</span>
+              <span class="nav-title">Componentes Conexas</span>
+            </a>
           
           
         </div>
