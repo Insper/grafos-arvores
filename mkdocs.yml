@@ -28,10 +28,10 @@ nav:
       - "Representação Computacional": 2-grafos-componentes/repr-computacional.md
       - "Componentes Conexas": 2-grafos-componentes/componentes.md
       - "Prática": 2-grafos-componentes/pratica.md
-    # - "3 - Grafos e Caminhos": 
-    #   - "Índice": 3-grafos-caminhos/index.md
-    #   - "Busca em Largura": 3-grafos-caminhos/bfs.md
-    #   - "Algoritmo de Dijkstra": 3-grafos-caminhos/dijkstra.md
+    - "3 - Grafos e Caminhos": 
+      - "Índice": 3-grafos-caminhos/index.md
+      - "Busca em Largura": 3-grafos-caminhos/bfs.md
+      - "Algoritmo de Dijkstra": 3-grafos-caminhos/dijkstra.md
     # - "2,5 - Problemas em Grafos": 3-grafos-problemas/index.md
 
 
