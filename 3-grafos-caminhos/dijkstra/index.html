@@ -351,15 +351,13 @@
 <div class="admonition exercise self-progress" data-slug="3-grafos-caminhos/dijkstra/exercise_1" id="exercise_1_0">
 <p class="admonition-title">Exercise 1</p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B
-<ah-diagram>
-graph LR
-    A -- 1 --&gt; C
-    A -- 5 --&gt; D
-    C -- 1 --&gt; B
-    B -- 3 --&gt; D
-    linkStyle default color: red
-</ah-diagram></p>
+<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B</p>
+<p><graphviz-graph graph="digraph {
+    A -> C [label=&quot;1&quot;]
+    A -&gt; D [label=&quot;5&quot;]
+    C -&gt; B [label=&quot;1&quot;]
+    B -&gt; D [label=&quot;3&quot;]
+}"&gt; </graphviz-graph></p>
 <div class="form-elements">
 <input type="hidden" name="data" value="OK" />
 <input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
@@ -369,16 +367,14 @@ graph LR
 <div class="admonition exercise self-progress" data-slug="3-grafos-caminhos/dijkstra/exercise_2" id="exercise_2_0">
 <p class="admonition-title">Exercise 2</p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: D, <strong>Destino</strong>: A
-<ah-diagram>
-graph LR
-    D -- 3 --&gt; C
-    D -- 4 --&gt; A
-    D -- 2 --&gt; E
-    C -- 2 --&gt; A
-    E -- 5 --&gt; A
-    linkStyle default color: red
-</ah-diagram></p>
+<p><strong>Fonte</strong>: D, <strong>Destino</strong>: A</p>
+<p><graphviz-graph graph="digraph {
+    D -> C [label=&quot;3&quot;]
+    D -&gt; A [label=&quot;4&quot;]
+    D -&gt; E [label=&quot;2&quot;]
+    C -&gt; A [label=&quot;2&quot;]
+    E -&gt; A [label=&quot;5&quot;]
+}"&gt; </graphviz-graph></p>
 <div class="form-elements">
 <input type="hidden" name="data" value="OK" />
 <input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
@@ -388,17 +384,15 @@ graph LR
 <div class="admonition exercise self-progress" data-slug="3-grafos-caminhos/dijkstra/exercise_3" id="exercise_3_0">
 <p class="admonition-title">Exercise 3</p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: D, <strong>Destino</strong>: A
-<ah-diagram>
-graph LR
-    D -- 3 --&gt; C
-    D -- 4 --&gt; F
-    D -- 2 --&gt; E
-    C -- 3 --&gt; A
-    E -- 5 --&gt; A
-    F -- 1 --&gt; A
-    linkStyle default color: red
-</ah-diagram></p>
+<p><strong>Fonte</strong>: D, <strong>Destino</strong>: A</p>
+<p><graphviz-graph graph="digraph {
+    D -> C [label=&quot;3&quot;]
+    D -&gt; F [label=&quot;4&quot;]
+    D -&gt; E [label=&quot;2&quot;]
+    C -&gt; A [label=&quot;3&quot;]
+    E -&gt; A [label=&quot;5&quot;]
+    F -&gt; A [label=&quot;1&quot;]
+}"&gt; </graphviz-graph></p>
 <div class="form-elements">
 <input type="hidden" name="data" value="OK" />
 <input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
@@ -409,16 +403,14 @@ graph LR
 <p class="admonition-title">Exercise 4</p>
 <form class="exercise-form">
 <p><strong>Fonte</strong>: A, <strong>Destino</strong>: E
-<ah-diagram>
-graph LR
-    A -- 4 --&gt; B
-    A -- 7 --&gt; E
-    A -- 3 --&gt; D
-    B -- 4 --&gt; E
-    C -- 3 --&gt; E
-    D -- 3 --&gt; C
-    linkStyle default color: red
-</ah-diagram></p>
+<graphviz-graph graph="digraph {
+    A -> B [label=&quot;4&quot;]
+    A -&gt; E [label=&quot;7&quot;]
+    A -&gt; D [label=&quot;3&quot;]
+    B -&gt; E [label=&quot;4&quot;]
+    C -&gt; E [label=&quot;3&quot;]
+    D -&gt; C [label=&quot;3&quot;]
+}"&gt; </graphviz-graph></p>
 <div class="form-elements">
 <input type="hidden" name="data" value="OK" />
 <input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
@@ -429,18 +421,16 @@ graph LR
 <p class="admonition-title">Exercise 5</p>
 <form class="exercise-form">
 <p><strong>Fonte</strong>: A, <strong>Destino</strong>: B
-<ah-diagram>
-graph LR
-    A -- 4 --&gt; B
-    A -- 7 --&gt; E
-    A -- 3 --&gt; D
-    B -- 4 --&gt; E
-    B -- 1 --&gt; A
-    C -- 3 --&gt; E
-    C -- 0 --&gt; B
-    D -- 3 --&gt; C
-    linkStyle default color: red
-</ah-diagram></p>
+<graphviz-graph graph="digraph {
+    A -> B [label=&quot;4&quot;]
+    A -&gt; E [label=&quot;7&quot;]
+    A -&gt; D [label=&quot;3&quot;]
+    B -&gt; E [label=&quot;4&quot;]
+    B -&gt; A [label=&quot;1&quot;]
+    C -&gt; E [label=&quot;3&quot;]
+    C -&gt; B [label=&quot;1&quot;]
+    D -&gt; C [label=&quot;3&quot;]
+}"&gt; </graphviz-graph></p>
 <div class="form-elements">
 <input type="hidden" name="data" value="OK" />
 <input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
@@ -450,16 +440,35 @@ graph LR
 <div class="admonition exercise self-progress" data-slug="3-grafos-caminhos/dijkstra/exercise_6" id="exercise_6_0">
 <p class="admonition-title">Exercise 6</p>
 <form class="exercise-form">
-<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B
-<ah-diagram>
-graph LR
-    A -- 2 --&gt; B
-    A -- 0 --&gt; C
-    C -- 1 --&gt; B
-    A -- 100 --&gt; D
-    D -- -150 --&gt; B
-    linkStyle default color: red
-</ah-diagram></p>
+<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B</p>
+<p><graphviz-graph graph="digraph {
+    A -> B [label=&quot;2&quot;]
+    A -&gt; C [label=&quot;1&quot;]
+    C -&gt; B [label=&quot;1&quot;]
+    A -&gt; D [label=&quot;100&quot;]
+    D -&gt; B [label=&quot;-150&quot;]
+}"&gt; </graphviz-graph></p>
+<p><strong>Atenção</strong>: esse grafo tem pesos negativos! Isso por enquanto não estava nas nossas definições (toda aresta tem peso maior que zero). Vamos só ver o que acontece caso isso exista.</p>
+<div class="form-elements">
+<input type="hidden" name="data" value="OK" />
+<input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
+</div>
+</form>
+</div>
+<div class="admonition exercise self-progress" data-slug="3-grafos-caminhos/dijkstra/exercise_7" id="exercise_7_0">
+<p class="admonition-title">Exercise 7</p>
+<form class="exercise-form">
+<p><strong>Fonte</strong>: A, <strong>Destino</strong>: B</p>
+<p><graphviz-graph graph="digraph {
+    A -> B [label=&quot;20&quot;]
+    A -&gt; C [label=&quot;10&quot;]
+    C -&gt; B [label=&quot;1&quot;]
+    A -&gt; D [label=&quot;10&quot;]
+    D -&gt; B [label=&quot;15&quot;]
+    D -&gt; F [label=&quot;-6&quot;]
+    F -&gt; A [label=&quot;-6&quot;]
+}"&gt; </graphviz-graph></p>
+<p><strong>Atenção</strong>: esse grafo tem pesos negativos! Isso por enquanto não estava nas nossas definições (toda aresta tem peso maior que zero). Vamos só ver o que acontece caso isso exista.</p>
 <div class="form-elements">
 <input type="hidden" name="data" value="OK" />
 <input class="ah-button ah-button--primary" type="submit" name="Submit" value="Mark as done" />
@@ -467,8 +476,8 @@ graph LR
 </form>
 </div>
 <h2 id="min-heap">Min-heap</h2>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/dijkstra/long_1" id="long_1_0">
-<p class="admonition-title">Exercise 7<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="3-grafos-caminhos/dijkstra/long_1" id="long_1_0">
+<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Escreva a representação em array do heap abaixo</p>
 <p><ah-diagram>
@@ -494,8 +503,8 @@ graph TD
 <p><code>1 5 9 10 44 11 44 13 55 46</code></p>
 </div>
 </div>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/dijkstra/long_2" id="long_2_0">
-<p class="admonition-title">Exercise 8<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="3-grafos-caminhos/dijkstra/long_2" id="long_2_0">
+<p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Execute <code>MENOR</code> no heap abaixo e escreva sua representação em array.</p>
 <p><ah-diagram>
@@ -521,8 +530,8 @@ graph TD
 <p><code>5 10 9 13 44 11 44 46 55</code></p>
 </div>
 </div>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/dijkstra/long_3" id="long_3_0">
-<p class="admonition-title">Exercise 9<button class="editable-button"></button></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="3-grafos-caminhos/dijkstra/long_3" id="long_3_0">
+<p class="admonition-title">Exercise 10<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Execute <code>INSERE(3)</code> no heap abaixo e escreva sua representação em array.</p>
 <p><ah-diagram>

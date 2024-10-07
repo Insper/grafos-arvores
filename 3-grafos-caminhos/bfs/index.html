@@ -334,20 +334,19 @@
             <section class="progress-section show">
 <h1 id="busca-em-largura">Busca em Largura</h1>
 <p><ah-external-content src="../bfs-slides.html" /></p>
-<p>Nesta aula iremos simular a busca em largura (BFS) em três grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.</p>
+<p>Nesta aula iremos simular a busca em largura (BFS) em dois grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.</p>
 <h2 id="grafo-1">Grafo 1</h2>
 <p>Queremos encontrar o menor caminho entre <strong>A</strong> e <strong>F</strong></p>
-<p><ah-diagram>
-graph LR
-    A --- B
-    A --- C
-    A --- E
-    B --- D
-    B --- C
-    D --- E
-    E --- F
-</ah-diagram></p>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/bfs/long_1" id="long_1_0">
+<p><graphviz-graph graph="graph {
+A -- B
+A -- C
+A -- E
+B -- D
+B -- C
+D -- E
+E -- F
+}"> </graphviz-graph></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="3-grafos-caminhos/bfs/long_1" id="long_1_0">
 <p class="admonition-title">Exercise 1<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Use o campo abaixo para anotações sobre esta simulação.</p>
@@ -360,20 +359,21 @@ graph LR
 </div>
 <h2 id="grafo-2">Grafo 2</h2>
 <p>Vamos encontrar o menor caminho entre <strong>A</strong> e <strong>G</strong></p>
-<p><ah-diagram>
-graph LR
-    A --- G
-    A --- B
-    B --- C
-    C --- G
-    C --- D
-    C --- E
-    D --- E
-    E --- G
-    E --- F
-    F --- G
-</ah-diagram></p>
-<div class="admonition exercise long tag-long-text tag-text-exercise editable" data-slug="3-grafos-caminhos/bfs/long_2" id="long_2_0">
+<p><graphviz-graph graph="
+graph {
+    A -- G
+    A -- B
+    B -- C
+    C -- G
+    C -- D
+    C -- E
+    D -- E
+    E -- G
+    E -- F
+    F -- G
+}">
+</graphviz-graph></p>
+<div class="admonition exercise long tag-text-exercise tag-long-text editable" data-slug="3-grafos-caminhos/bfs/long_2" id="long_2_0">
 <p class="admonition-title">Exercise 2<button class="editable-button"></button></p>
 <form class="exercise-form">
 <p>Use o campo abaixo para anotações sobre esta simulação.</p>
