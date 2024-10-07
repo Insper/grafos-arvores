@@ -19,79 +19,93 @@ Você pode usar as seguintes estruturas auxiliares, se quiser:
 
 !!! exercise 
     **Fonte**: A, **Destino**: B
-    <ah-diagram>
-    graph LR
-        A -- 1 --> C
-        A -- 5 --> D
-        C -- 1 --> B
-        B -- 3 --> D
-        linkStyle default color: red
-    </ah-diagram>
+    
+    <graphviz-graph graph="digraph {
+        A -> C [label=&quot;1&quot;]
+        A -> D [label=&quot;5&quot;]
+        C -> B [label=&quot;1&quot;]
+        B -> D [label=&quot;3&quot;]
+    }"> </graphviz-graph>
 
 !!! exercise 
     **Fonte**: D, **Destino**: A
-    <ah-diagram>
-    graph LR
-        D -- 3 --> C
-        D -- 4 --> A
-        D -- 2 --> E
-        C -- 2 --> A
-        E -- 5 --> A
-        linkStyle default color: red
-    </ah-diagram>
+
+    <graphviz-graph graph="digraph {
+        D -> C [label=&quot;3&quot;]
+        D -> A [label=&quot;4&quot;]
+        D -> E [label=&quot;2&quot;]
+        C -> A [label=&quot;2&quot;]
+        E -> A [label=&quot;5&quot;]
+    }"> </graphviz-graph>
+
 
 !!! exercise 
     **Fonte**: D, **Destino**: A
-    <ah-diagram>
-    graph LR
-        D -- 3 --> C
-        D -- 4 --> F
-        D -- 2 --> E
-        C -- 3 --> A
-        E -- 5 --> A
-        F -- 1 --> A
-        linkStyle default color: red
-    </ah-diagram>
+
+    <graphviz-graph graph="digraph {
+        D -> C [label=&quot;3&quot;]
+        D -> F [label=&quot;4&quot;]
+        D -> E [label=&quot;2&quot;]
+        C -> A [label=&quot;3&quot;]
+        E -> A [label=&quot;5&quot;]
+        F -> A [label=&quot;1&quot;]
+    }"> </graphviz-graph>
 
 !!! exercise 
     **Fonte**: A, **Destino**: E
-    <ah-diagram>
-    graph LR
-        A -- 4 --> B
-        A -- 7 --> E
-        A -- 3 --> D
-        B -- 4 --> E
-        C -- 3 --> E
-        D -- 3 --> C
-        linkStyle default color: red
-    </ah-diagram>
+    <graphviz-graph graph="digraph {
+        A -> B [label=&quot;4&quot;]
+        A -> E [label=&quot;7&quot;]
+        A -> D [label=&quot;3&quot;]
+        B -> E [label=&quot;4&quot;]
+        C -> E [label=&quot;3&quot;]
+        D -> C [label=&quot;3&quot;]
+    }"> </graphviz-graph>
+
 
 !!! exercise 
     **Fonte**: A, **Destino**: B
-    <ah-diagram>
-    graph LR
-        A -- 4 --> B
-        A -- 7 --> E
-        A -- 3 --> D
-        B -- 4 --> E
-        B -- 1 --> A
-        C -- 3 --> E
-        C -- 0 --> B
-        D -- 3 --> C
-        linkStyle default color: red
-    </ah-diagram>
+    <graphviz-graph graph="digraph {
+        A -> B [label=&quot;4&quot;]
+        A -> E [label=&quot;7&quot;]
+        A -> D [label=&quot;3&quot;]
+        B -> E [label=&quot;4&quot;]
+        B -> A [label=&quot;1&quot;]
+        C -> E [label=&quot;3&quot;]
+        C -> B [label=&quot;1&quot;]
+        D -> C [label=&quot;3&quot;]
+    }"> </graphviz-graph>
+
 
 !!! exercise 
     **Fonte**: A, **Destino**: B
-    <ah-diagram>
-    graph LR
-        A -- 2 --> B
-        A -- 0 --> C
-        C -- 1 --> B
-        A -- 100 --> D
-        D -- -150 --> B
-        linkStyle default color: red
-    </ah-diagram>
+
+    <graphviz-graph graph="digraph {
+        A -> B [label=&quot;2&quot;]
+        A -> C [label=&quot;1&quot;]
+        C -> B [label=&quot;1&quot;]
+        A -> D [label=&quot;100&quot;]
+        D -> B [label=&quot;-150&quot;]
+    }"> </graphviz-graph>
+
+    **Atenção**: esse grafo tem pesos negativos! Isso por enquanto não estava nas nossas definições (toda aresta tem peso maior que zero). Vamos só ver o que acontece caso isso exista.
+
+
+!!! exercise 
+    **Fonte**: A, **Destino**: B
+
+    <graphviz-graph graph="digraph {
+        A -> B [label=&quot;20&quot;]
+        A -> C [label=&quot;10&quot;]
+        C -> B [label=&quot;1&quot;]
+        A -> D [label=&quot;10&quot;]
+        D -> B [label=&quot;15&quot;]
+        D -> F [label=&quot;-6&quot;]
+        F -> A [label=&quot;-6&quot;]
+    }"> </graphviz-graph>
+
+    **Atenção**: esse grafo tem pesos negativos! Isso por enquanto não estava nas nossas definições (toda aresta tem peso maior que zero). Vamos só ver o que acontece caso isso exista.
+
 
 ## Min-heap
 

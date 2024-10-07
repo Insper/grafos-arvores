@@ -2,22 +2,21 @@
 
 <ah-external-content src="../bfs-slides.html" />
 
-Nesta aula iremos simular a busca em largura (BFS) em três grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.
+Nesta aula iremos simular a busca em largura (BFS) em dois grafos e compará-la com a busca em profundidade (DFS) para encontrar caminhos entre dois vértices.
 
 ## Grafo 1
 
 Queremos encontrar o menor caminho entre **A** e **F**
 
-<ah-diagram>
-graph LR
-    A --- B
-    A --- C
-    A --- E
-    B --- D
-    B --- C
-    D --- E
-    E --- F
-</ah-diagram>
+<graphviz-graph graph="graph {
+A -- B
+A -- C
+A -- E
+B -- D
+B -- C
+D -- E
+E -- F
+}"> </graphviz-graph>
 
 !!! exercise long
     Use o campo abaixo para anotações sobre esta simulação.
@@ -26,19 +25,20 @@ graph LR
 
 Vamos encontrar o menor caminho entre **A** e **G**
 
-<ah-diagram>
-graph LR
-    A --- G
-    A --- B
-    B --- C
-    C --- G
-    C --- D
-    C --- E
-    D --- E
-    E --- G
-    E --- F
-    F --- G
-</ah-diagram>
+<graphviz-graph graph="
+graph {
+    A -- G
+    A -- B
+    B -- C
+    C -- G
+    C -- D
+    C -- E
+    D -- E
+    E -- G
+    E -- F
+    F -- G
+}">
+</graphviz-graph>
 
 !!! exercise long 
     Use o campo abaixo para anotações sobre esta simulação.
