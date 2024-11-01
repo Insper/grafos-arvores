@@ -18,7 +18,7 @@ Neste módulo iremos ver os principais algoritmos para encontrar caminhos mínim
 
 - [Flood fill](https://leetcode.com/problems/flood-fill/description/)
 - [Island perimeter](https://leetcode.com/problems/island-perimeter/description/)
-- [01 Matrix](https://leetcode.com/problems/01-matrix/description/)
+- [01 Matrix](https://leetcode.com/problems/01-matrix/description/) ([resposta.c](resposta-01.c))
 
 **Dijkstra**:
 
